@@ -278,10 +278,10 @@ def parse_csv_for_summary(csv_data):
         # Ajouter des statistiques pour les colonnes numériques
         for col in df.select_dtypes(include=['number']).columns:
             summary["numeric_stats"][col] = {
-                "min": df[col].min(),
-                "max": df[col].max(),
-                "mean": df[col].mean(),
-                "median": df[col].median(),
+                "min": float(df[col].min()) if not pd.isna(df[col].min()) else None,
+                "max": float(df[col].max()) if not pd.isna(df[col].max()) else None,
+                "mean": float(df[col].mean()) if not pd.isna(df[col].mean()) else None,
+                "median": float(df[col].median()) if not pd.isna(df[col].median()) else None,
             }
             
         return summary
@@ -655,6 +655,211 @@ def parse_regression_to_html(narrative_text, regression_tables):
 # ======================================================
 # Fonctions de génération de contenu académique
 # ======================================================
+
+def generate_enhanced_introduction(agent1_data, agent2_data, synthesis, discussion, conclusion, economic_reasoning, model, backend):
+    """
+    Génère une introduction académique de qualité article de recherche en intégrant 
+    les résultats des trois agents et l'analyse économique.
+    
+    Args:
+        agent1_data: Données de l'agent1
+        agent2_data: Données de l'agent2
+        synthesis: Résumé simple
+        discussion: Section discussion
+        conclusion: Section conclusion
+        economic_reasoning: Raisonnement économique complet
+        model: Modèle LLM à utiliser
+        backend: Backend pour les appels LLM
+        
+    Returns:
+        str: Introduction académique de type article de recherche
+    """
+    # Vérifier si un modèle puissant a été utilisé par l'agent 2
+    if "current_model" in agent2_data and agent2_data["current_model"] != model:
+        logger.info(f"Utilisation du modèle puissant transmis par l'agent 2: {agent2_data['current_model']}")
+        model = agent2_data["current_model"]
+
+    # Récupérer les éléments importants des agents
+    user_prompt = agent1_data.get("user_prompt", "")
+    original_introduction = agent1_data.get('llm_output', {}).get('introduction', '')
+    hypotheses = agent1_data.get('llm_output', {}).get('hypotheses', '')
+    literature_review = agent1_data.get('llm_output', {}).get('literature_review', '')
+    methodology = agent1_data.get('llm_output', {}).get('methodology', '')
+    
+    # Récupérer des extraits du travail de l'agent 2
+    narrative = agent2_data.get("narrative", "")
+    
+    # Récupérer des informations sur les visualisations
+    visualisations_info = ""
+    if "visualisations" in agent2_data:
+        vis_count = len(agent2_data["visualisations"])
+        reg_count = sum(1 for v in agent2_data["visualisations"] if v.get('type') == 'regression_table')
+        chart_count = vis_count - reg_count
+        visualisations_info = f"L'analyse comprend {chart_count} visualisations et {reg_count} modèles de régression."
+    
+    # Créer le prompt pour une introduction académique de qualité article de recherche
+    prompt = f"""## RÉDACTION D'UNE INTRODUCTION ACADÉMIQUE DE TYPE ARTICLE DE RECHERCHE
+
+### Problématique de recherche
+{user_prompt}
+
+### Éléments conceptuels (Agent 1)
+**Introduction originale**: 
+{original_introduction[:800]}...
+
+**Revue de littérature**: 
+{literature_review[:500]}...
+
+**Hypothèses**: 
+{hypotheses[:500]}...
+
+**Méthodologie proposée**: 
+{methodology[:500]}...
+
+### Résultats empiriques (Agent 2)
+**Narration des résultats**: 
+{narrative[:500]}...
+
+**Structure des visualisations**: 
+{visualisations_info}
+
+### Analyse synthétique (Agent 3)
+**Résumé**: 
+{synthesis[:300]}...
+
+**Discussion**: 
+{discussion[:300]}...
+
+**Raisonnement économique**: 
+{economic_reasoning[:500]}...
+
+**Conclusion**: 
+{conclusion[:300]}...
+
+---
+
+**DIRECTIVE**: Rédigez une introduction académique substantielle de type article de recherche économique (800-1000 mots). Cette introduction doit être de très haute qualité académique et remplacera l'introduction originale dans le rapport final.
+
+**STRUCTURE IMPÉRATIVE**:
+
+1. **CONTEXTUALISATION DU SUJET** (2-3 paragraphes)
+   - Présentez le contexte global et l'importance du sujet
+   - Ancrez la problématique dans les débats contemporains
+   - Articulez clairement les enjeux théoriques et pratiques
+
+2. **REVUE DE LITTÉRATURE INTÉGRÉE** (2-3 paragraphes)
+   - Synthétisez les travaux fondateurs et récents
+   - Identifiez précisément les lacunes dans la littérature existante
+   - Positionnez cette recherche par rapport aux connaissances actuelles
+
+3. **PROBLÉMATIQUE ET QUESTIONS DE RECHERCHE** (1 paragraphe)
+   - Formulez une question principale claire et précise
+   - Articulez 2-3 sous-questions ou dimensions d'analyse
+
+4. **APPROCHE MÉTHODOLOGIQUE ET APERÇU DES RÉSULTATS** (1-2 paragraphes)
+   - Présentez succinctement l'approche méthodologique adoptée
+   - Mentionnez les principaux résultats sans les détailler intégralement
+   - Mettez en avant la contribution spécifique de cette recherche
+
+5. **STRUCTURE DU RAPPORT** (1 court paragraphe)
+   - Présentez l'organisation du reste du rapport de façon concise
+
+**EXIGENCES STYLISTIQUES**:
+- Style académique formel mais accessible
+- Phrases complexes mais claires
+- Vocabulaire économique précis
+- Ton neutre et objectif
+- TEXTE SIMPLE sans mise en forme excessive, titres ou listes à puces
+
+Cette introduction doit être suffisamment substantielle et rigoureuse pour figurer dans un article académique de premier plan en économie.
+"""
+
+    try:
+        logger.info(f"Génération d'une introduction académique améliorée avec le modèle {model}")
+        introduction = call_llm(prompt=prompt, model_name=model, backend=backend)
+        
+        # Nettoyer les caractères # qui pourraient se trouver dans le texte
+        lines = introduction.split('\n')
+        cleaned_lines = []
+        
+        for line in lines:
+            # Supprimer les symboles # au début des lignes
+            cleaned_line = re.sub(r'^#+ *', '', line)
+            cleaned_lines.append(cleaned_line)
+        
+        introduction = '\n'.join(cleaned_lines)
+        
+        logger.info(f"Introduction académique améliorée générée ({len(introduction)} caractères)")
+        return introduction
+    except Exception as e:
+        logger.error(f"Erreur lors de la génération de l'introduction académique améliorée: {e}")
+        # En cas d'erreur, retourner l'introduction originale
+        return original_introduction
+
+def generate_abstract_from_introduction(enhanced_introduction, model, backend):
+    """
+    Génère un abstract (résumé) à partir de l'introduction améliorée.
+    
+    Args:
+        enhanced_introduction: Introduction améliorée
+        model: Modèle LLM à utiliser
+        backend: Backend pour les appels LLM
+        
+    Returns:
+        str: Abstract généré à partir de l'introduction
+    """
+    if not enhanced_introduction:
+        logger.error("Introduction améliorée non disponible pour générer l'abstract")
+        return "Résumé non disponible."
+    
+    # Créer le prompt pour générer un abstract à partir de l'introduction
+    prompt = f"""## GÉNÉRATION D'UN ABSTRACT ACADÉMIQUE
+
+### Introduction complète de l'article
+{enhanced_introduction}
+
+---
+
+**DIRECTIVE**: Rédigez un abstract/résumé concis (environ 150-200 mots) qui synthétise parfaitement l'introduction ci-dessus. Cet abstract servira d'entrée en matière au rapport complet.
+
+**CONTENU REQUIS**:
+1. Le contexte de l'étude et son importance
+2. L'objectif principal et les questions de recherche
+3. L'approche méthodologique utilisée
+4. Les principaux résultats ou contributions
+5. Une brève conclusion ou implication
+
+**EXIGENCES STYLISTIQUES**:
+- Style académique concis et direct
+- Un seul paragraphe continu
+- Phrases claires et précises
+- Vocabulaire économique spécialisé mais accessible
+- Aucune citation ou référence spécifique
+- Texte simple sans mise en forme
+
+Cet abstract doit donner au lecteur une vision complète et précise de la recherche en un coup d'œil.
+"""
+
+    try:
+        logger.info(f"Génération d'un abstract à partir de l'introduction améliorée avec le modèle {model}")
+        abstract = call_llm(prompt=prompt, model_name=model, backend=backend)
+        
+        # Nettoyer les caractères # qui pourraient se trouver dans le texte
+        lines = abstract.split('\n')
+        cleaned_lines = []
+        
+        for line in lines:
+            # Supprimer les symboles # au début des lignes
+            cleaned_line = re.sub(r'^#+ *', '', line)
+            cleaned_lines.append(cleaned_line)
+        
+        abstract = '\n'.join(cleaned_lines)
+        
+        logger.info(f"Abstract généré à partir de l'introduction ({len(abstract)} caractères)")
+        return abstract
+    except Exception as e:
+        logger.error(f"Erreur lors de la génération de l'abstract: {e}")
+        return "Résumé non disponible. Une erreur s'est produite lors de la génération."
 
 def generate_comprehensive_economic_analysis(agent1_data, agent2_data, model, backend):
     """
@@ -1381,7 +1586,7 @@ EXCEPTION : Si c'est une table de régression, tu peux interpreter plus longueme
 # Fonctions principales de génération des rapports
 # ======================================================
 
-def generate_report_docx(agent1_data, agent2_data, synthesis, discussion, conclusion, references, economic_reasoning, model_name, user_prompt, img_dir):
+def generate_report_docx(agent1_data, agent2_data, synthesis, discussion, conclusion, references, economic_reasoning, model_name, user_prompt, img_dir, enhanced_introduction=None):
     """
     Génère un rapport Word au format simple avec python-docx.
     
@@ -1396,6 +1601,7 @@ def generate_report_docx(agent1_data, agent2_data, synthesis, discussion, conclu
         model_name: Nom du modèle LLM utilisé
         user_prompt: Prompt initial de l'utilisateur
         img_dir: Répertoire contenant les images
+        enhanced_introduction: Introduction académique améliorée (optionnel)
         
     Returns:
         str: Chemin du rapport Word généré ou message d'erreur
@@ -1494,7 +1700,9 @@ def generate_report_docx(agent1_data, agent2_data, synthesis, discussion, conclu
     heading = doc.add_heading("Introduction", level=1)
     heading.style.font.color.rgb = RGBColor(0x25, 0x63, 0xEB)  # Bleu
     doc.add_paragraph(f"Cette analyse s'intéresse à {user_prompt.lower()}.")
-    intro_text = agent1_data.get('llm_output', {}).get('introduction', 'Non disponible')
+    
+    # Utiliser l'introduction améliorée si disponible, sinon utiliser celle de l'agent1
+    intro_text = enhanced_introduction if enhanced_introduction else agent1_data.get('llm_output', {}).get('introduction', 'Non disponible')
     doc.add_paragraph(markdown_to_plain_text(intro_text))
     
     # Visualisations et Résultats
@@ -1743,7 +1951,7 @@ def generate_report_docx(agent1_data, agent2_data, synthesis, discussion, conclu
         logger.error(f"Erreur lors de la génération du document Word: {e}")
         return f"Erreur: Échec de la génération du document Word. Détails: {e}"
 
-def generate_report_pdf(agent1_data, agent2_data, synthesis, discussion, conclusion, references, economic_reasoning, model_name, user_prompt, report_dir, img_dir):
+def generate_report_pdf(agent1_data, agent2_data, synthesis, discussion, conclusion, references, economic_reasoning, model_name, user_prompt, report_dir, img_dir, enhanced_introduction=None):
     """
     Génère un rapport PDF au format amélioré avec WeasyPrint et Jinja2.
     
@@ -1759,6 +1967,7 @@ def generate_report_pdf(agent1_data, agent2_data, synthesis, discussion, conclus
         user_prompt: Prompt initial de l'utilisateur
         report_dir: Répertoire où générer le rapport
         img_dir: Répertoire où sauvegarder les images
+        enhanced_introduction: Introduction académique améliorée (optionnel)
         
     Returns:
         str: Chemin du rapport PDF généré ou message d'erreur
@@ -1767,6 +1976,9 @@ def generate_report_pdf(agent1_data, agent2_data, synthesis, discussion, conclus
 
     # --- Préparation des données pour le template ---
     narrative_md = agent2_data.get("narrative", "Aucune narration disponible.")
+    
+    # Utiliser l'introduction améliorée si disponible, sinon utiliser celle de l'agent1
+    introduction_text = enhanced_introduction if enhanced_introduction else agent1_data.get('llm_output', {}).get('introduction', 'Non disponible')
     
     # Traiter les visualisations (prend en charge à la fois les visualisations standard et les tables de régression)
     visualisations_data = agent2_data.get("visualisations", [])
@@ -2119,7 +2331,7 @@ def generate_report_pdf(agent1_data, agent2_data, synthesis, discussion, conclus
         "report_title": f"Analyse de {user_prompt[:50]}{'...' if len(user_prompt) > 50 else ''}",
         "generation_date": datetime.now().strftime("%d/%m/%Y"),
         "metadata": agent1_data.get("metadata", {}),
-        "introduction_text": agent1_data.get('llm_output', {}).get('introduction', 'Non disponible'),
+        "introduction_text": introduction_text,
         "standard_vis_infos": standard_vis_infos,
         "regression_table_infos": regression_table_infos,
         "comprehensive_visual_analysis": comprehensive_visual_analysis,
@@ -2282,9 +2494,26 @@ def main():
         logger.info(f"Utilisation du modèle puissant transmis par l'agent 2: {agent2_data['current_model']}")
         model = agent2_data["current_model"]
 
+    # NOUVEAU: Génération de l'introduction académique améliorée
+    logger.info(f"Génération de l'introduction académique améliorée avec modèle: {model}")
+    enhanced_introduction = generate_enhanced_introduction(
+        agent1_data, 
+        agent2_data, 
+        "", # Synthesis sera générée plus tard
+        "", # Discussion sera générée plus tard
+        "", # Conclusion sera générée plus tard
+        "", # Economic reasoning sera généré plus tard
+        model, 
+        args.backend
+    )
+
     # Générer le contenu
-    logger.info(f"Génération du résumé avec modèle: {model}")
-    synthesis = generate_synthesis(agent1_data, agent2_data, model, args.backend)
+    logger.info(f"Génération du raisonnement économique complet avec modèle: {model}")
+    economic_reasoning = generate_comprehensive_economic_analysis(agent1_data, agent2_data, model, args.backend)
+
+    # NOUVEAU: Génération de l'abstract à partir de l'introduction améliorée
+    logger.info(f"Génération de l'abstract à partir de l'introduction améliorée avec modèle: {model}")
+    synthesis = generate_abstract_from_introduction(enhanced_introduction, model, args.backend)
     
     logger.info(f"Génération de la section discussion avec modèle: {model}")
     discussion = generate_discussion_section(agent1_data, agent2_data, model, args.backend)
@@ -2294,10 +2523,6 @@ def main():
     
     logger.info(f"Génération des références avec modèle: {model}")
     references = generate_references(agent1_data, model, args.backend)
-    
-    # AJOUT: Génération du raisonnement économique complet
-    logger.info(f"Génération du raisonnement économique complet avec modèle: {model}")
-    economic_reasoning = generate_comprehensive_economic_analysis(agent1_data, agent2_data, model, args.backend)
 
     # Création des répertoires pour les rapports
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -2360,7 +2585,8 @@ def main():
         model,
         args.user_prompt,
         report_dir,
-        img_dir
+        img_dir,
+        enhanced_introduction  # Nouvelle introduction améliorée
     )
 
     # Génération du rapport Word si le module est disponible
@@ -2377,7 +2603,8 @@ def main():
             economic_reasoning,
             model,
             args.user_prompt,
-            img_dir
+            img_dir,
+            enhanced_introduction  # Nouvelle introduction améliorée
         )
     else:
         logger.warning("Module python-docx non disponible. Aucun rapport Word ne sera généré.")
@@ -2385,6 +2612,7 @@ def main():
     # Sortie JSON contenant les chemins et la synthèse
     output = {
         "abstract": synthesis,
+        "introduction": enhanced_introduction,
         "discussion": discussion,
         "conclusion": conclusion,
         "references": references,

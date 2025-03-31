@@ -1,0 +1,1756 @@
+================================================================================
+Timestamp: 2025-03-31 17:01:58
+Prompt Type: Initial Code Generation
+================================================================================
+
+## GÉNÉRATION DE CODE D'ANALYSE DE DONNÉES
+
+### Fichier CSV et Métadonnées
+```json
+{
+  "chemin_fichier": "/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv",
+  "nb_lignes": 800,
+  "nb_colonnes": 22,
+  "noms_colonnes": [
+    "etablissement_id",
+    "type_etablissement",
+    "periode",
+    "date",
+    "annee",
+    "semestre",
+    "reforme",
+    "post",
+    "interaction_did",
+    "budget_education",
+    "nb_eleves",
+    "ratio_eleves_enseignant",
+    "taux_pauvrete",
+    "niveau_urbanisation",
+    "approche_pedagogique",
+    "score_tests",
+    "taux_emploi_jeunes",
+    "log_budget",
+    "log_nb_eleves",
+    "groupe",
+    "periode_relative",
+    "phase"
+  ],
+  "types_colonnes": {
+    "etablissement_id": "int64",
+    "type_etablissement": "object",
+    "periode": "int64",
+    "date": "object",
+    "annee": "int64",
+    "semestre": "int64",
+    "reforme": "int64",
+    "post": "int64",
+    "interaction_did": "int64",
+    "budget_education": "float64",
+    "nb_eleves": "float64",
+    "ratio_eleves_enseignant": "float64",
+    "taux_pauvrete": "float64",
+    "niveau_urbanisation": "float64",
+    "approche_pedagogique": "object",
+    "score_tests": "float64",
+    "taux_emploi_jeunes": "float64",
+    "log_budget": "float64",
+    "log_nb_eleves": "float64",
+    "groupe": "object",
+    "periode_relative": "int64",
+    "phase": "object"
+  },
+  "statistiques": {
+    "etablissement_id": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 200.0,
+      "moyenne": 100.5,
+      "mediane": 100.5,
+      "ecart_type": 57.770423031353396,
+      "nb_valeurs_uniques": 200
+    },
+    "type_etablissement": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 5,
+      "valeurs_frequentes": {
+        "Lycée": 160,
+        "Collège": 160,
+        "Primaire": 160,
+        "Maternelle": 160,
+        "Centre Professionnel": 160
+      }
+    },
+    "periode": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 4.0,
+      "moyenne": 2.5,
+      "mediane": 2.5,
+      "ecart_type": 1.1187334157740447,
+      "nb_valeurs_uniques": 4
+    },
+    "date": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 4,
+      "valeurs_frequentes": {
+        "2015-01-01": 200,
+        "2016-01-01": 200,
+        "2016-12-31": 200,
+        "2017-12-31": 200
+      }
+    },
+    "annee": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 2015.0,
+      "max": 2017.0,
+      "moyenne": 2016.0,
+      "mediane": 2016.0,
+      "ecart_type": 0.707549137677225,
+      "nb_valeurs_uniques": 3
+    },
+    "semestre": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 2.0,
+      "moyenne": 1.5,
+      "mediane": 1.5,
+      "ecart_type": 0.5003127932742599,
+      "nb_valeurs_uniques": 2
+    },
+    "reforme": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.365,
+      "mediane": 0.0,
+      "ecart_type": 0.48173133731540607,
+      "nb_valeurs_uniques": 2
+    },
+    "post": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.75,
+      "mediane": 1.0,
+      "ecart_type": 0.43328358881386136,
+      "nb_valeurs_uniques": 2
+    },
+    "interaction_did": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.27375,
+      "mediane": 0.0,
+      "ecart_type": 0.4461611392790204,
+      "nb_valeurs_uniques": 2
+    },
+    "budget_education": {
+      "valeurs_manquantes": 16,
+      "pourcentage_manquant": 2.0,
+      "min": 464.3869544690439,
+      "max": 1606.3747654779097,
+      "moyenne": 1029.258136936791,
+      "mediane": 1031.6700563569188,
+      "ecart_type": 190.77763664809413,
+      "nb_valeurs_uniques": 784
+    },
+    "nb_eleves": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": -31.254324334050352,
+      "max": 938.9041162662832,
+      "moyenne": 511.97406938785156,
+      "mediane": 508.664628878931,
+      "ecart_type": 149.0632286942652,
+      "nb_valeurs_uniques": 800
+    },
+    "ratio_eleves_enseignant": {
+      "valeurs_manquantes": 12,
+      "pourcentage_manquant": 1.5,
+      "min": 5.085229406570484,
+      "max": 37.36315312160198,
+      "moyenne": 21.967458662309276,
+      "mediane": 21.7068137809216,
+      "ecart_type": 5.071798666745173,
+      "nb_valeurs_uniques": 788
+    },
+    "taux_pauvrete": {
+      "valeurs_manquantes": 19,
+      "pourcentage_manquant": 2.38,
+      "min": 5.0,
+      "max": 40.0,
+      "moyenne": 20.24956526244431,
+      "mediane": 19.923682418549006,
+      "ecart_type": 7.853220021728765,
+      "nb_valeurs_uniques": 760
+    },
+    "niveau_urbanisation": {
+      "valeurs_manquantes": 24,
+      "pourcentage_manquant": 3.0,
+      "min": 0.0,
+      "max": 100.0,
+      "moyenne": 59.27100405758951,
+      "mediane": 59.62833374100276,
+      "ecart_type": 23.91302444155631,
+      "nb_valeurs_uniques": 727
+    },
+    "approche_pedagogique": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 4,
+      "valeurs_frequentes": {
+        "Expérimentale": 215,
+        "Traditionnelle": 205,
+        "Progressive": 204,
+        "Mixte": 176
+      }
+    },
+    "score_tests": {
+      "valeurs_manquantes": 13,
+      "pourcentage_manquant": 1.62,
+      "min": 66.44278232956674,
+      "max": 86.27497092340671,
+      "moyenne": 77.32811310905097,
+      "mediane": 77.49689282374091,
+      "ecart_type": 3.302510934616114,
+      "nb_valeurs_uniques": 787
+    },
+    "taux_emploi_jeunes": {
+      "valeurs_manquantes": 14,
+      "pourcentage_manquant": 1.75,
+      "min": 42.59660027106259,
+      "max": 67.69471345887538,
+      "moyenne": 53.79211235224418,
+      "mediane": 53.67143134709437,
+      "ecart_type": 4.500082533423796,
+      "nb_valeurs_uniques": 786
+    },
+    "log_budget": {
+      "valeurs_manquantes": 16,
+      "pourcentage_manquant": 2.0,
+      "min": 6.1407181582772425,
+      "max": 7.381735220632685,
+      "moyenne": 6.918629882256804,
+      "mediane": 6.938933889020916,
+      "ecart_type": 0.1927151056190802,
+      "nb_valeurs_uniques": 784
+    },
+    "log_nb_eleves": {
+      "valeurs_manquantes": 1,
+      "pourcentage_manquant": 0.12,
+      "min": 4.075709036506084,
+      "max": 6.844713361391949,
+      "moyenne": 6.191957653511821,
+      "mediane": 6.233523342320559,
+      "ecart_type": 0.32611335372963507,
+      "nb_valeurs_uniques": 799
+    },
+    "groupe": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 2,
+      "valeurs_frequentes": {
+        "Non réformé": 508,
+        "Réformé": 292
+      }
+    },
+    "periode_relative": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": -1.0,
+      "max": 2.0,
+      "moyenne": 0.5,
+      "mediane": 0.5,
+      "ecart_type": 1.1187334157740447,
+      "nb_valeurs_uniques": 4
+    },
+    "phase": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 3,
+      "valeurs_frequentes": {
+        "Post-réforme": 400,
+        "Pre-réforme": 200,
+        "Implémentation": 200
+      }
+    }
+  }
+}
+```
+
+### Chemin absolu du fichier CSV
+/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv
+
+### Noms exacts des colonnes à utiliser
+['etablissement_id', 'type_etablissement', 'periode', 'date', 'annee', 'semestre', 'reforme', 'post', 'interaction_did', 'budget_education', 'nb_eleves', 'ratio_eleves_enseignant', 'taux_pauvrete', 'niveau_urbanisation', 'approche_pedagogique', 'score_tests', 'taux_emploi_jeunes', 'log_budget', 'log_nb_eleves', 'groupe', 'periode_relative', 'phase']
+
+### Introduction et problématique de recherche
+**
+
+L'évaluation rigoureuse des politiques publiques, et plus particulièrement des réformes éducatives, constitue un enjeu crucial pour les décideurs politiques et les chercheurs en sciences économiques.  L'éducation, perçue comme un investissement en capital humain, est un moteur essentiel de la croissance économique, de la mobilité sociale et du bien-être individuel (Becker, 1964; Schultz, 1961).  Cependant, l'évaluation de l'efficacité des réformes éducatives est un défi complexe en raison des multiples canaux par lesquels ces réformes peuvent influencer les résultats, des délais potentiels avant l'observation de ces effets, et de la difficulté d'isoler l'impact causal de la réforme par rapport à d'autres facteurs concomitants.
+
+Cette étude se concentre sur l'analyse de l'impact d'une réforme éducative spécifique sur deux indicateurs clés : les scores des élèves aux tests standardisés et le taux d'emploi des jeunes. La motivation principale de cette recherche réside dans la nécessité d'améliorer la compréhension des mécanismes par lesquels les réformes éducatives affectent les résultats des élèves et leur insertion sur le marché du travail. En France, comme dans de nombreux autres pays, les réformes éducatives sont souvent mises en œuvre avec l'objectif d'améliorer l'équité et l'efficacité du système éducatif, mais leur impact réel est rarement évalué de manière rigoureuse (Hanushek, 2016).  Cette absence d'évaluation conduit à une allocation suboptimale des ressources publiques et à une incapacité à identifier les politiques qui fonctionnent le mieux.
+
+La problématique générale est donc la suivante : quel est l'impact causal d'une réforme éducative, mise en place de manière différentielle entre les établissements scolaires, sur les performances des élèves et leur accès à l'emploi, en tenant compte des facteurs de confusion potentiels et des hétérogénéités régionales ?
+
+L'importance de cette question de recherche est multiple. Premièrement, elle contribue à la littérature sur l'évaluation des politiques publiques en proposant une méthodologie rigoureuse pour estimer l'impact causal d'une réforme éducative. Deuxièmement, elle fournit des informations précieuses aux décideurs politiques pour orienter les futures réformes éducatives. Troisièmement, elle permet de mieux comprendre les mécanismes par lesquels l'éducation influence la performance économique et sociale. Enfin, elle souligne l'importance de tenir compte des hétérogénéités régionales et des politiques éducatives préexistantes dans l'évaluation des réformes.
+
+Les implications théoriques de cette étude sont liées à la théorie du capital humain (Becker, 1964), qui suggère que les investissements en éducation augmentent la productivité des individus et donc leur potentiel de gain futur. La réforme éducative, en modifiant le contenu de l'enseignement, les méthodes pédagogiques ou les ressources disponibles pour les établissements scolaires, peut affecter le niveau de capital humain accumulé par les élèves. Par ailleurs, cette étude s'inscrit dans les débats sur l'efficacité des différentes approches pédagogiques et sur l'impact des politiques publiques sur l'équité du système éducatif (Chetty et al., 2014). Empiriquement, l'étude peut révéler si la réforme éducative a effectivement amélioré les scores des élèves et leur taux d'emploi, et si ces effets sont homogènes ou hétérogènes selon les régions et les types d'établissements scolaires.
+
+L'évaluation ex-post d'une réforme, notamment par des méthodes économétriques rigoureuses, se révèle indispensable pour éclairer la prise de décision et ajuster les politiques publiques. Cette étude, en utilisant la méthode des différences en différences (DiD), tente de pallier les limites des analyses descriptives et des corrélations simples, en fournissant une estimation de l'effet causal de la réforme.
+
+**2.
+
+### Hypothèses de recherche
+FORMELLES**
+
+*   **H1:** La réforme éducative aura un impact positif et significatif sur les scores aux tests standardisés des élèves dans les établissements ayant mis en œuvre la réforme, comparativement aux établissements n'ayant pas mis en œuvre la réforme.
+    *   *Justification:* La réforme est conçue pour améliorer la qualité de l'enseignement et le contenu des programmes, ce qui devrait se traduire par une augmentation des scores des élèves aux tests standardisés.
+*   **H2:** La réforme éducative aura un impact positif et significatif sur le taux d'emploi des jeunes issus des établissements ayant mis en œuvre la réforme, comparativement aux établissements n'ayant pas mis en œuvre la réforme.
+    *   *Justification:* L'amélioration de la qualité de l'enseignement et la meilleure adéquation des compétences acquises avec les besoins du marché du travail devraient faciliter l'insertion professionnelle des jeunes.
+*   **H3:** L'impact de la réforme sur les scores aux tests standardisés sera plus important dans les établissements ayant des ressources limitées avant la réforme.
+    *   *Justification:* Les établissements ayant des ressources limitées peuvent bénéficier davantage de la réforme, car elle peut leur apporter des ressources supplémentaires et améliorer la qualité de l'enseignement.
+*   **H4:** L'impact de la réforme sur le taux d'emploi des jeunes sera plus important dans les régions où le taux de chômage est élevé avant la réforme.
+    *   *Justification:* Dans les régions où le taux de chômage est élevé, l'amélioration des compétences et de l'employabilité des jeunes grâce à la réforme peut avoir un impact plus important sur leur insertion professionnelle.
+*   **H5:** L'impact de la réforme sera hétérogène selon le type d'établissement (Lycée, Collège, Primaire, Maternelle, Centre Professionnel).
+    *   *Justification:* La pertinence et l'application concrète de la réforme peuvent varier significativement selon le niveau d'enseignement, les spécificités des programmes et les besoins des élèves. Les effets observés sur les performances et l'employabilité peuvent donc diverger.
+*   **H6:** L'impact de la réforme sera plus fort dans les établissements adoptant une approche pédagogique "Expérimentale" ou "Progressive" que dans ceux utilisant une approche "Traditionnelle".
+    *   *Justification:* Les approches pédagogiques plus modernes et flexibles peuvent être plus réceptives aux changements induits par la réforme, permettant une meilleure assimilation et une exploitation plus efficace des nouvelles méthodes et contenus.
+
+**4.
+
+### Méthodologie proposée
+**
+
+La méthode d'estimation privilégiée est la méthode des différences en différences (DiD).  Cette méthode permet d'estimer l'impact causal de la réforme en comparant l'évolution des résultats (scores aux tests, taux d'emploi) dans les établissements ayant mis en œuvre la réforme (groupe de traitement) avec l'évolution des résultats dans les établissements n'ayant pas mis en œuvre la réforme (groupe de contrôle), avant et après la mise en œuvre de la réforme (Goodman-Bacon, 2008).
+
+Le modèle économétrique de base à estimer est le suivant :
+
+*Y<sub>it</sub> = β<sub>0</sub> + β<sub>1</sub> * *reforme<sub>i</sub>* *post<sub>t</sub>* + β<sub>2</sub>X<sub>it</sub> + α<sub>i</sub> + γ<sub>t</sub> + ε<sub>it</sub>*
+
+Où :
+
+*   *Y<sub>it</sub>* représente la variable d'intérêt (score aux tests ou taux d'emploi) pour l'établissement *i* à la période *t*.
+*   *reforme<sub>i</sub>* est une variable binaire qui vaut 1 si l'établissement *i* a mis en œuvre la réforme, et 0 sinon.
+*   *post<sub>t</sub>* est une variable binaire qui vaut 1 après la mise en œuvre de la réforme (période 8 et suivantes), et 0 sinon.
+*   *reforme<sub>i</sub>* * post<sub>t</sub>* est la variable d'interaction qui représente l'effet de la réforme (effet DiD).  β<sub>1</sub> est le coefficient d'intérêt qui mesure l'impact causal de la réforme.
+*   *X<sub>it</sub>* est un vecteur de variables de contrôle, incluant le budget éducatif, le ratio élèves/enseignant, le taux de pauvreté, le niveau d'urbanisation, et potentiellement l'approche pédagogique.
+*   *α<sub>i</sub>* représente les effets fixes individuels par établissement (pour contrôler les hétérogénéités non observées et constantes dans le temps au niveau de chaque établissement).
+*   *γ<sub>t</sub>* représente les effets fixes temporels (pour contrôler les chocs communs à tous les établissements à chaque période).
+*   *ε<sub>it</sub>* est le terme d'erreur.
+
+L'estimation sera réalisée par moindres carrés ordinaires (MCO) avec des erreurs standards robustes aux hétéroscédasticités et aux corrélations intra-groupes (cluster-robust standard errors) au niveau de l'établissement scolaire, pour tenir compte de la possible corrélation des erreurs au sein du même établissement au fil du temps.
+
+**Tests de Robustesse:**
+
+*   **Test des tendances parallèles:** Il est crucial de vérifier l'hypothèse des tendances parallèles, qui stipule que l'évolution des résultats (scores aux tests, taux d'emploi) aurait été similaire dans les groupes de traitement et de contrôle en l'absence de la réforme. Ce test sera effectué en incluant des variables d'interaction entre *reforme<sub>i</sub>* et des variables binaires pour chaque période précédant la réforme.  Un impact significatif de ces variables d'interaction avant la réforme mettrait en doute la validité de l'hypothèse des tendances parallèles.
+*   **Analyse de sensibilité aux variables de contrôle:** Nous évaluerons la sensibilité des résultats aux différentes variables de contrôle incluses dans le modèle.
+*   **Placebo test:** Nous effectuerons un test placebo en considérant une date de mise en œuvre de la réforme antérieure à la date réelle. Si l'estimation DiD est significative avec cette date placebo, cela suggère la présence de facteurs de confusion non contrôlés.
+
+**Stratégies d'Identification Causale:**
+
+L'identification causale repose sur l'hypothèse des tendances parallèles, qui est cruciale pour la validité de la méthode DiD. L'ajout d'effets fixes par établissement et par période permet de contrôler les hétérogénéités non observées et constantes dans le temps, ainsi que les chocs communs à tous les établissements. Si l'hypothèse des tendances parallèles est violée, des méthodes plus avancées, telles que le *synthetic control method* (Abadie & Gardeazabal, 2003) ou la modélisation des effets dynamiques de la réforme (Callaway & Sant'Anna, 2021), pourraient être envisagées, bien que leur application soit limitée par la taille de l'échantillon.
+
+**Justification des Choix Méthodologiques:**
+
+La méthode DiD est appropriée car elle permet d'estimer l'impact causal de la réforme en comparant l'évolution des résultats dans les groupes de traitement et de contrôle, tout en contrôlant pour les facteurs de confusion potentiels. L'inclusion d'effets fixes par établissement et par période permet de contrôler les hétérogénéités non observées et les chocs communs.
+
+**5.
+
+### Limites identifiées
+**
+
+*   **Endogénéité potentielle:** L'endogénéité peut survenir si la décision de mettre en œuvre la réforme est corrélée avec des facteurs non observés qui affectent également les résultats des élèves ou leur taux d'emploi.  Par exemple, si les établissements qui s'attendent à de meilleurs résultats sont plus susceptibles de mettre en œuvre la réforme, l'estimation DiD pourrait être biaisée. Malheureusement, en l'absence de variable instrumentale valide et forte, il sera difficile de traiter ce biais d'endogénéité, et il faudra reconnaître cette limite dans l'interprétation des résultats.
+*   **Biais de sélection:** Le biais de sélection peut survenir si les établissements qui ont mis en œuvre la réforme diffèrent systématiquement des établissements qui ne l'ont pas fait. L'inclusion d'effets fixes par établissement permet de contrôler les différences non observées et constantes dans le temps, mais ne résout pas le problème si les différences évoluent au fil du temps.
+*   **Problèmes de mesure:** Les variables utilisées peuvent être imparfaites.  Par exemple, les scores aux tests standardisés peuvent ne pas mesurer de manière exhaustive toutes les compétences et connaissances acquises par les élèves. De même, le taux d'emploi des jeunes peut être influencé par des facteurs autres que l'éducation, tels que les conditions économiques locales.
+*   **Erreurs de mesure:** Des erreurs de mesure dans les variables, notamment les variables de contrôle, peuvent biaiser les estimations.
+*   **Hétérogénéité des effets:** La réforme peut avoir des effets différents selon les établissements, les régions et les types d'élèves. L'analyse de l'hétérogénéité des effets (par type d'établissement, région, approche pédagogique) peut aider à mieux comprendre les mécanismes par lesquels la réforme affecte les résultats.  Pour cela, nous inclurons des termes d'interaction entre la variable DiD et les variables de stratification.
+
+**Atténuation des Limites:**
+
+*   Pour atténuer le problème d'endogénéité, nous explorerons la possibilité d'utiliser des variables instrumentales, bien que leur identification soit un défi. À défaut, nous serons transparents quant à cette limite et nous interpréterons les résultats avec prudence.
+*   Pour atténuer le biais de sélection, nous inclurons des variables de contrôle supplémentaires pour tenir compte des caractéristiques des établissements.
+*   Nous évaluerons la sensibilité des résultats aux différentes variables de contrôle et nous utiliserons des mesures alternatives des variables pour tester la robustesse des résultats.
+*   L'analyse de l'hétérogénéité des effets permettra de mieux comprendre les mécanismes par lesquels la réforme affecte les résultats et d'identifier les groupes qui bénéficient le plus de la réforme.
+
+**Implications pour l'Interprétation des Résultats:**
+
+Il est important d'interpréter les résultats avec prudence, en tenant compte des limites méthodologiques. Si l'hypothèse des tendances parallèles est violée ou si l'endogénéité est un problème, l'estimation DiD peut être biaisée. Dans ce cas, les résultats ne peuvent pas être interprétés comme un effet causal direct de la réforme sur les résultats des élèves et leur taux d'emploi.  Cependant, même dans ce cas, l'étude peut fournir des informations précieuses sur les corrélations entre la réforme et les résultats, et peut aider à identifier les domaines où des recherches supplémentaires sont nécessaires.
+
+**6.
+
+### Informations sur les variables
+ET TRANSFORMATIONS**
+
+*   **Variables Dépendantes:**
+    *   *score_tests:* Score aux tests standardisés.  Variable continue.
+    *   *taux_emploi_jeunes:* Taux d'emploi des jeunes.  Variable continue (pourcentage).
+*   **Variable Indépendante Principale:**
+    *   *interaction_did:* Variable d'interaction entre *reforme* et *post*. Variable binaire.
+*   **Variables de Contrôle:**
+    *   *budget_education:* Budget alloué à l'éducation. Variable continue. Transformation: Utiliser *log_budget* (logarithme népérien du budget) pour réduire l'asymétrie et stabiliser la variance.
+    *   *nb_eleves:* Nombre d'élèves. Variable continue. Transformation: Utiliser *log_nb_eleves* (logarithme népérien du nombre d'élèves).
+    *   *ratio_eleves_enseignant:* Ratio élèves/enseignant. Variable continue.
+    *   *taux_pauvrete:* Taux de pauvreté. Variable continue (pourcentage).
+    *   *niveau_urbanisation:* Niveau d'urbanisation. Variable continue (pourcentage).
+    *   *type_etablissement:* Type d'établissement (Lycée, Collège, Primaire, Maternelle, Centre Professionnel). Variable catégorielle.  Créer des variables binaires (dummies) pour chaque type d'établissement, en choisissant un type de référence.
+    *   *approche_pedagogique:* Approche pédagogique (Expérimentale, Traditionnelle, Progressive, Mixte). Variable catégorielle. Créer des variables binaires (dummies) pour chaque approche, en choisissant une approche de référence.
+    *   *annee:* Année (2015, 2016, 2017). Variable catégorielle. Créer des variables binaires pour contrôler les effets temporels.
+
+**Transformations Pertinentes:**
+
+*   **Logarithme:** L'application du logarithme aux variables *budget_education* et *nb_eleves* permet de réduire l'asymétrie et de stabiliser la variance, ce qui peut améliorer la qualité de l'estimation.
+*   **Variables Binaires (Dummies):** La création de variables binaires pour les variables catégorielles *type_etablissement* et *approche_pedagogique* permet d'inclure ces variables dans le modèle de régression.
+*   **Variables d'Interaction:** L'utilisation de variables d'interaction entre la variable DiD et d'autres variables (par exemple, *type_etablissement*, *approche_pedagogique*) permet d'analyser l'hétérogénéité des effets de la réforme.
+*   **Variables d'interaction avec le temps:** Pour tester l'hypothèse des tendances parallèles, nous interrogerons la variable `reforme` avec `periode_relative` avant le traitement. Un p-value significatif rejetterait l'hypothèse de tendances parallèles.
+
+**Variables Instrumentales:**
+
+Compte tenu des problèmes d'endogénéité potentiels, la recherche d'une variable instrumentale valide et forte est une priorité. Une variable instrumentale doit être corrélée avec la décision de mettre en œuvre la réforme, mais ne doit pas avoir d'impact direct sur les résultats des élèves ou leur taux d'emploi, sauf par le biais de la réforme. Une variable instrumentale potentielle pourrait être un indicateur de l'engagement politique local en faveur de la réforme, par exemple le résultat d'une élection locale. Cependant, il est crucial de vérifier la validité de l'instrument en utilisant les tests appropriés (test de pertinence, test d'exclusion). En l'absence d'une variable instrumentale convaincante, il faudra reconnaître la limite de l'analyse en termes d'identification causale.
+
+**Multicolinéarité:**
+
+La multicolinéarité peut être un problème si certaines variables de contrôle sont fortement corrélées entre elles. Par exemple, le budget alloué à l'éducation peut être corrélé avec le ratio élèves/enseignant. Pour détecter la multicolinéarité, nous calculerons les facteurs d'inflation de la variance (VIF) pour chaque variable. Si un VIF est supérieur à 10, cela suggère la présence de multicolinéarité. Pour atténuer la multicolinéarité, nous pourrions supprimer certaines variables de contrôle ou combiner des variables corrélées en un seul indice.
+
+**Conclusion:**
+
+Cette analyse économétrique, en utilisant la méthode des différences en différences, permettra d'estimer l'impact causal d'une réforme éducative sur les scores des élèves et leur taux d'emploi. En tenant compte des facteurs de confusion potentiels et des hétérogénéités régionales, cette étude fournira des informations précieuses aux décideurs politiques pour orienter les futures réformes éducatives. Malgré les
+
+### Demande initiale de l'utilisateur
+Réaliser une analyse en différence de différences (DiD) pour évaluer l'impact causal de la réforme éducative sur les scores aux tests standardisés et le taux d'emploi des jeunes. Analyser comment cette réforme, mise en place au 8ème trimestre dans certaines régions, a influencé les résultats éducatifs. Vérifier l'hypothèse de tendances parallèles avant l'intervention et contrôler pour les facteurs confondants comme le budget éducatif, le ratio élèves/enseignant, le taux de pauvreté et le niveau d'urbanisation. Inclure des effets fixes par région et par période pour isoler l'effet causal. Analyser également l'hétérogénéité des effets selon les pays et les politiques éducatives préexistantes.
+
+---
+
+Tu es un analyste de données expérimenté. Ta mission est de générer un script Python d'analyse de données clair et accessible. Le code doit être robuste et produire des visualisations attrayantes.
+
+DIRECTIVES:
+
+1. CHARGEMENT ET PRÉTRAITEMENT DES DONNÉES
+   - Utilise strictement le chemin absolu '/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv'
+   - Nettoie les données (valeurs manquantes, outliers)
+   - Crée des statistiques descriptives claires
+
+2. VISUALISATIONS ATTRAYANTES ET INFORMATIVES
+   - Crée au moins 4-5 visualisations avec matplotlib/seaborn:
+     * Matrice de corrélation colorée et lisible
+     * Distributions des variables principales
+     * Relations entre variables importantes
+     * Graphiques adaptés au type de données
+     *Si DiD, graphique de tendance temporelle avec deux groupe avant et après traitement
+   - Utilise des couleurs attrayantes et des styles modernes
+   - Ajoute des titres clairs, des légendes informatives et des ÉTIQUETTES D'AXES EXPLICITES
+   - IMPORTANT: Assure-toi d'utiliser ax.set_xlabel() et ax.set_ylabel() avec des descriptions claires
+   - IMPORTANT: Assure-toi que les graphiques soient sauvegardés ET affichés
+   - Utilise plt.savefig() AVANT plt.show() pour chaque graphique
+
+3. MODÉLISATION SIMPLE ET CLAIRE
+   - Implémente les modèles de régression appropriés
+   - Utilise statsmodels avec des résultats complets
+   - Présente les résultats de manière lisible
+   - Documente clairement chaque étape
+
+4. TESTS DE BASE
+   - Vérifie la qualité du modèle avec des tests simples
+   - Analyse les résidus
+   - Vérifie la multicolinéarité si pertinent
+
+5. CAPTURE ET STOCKAGE DES DONNÉES POUR INTERPRÉTATION
+   - IMPORTANT: Pour chaque visualisation, stocke le DataFrame utilisé dans une variable
+   - IMPORTANT: Après chaque création de figure, stocke les données utilisées pour permettre une interprétation précise
+   - Assure-toi que chaque figure peut être associée aux données qui ont servi à la générer
+
+EXIGENCES TECHNIQUES:
+- Utilise pandas, numpy, matplotlib, seaborn, et statsmodels
+- Organise ton code en sections clairement commentées
+- Utilise ce dictionnaire pour accéder aux colonnes:
+```python
+col = {
+    "etablissement_id": "etablissement_id",
+    "type_etablissement": "type_etablissement",
+    "periode": "periode",
+    "date": "date",
+    "annee": "annee",
+    "semestre": "semestre",
+    "reforme": "reforme",
+    "post": "post",
+    "interaction_did": "interaction_did",
+    "budget_education": "budget_education",
+    "nb_eleves": "nb_eleves",
+    "ratio_eleves_enseignant": "ratio_eleves_enseignant",
+    "taux_pauvrete": "taux_pauvrete",
+    "niveau_urbanisation": "niveau_urbanisation",
+    "approche_pedagogique": "approche_pedagogique",
+    "score_tests": "score_tests",
+    "taux_emploi_jeunes": "taux_emploi_jeunes",
+    "log_budget": "log_budget",
+    "log_nb_eleves": "log_nb_eleves",
+    "groupe": "groupe",
+    "periode_relative": "periode_relative",
+    "phase": "phase"
+}
+```
+- Document chaque étape de façon simple et accessible
+- Pour chaque visualisation:
+  * UTILISE des titres clairs pour les graphiques et les axes
+  * SAUVEGARDE avec plt.savefig() PUIS
+  * AFFICHE avec plt.show()
+- Pour les tableaux de régression, utilise print(results.summary())
+
+IMPORTANT:
+- Adapte l'analyse aux données disponibles
+- Mets l'accent sur les visualisations attrayantes et bien étiquetées
+- Assure-toi que chaque graphique a des étiquettes d'axe claires via ax.set_xlabel() et ax.set_ylabel()
+- Assure-toi que chaque graphique est à la fois SAUVEGARDÉ et AFFICHÉ
+- Utilise plt.savefig() AVANT plt.show() pour chaque graphique
+- IMPORTANT: Pour les styles Seaborn, utilise 'whitegrid' au lieu de 'seaborn-whitegrid' ou 'seaborn-v0_8-whitegrid' qui sont obsolètes 
+
+
+================================================================================
+
+================================================================================
+Timestamp: 2025-03-31 17:02:30
+Prompt Type: Code Correction Attempt 1 (LLM #1)
+================================================================================
+
+
+Le contexte suivant concerne l'analyse d'un fichier CSV :
+{
+  "chemin_fichier": "/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv",
+  "nb_lignes": 800,
+  "nb_colonnes": 22,
+  "noms_colonnes": [
+    "etablissement_id",
+    "type_etablissement",
+    "periode",
+    "date",
+    "annee",
+    "semestre",
+    "reforme",
+    "post",
+    "interaction_did",
+    "budget_education",
+    "nb_eleves",
+    "ratio_eleves_enseignant",
+    "taux_pauvrete",
+    "niveau_urbanisation",
+    "approche_pedagogique",
+    "score_tests",
+    "taux_emploi_jeunes",
+    "log_budget",
+    "log_nb_eleves",
+    "groupe",
+    "periode_relative",
+    "phase"
+  ],
+  "types_colonnes": {
+    "etablissement_id": "int64",
+    "type_etablissement": "object",
+    "periode": "int64",
+    "date": "object",
+    "annee": "int64",
+    "semestre": "int64",
+    "reforme": "int64",
+    "post": "int64",
+    "interaction_did": "int64",
+    "budget_education": "float64",
+    "nb_eleves": "float64",
+    "ratio_eleves_enseignant": "float64",
+    "taux_pauvrete": "float64",
+    "niveau_urbanisation": "float64",
+    "approche_pedagogique": "object",
+    "score_tests": "float64",
+    "taux_emploi_jeunes": "float64",
+    "log_budget": "float64",
+    "log_nb_eleves": "float64",
+    "groupe": "object",
+    "periode_relative": "int64",
+    "phase": "object"
+  },
+  "statistiques": {
+    "etablissement_id": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 200.0,
+      "moyenne": 100.5,
+      "mediane": 100.5,
+      "ecart_type": 57.770423031353396,
+      "nb_valeurs_uniques": 200
+    },
+    "type_etablissement": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 5,
+      "valeurs_frequentes": {
+        "Lycée": 160,
+        "Collège": 160,
+        "Primaire": 160,
+        "Maternelle": 160,
+        "Centre Professionnel": 160
+      }
+    },
+    "periode": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 4.0,
+      "moyenne": 2.5,
+      "mediane": 2.5,
+      "ecart_type": 1.1187334157740447,
+      "nb_valeurs_uniques": 4
+    },
+    "date": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 4,
+      "valeurs_frequentes": {
+        "2015-01-01": 200,
+        "2016-01-01": 200,
+        "2016-12-31": 200,
+        "2017-12-31": 200
+      }
+    },
+    "annee": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 2015.0,
+      "max": 2017.0,
+      "moyenne": 2016.0,
+      "mediane": 2016.0,
+      "ecart_type": 0.707549137677225,
+      "nb_valeurs_uniques": 3
+    },
+    "semestre": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 2.0,
+      "moyenne": 1.5,
+      "mediane": 1.5,
+      "ecart_type": 0.5003127932742599,
+      "nb_valeurs_uniques": 2
+    },
+    "reforme": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.365,
+      "mediane": 0.0,
+      "ecart_type": 0.48173133731540607,
+      "nb_valeurs_uniques": 2
+    },
+    "post": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.75,
+      "mediane": 1.0,
+      "ecart_type": 0.43328358881386136,
+      "nb_valeurs_uniques": 2
+    },
+    "interaction_did": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.27375,
+      "mediane": 0.0,
+      "ecart_type": 0.4461611392790204,
+      "nb_valeurs_uniques": 2
+    },
+    "budget_education": {
+      "valeurs_manquantes": 16,
+      "pourcentage_manquant": 2.0,
+      "min": 464.3869544690439,
+      "max": 1606.3747654779097,
+      "moyenne": 1029.258136936791,
+      "mediane": 1031.6700563569188,
+      "ecart_type": 190.77763664809413,
+      "nb_valeurs_uniques": 784
+    },
+    "nb_eleves": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": -31.254324334050352,
+      "max": 938.9041162662832,
+      "moyenne": 511.97406938785156,
+      "mediane": 508.664628878931,
+      "ecart_type": 149.0632286942652,
+      "nb_valeurs_uniques": 800
+    },
+    "ratio_eleves_enseignant": {
+      "valeurs_manquantes": 12,
+      "pourcentage_manquant": 1.5,
+      "min": 5.085229406570484,
+      "max": 37.36315312160198,
+      "moyenne": 21.967458662309276,
+      "mediane": 21.7068137809216,
+      "ecart_type": 5.071798666745173,
+      "nb_valeurs_uniques": 788
+    },
+    "taux_pauvrete": {
+      "valeurs_manquantes": 19,
+      "pourcentage_manquant": 2.38,
+      "min": 5.0,
+      "max": 40.0,
+      "moyenne": 20.24956526244431,
+      "mediane": 19.923682418549006,
+      "ecart_type": 7.853220021728765,
+      "nb_valeurs_uniques": 760
+    },
+    "niveau_urbanisation": {
+      "valeurs_manquantes": 24,
+      "pourcentage_manquant": 3.0,
+      "min": 0.0,
+      "max": 100.0,
+      "moyenne": 59.27100405758951,
+      "mediane": 59.62833374100276,
+      "ecart_type": 23.91302444155631,
+      "nb_valeurs_uniques": 727
+    },
+    "approche_pedagogique": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 4,
+      "valeurs_frequentes": {
+        "Expérimentale": 215,
+        "Traditionnelle": 205,
+        "Progressive": 204,
+        "Mixte": 176
+      }
+    },
+    "score_tests": {
+      "valeurs_manquantes": 13,
+      "pourcentage_manquant": 1.62,
+      "min": 66.44278232956674,
+      "max": 86.27497092340671,
+      "moyenne": 77.32811310905097,
+      "mediane": 77.49689282374091,
+      "ecart_type": 3.302510934616114,
+      "nb_valeurs_uniques": 787
+    },
+    "taux_emploi_jeunes": {
+      "valeurs_manquantes": 14,
+      "pourcentage_manquant": 1.75,
+      "min": 42.59660027106259,
+      "max": 67.69471345887538,
+      "moyenne": 53.79211235224418,
+      "mediane": 53.67143134709437,
+      "ecart_type": 4.500082533423796,
+      "nb_valeurs_uniques": 786
+    },
+    "log_budget": {
+      "valeurs_manquantes": 16,
+      "pourcentage_manquant": 2.0,
+      "min": 6.1407181582772425,
+      "max": 7.381735220632685,
+      "moyenne": 6.918629882256804,
+      "mediane": 6.938933889020916,
+      "ecart_type": 0.1927151056190802,
+      "nb_valeurs_uniques": 784
+    },
+    "log_nb_eleves": {
+      "valeurs_manquantes": 1,
+      "pourcentage_manquant": 0.12,
+      "min": 4.075709036506084,
+      "max": 6.844713361391949,
+      "moyenne": 6.191957653511821,
+      "mediane": 6.233523342320559,
+      "ecart_type": 0.32611335372963507,
+      "nb_valeurs_uniques": 799
+    },
+    "groupe": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 2,
+      "valeurs_frequentes": {
+        "Non réformé": 508,
+        "Réformé": 292
+      }
+    },
+    "periode_relative": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": -1.0,
+      "max": 2.0,
+      "moyenne": 0.5,
+      "mediane": 0.5,
+      "ecart_type": 1.1187334157740447,
+      "nb_valeurs_uniques": 4
+    },
+    "phase": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 3,
+      "valeurs_frequentes": {
+        "Post-réforme": 400,
+        "Pre-réforme": 200,
+        "Implémentation": 200
+      }
+    }
+  }
+}
+
+Le chemin absolu du fichier CSV est : /Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv
+Assure-toi d'utiliser ce chemin exact dans pd.read_csv('/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv').
+
+Le code Python ci-dessous, complet avec toutes ses fonctionnalités (gestion des visualisations, sauvegarde des versions, correction automatique et manuelle, etc.), a généré l'erreur suivante lors de son exécution :
+------------------------------------------------------------
+Code Fautif :
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.formula.api as smf
+import statsmodels.api as sm
+
+# Configuration du style des graphiques seaborn
+sns.set_theme(style="whitegrid")
+
+# Définition du dictionnaire des noms de colonnes
+col = {
+    "etablissement_id": "etablissement_id",
+    "type_etablissement": "type_etablissement",
+    "periode": "periode",
+    "date": "date",
+    "annee": "annee",
+    "semestre": "semestre",
+    "reforme": "reforme",
+    "post": "post",
+    "interaction_did": "interaction_did",
+    "budget_education": "budget_education",
+    "nb_eleves": "nb_eleves",
+    "ratio_eleves_enseignant": "ratio_eleves_enseignant",
+    "taux_pauvrete": "taux_pauvrete",
+    "niveau_urbanisation": "niveau_urbanisation",
+    "approche_pedagogique": "approche_pedagogique",
+    "score_tests": "score_tests",
+    "taux_emploi_jeunes": "taux_emploi_jeunes",
+    "log_budget": "log_budget",
+    "log_nb_eleves": "log_nb_eleves",
+    "groupe": "groupe",
+    "periode_relative": "periode_relative",
+    "phase": "phase"
+}
+
+# 1. CHARGEMENT ET PRÉTRAITEMENT DES DONNÉES
+# Charger les données depuis le fichier CSV
+file_path = '/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv'
+df = pd.read_csv('/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv')
+
+# Afficher les premières lignes du DataFrame pour vérification
+print("Aperçu du DataFrame:")
+print(df.head())
+
+# Statistiques descriptives initiales
+print("\nStatistiques descriptives initiales:")
+print(df.describe())
+
+# Gestion des valeurs manquantes
+print("\nNombre de valeurs manquantes par colonne avant imputation:")
+print(df.isnull().sum())
+
+# Imputation des valeurs manquantes (exemple avec la moyenne pour les colonnes numériques)
+for column in df.columns:
+    if df[column].dtype in ['int64', 'float64']:
+        df[column].fillna(df[column].mean(), inplace=True)
+
+print("\nNombre de valeurs manquantes par colonne après imputation:")
+print(df.isnull().sum())
+
+# Conversion des variables catégorielles en dummies (One-Hot Encoding)
+df = pd.get_dummies(df, columns=[col["type_etablissement"], col["approche_pedagogique"]])
+
+# Afficher les premières lignes du DataFrame après le prétraitement
+print("\nAperçu du DataFrame après le prétraitement:")
+print(df.head())
+
+# Statistiques descriptives après le prétraitement
+print("\nStatistiques descriptives après le prétraitement:")
+print(df.describe())
+
+# 2. VISUALISATIONS ATTRAYANTES ET INFORMATIVES
+
+# 2.1. Matrice de Corrélation
+# Calculer la matrice de corrélation
+corr_matrix = df[[col["score_tests"], col["taux_emploi_jeunes"], col["log_budget"], col["log_nb_eleves"], col["ratio_eleves_enseignant"], col["taux_pauvrete"], col["niveau_urbanisation"]]].corr()
+
+# Créer une figure et un axe
+fig, ax = plt.subplots(figsize=(12, 10))
+
+# Générer et afficher la heatmap
+sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", linewidths=.5, ax=ax)
+
+# Ajouter un titre clair
+ax.set_title("Matrice de Corrélation des Variables Clés")
+
+# Ajuster les étiquettes
+ax.set_xlabel("Variables")
+ax.set_ylabel("Variables")
+
+# Sauvegarder la figure
+plt.savefig("correlation_matrix.png")
+
+# Afficher la figure
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+correlation_data = corr_matrix
+
+# 2.2 Distributions des Variables Principales
+# Créer une figure avec deux sous-graphiques
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# Distribution de 'score_tests'
+sns.histplot(df[col["score_tests"]], kde=True, ax=axes[0], color="skyblue")
+axes[0].set_title("Distribution des Scores aux Tests")
+axes[0].set_xlabel("Score aux Tests")
+axes[0].set_ylabel("Fréquence")
+
+# Distribution de 'taux_emploi_jeunes'
+sns.histplot(df[col["taux_emploi_jeunes"]], kde=True, ax=axes[1], color="lightcoral")
+axes[1].set_title("Distribution du Taux d'Emploi des Jeunes")
+axes[1].set_xlabel("Taux d'Emploi des Jeunes")
+axes[1].set_ylabel("Fréquence")
+
+# Ajuster la mise en page
+plt.tight_layout()
+
+# Sauvegarder la figure
+plt.savefig("distributions_principales.png")
+
+# Afficher la figure
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+distribution_score_tests_data = df[col["score_tests"]]
+distribution_taux_emploi_jeunes_data = df[col["taux_emploi_jeunes"]]
+
+# 2.3 Relation entre 'score_tests' et 'taux_emploi_jeunes'
+# Créer un nuage de points
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.scatterplot(x=df[col["score_tests"]], y=df[col["taux_emploi_jeunes"]], ax=ax, color="mediumseagreen")
+ax.set_title("Relation entre Score aux Tests et Taux d'Emploi des Jeunes")
+ax.set_xlabel("Score aux Tests")
+ax.set_ylabel("Taux d'Emploi des Jeunes")
+
+# Sauvegarder la figure
+plt.savefig("relation_score_emploi.png")
+
+# Afficher la figure
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+relation_score_emploi_data = df[[col["score_tests"], col["taux_emploi_jeunes"]]]
+
+# 2.4. Graphique de Tendance Temporelle avec DiD
+# S'assurer que les données sont triées par 'etablissement_id' et 'periode'
+df = df.sort_values(by=[col["etablissement_id"], col["periode"]])
+
+# Créer un graphique de tendance temporelle pour les groupes traité et contrôle
+fig, ax = plt.subplots(figsize=(14, 7))
+
+# Calculer la moyenne des scores aux tests par période pour chaque groupe
+df_temp = df.groupby([col["periode"], col["reforme"]])[col["score_tests"]].mean().reset_index()
+
+# Tracer les tendances pour le groupe traité (reforme=1) et le groupe contrôle (reforme=0)
+sns.lineplot(data=df_temp, x=col["periode"], y=col["score_tests"], hue=col["reforme"], marker='o', ax=ax)
+
+# Ajouter une ligne verticale pour indiquer le moment de la réforme (période 2.5 car au milieu des périodes)
+ax.axvline(x=2.5, color='red', linestyle='--', label='Réforme')
+
+# Ajouter des étiquettes et un titre
+ax.set_title("Tendances Temporelles des Scores aux Tests pour les Groupes Traité et Contrôle")
+ax.set_xlabel("Période")
+ax.set_ylabel("Score Moyen aux Tests")
+ax.legend(title="Groupe", labels=["Contrôle (Non Réformé)", "Traité (Réformé)"])
+
+# Sauvegarder la figure
+plt.savefig("tendances_temporelles_did.png")
+
+# Afficher la figure
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+tendances_temporelles_data = df.groupby([col["periode"], col["reforme"]])[col["score_tests"]].mean().reset_index()
+
+# 3. MODÉLISATION SIMPLE ET CLAIRE
+# 3.1 Préparation des variables pour le modèle
+# Créer la variable d'interaction DiD
+df['did'] = df[col["reforme"]] * df[col["post"]]
+
+# Formule du modèle DiD pour l'impact sur les scores aux tests
+formula_score = f'{col["score_tests"]} ~ did + {col["log_budget"]} + {col["log_nb_eleves"]} + {col["ratio_eleves_enseignant"]} + {col["taux_pauvrete"]} + {col["niveau_urbanisation"]} + C({col["annee"]}) + C({col["type_etablissement_Centre Professionnel"]}) + C({col["type_etablissement_Collège"]}) + C({col["type_etablissement_Lycée"]}) + C({col["type_etablissement_Maternelle"]}) + C({col["approche_pedagogique_Expérimentale"]}) + C({col["approche_pedagogique_Mixte"]}) + C({col["approche_pedagogique_Progressive"]})'
+
+# Estimation du modèle DiD pour les scores aux tests
+model_score = smf.ols(formula_score, data=df).fit()
+
+# Affichage des résultats
+print("\nRésultats du modèle DiD pour l'impact sur les scores aux tests:")
+print(model_score.summary())
+
+# 3.2 Formule du modèle DiD pour l'impact sur le taux d'emploi des jeunes
+formula_emploi = f'{col["taux_emploi_jeunes"]} ~ did + {col["log_budget"]} + {col["log_nb_eleves"]} + {col["ratio_eleves_enseignant"]} + {col["taux_pauvrete"]} + {col["niveau_urbanisation"]} + C({col["annee"]}) + C({col["type_etablissement_Centre Professionnel"]}) + C({col["type_etablissement_Collège"]}) + C({col["type_etablissement_Lycée"]}) + C({col["type_etablissement_Maternelle"]}) + C({col["approche_pedagogique_Expérimentale"]}) + C({col["approche_pedagogique_Mixte"]}) + C({col["approche_pedagogique_Progressive"]})'
+
+# Estimation du modèle DiD pour le taux d'emploi des jeunes
+model_emploi = smf.ols(formula_emploi, data=df).fit()
+
+# Affichage des résultats
+print("\nRésultats du modèle DiD pour l'impact sur le taux d'emploi des jeunes:")
+print(model_emploi.summary())
+
+# Stockage des résultats du modèle pour interprétation
+model_score_results = model_score.summary()
+model_emploi_results = model_emploi.summary()
+
+# 4. TESTS DE BASE
+# 4.1 Analyse des résidus (Scores aux tests)
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.histplot(model_score.resid, kde=True, ax=ax)
+ax.set_title("Distribution des Résidus (Scores aux Tests)")
+ax.set_xlabel("Résidus")
+ax.set_ylabel("Fréquence")
+plt.savefig("residus_scores.png")
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+residus_scores_data = model_score.resid
+
+# 4.2 Analyse des résidus (Taux d'emploi des jeunes)
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.histplot(model_emploi.resid, kde=True, ax=ax)
+ax.set_title("Distribution des Résidus (Taux d'Emploi des Jeunes)")
+ax.set_xlabel("Résidus")
+ax.set_ylabel("Fréquence")
+plt.savefig("residus_emploi.png")
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+residus_emploi_data = model_emploi.resid
+
+# 4.3 Vérification de la multicolinéarité (Exemple avec VIF)
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+# Préparation des variables indépendantes pour le calcul du VIF
+X = df[[col["log_budget"], col["log_nb_eleves"], col["ratio_eleves_enseignant"], col["taux_pauvrete"], col["niveau_urbanisation"]]]
+
+# Calcul du VIF pour chaque variable
+vif_data = pd.DataFrame()
+vif_data["Variable"] = X.columns
+vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+
+print("\nFacteurs d'Inflation de la Variance (VIF):")
+print(vif_data)
+
+# Stockage des données VIF pour interprétation
+vif_results = vif_data
+
+# 5. TEST DES TENDANCES PARALLÈLES
+# Créer des termes d'interaction entre 'reforme' et 'periode_relative' pour les périodes pré-traitement
+df['reforme_periode_relative_1'] = df[col['reforme']] * (df[col['periode_relative']] == -1)
+df['reforme_periode_relative_0'] = df[col['reforme']] * (df[col['periode_relative']] == 0)
+df['reforme_periode_relative_1_post'] = df[col['reforme']] * (df[col['periode_relative']] == 1)
+df['reforme_periode_relative_2_post'] = df[col['reforme']] * (df[col['periode_relative']] == 2)
+
+# Inclure ces termes d'interaction dans le modèle de régression
+formula_tendances = f"{col['score_tests']} ~ {col['reforme_periode_relative_1']} + {col['reforme_periode_relative_0']} + {col['reforme_periode_relative_1_post']} + {col['reforme_periode_relative_2_post']} + did + {col['log_budget']} + {col['log_nb_eleves']} + {col['ratio_eleves_enseignant']} + {col['taux_pauvrete']} + {col['niveau_urbanisation']} + C({col['annee']}) + C({col['type_etablissement_Centre Professionnel']}) + C({col['type_etablissement_Collège']}) + C({col['type_etablissement_Lycée']}) + C({col['type_etablissement_Maternelle']}) + C({col['approche_pedagogique_Expérimentale']}) + C({col['approche_pedagogique_Mixte']}) + C({col['approche_pedagogique_Progressive']})"
+
+# Estimer le modèle
+model_tendances = smf.ols(formula_tendances, data=df).fit()
+
+# Afficher les résultats du modèle
+print("\nRésultats du test des tendances parallèles:")
+print(model_tendances.summary())
+```
+Erreur Rencontrée : /var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_170221_vspvg4o0/analysis_script.py:513: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(df[column].mean(), inplace=True)
+Erreur dans _custom_show: 'list' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_170221_vspvg4o0/analysis_script.py", line 644, in <module>
+    formula_score = f'{col["score_tests"]} ~ did + {col["log_budget"]} + {col["log_nb_eleves"]} + {col["ratio_eleves_enseignant"]} + {col["taux_pauvrete"]} + {col["niveau_urbanisation"]} + C({col["annee"]}) + C({col["type_etablissement_Centre Professionnel"]}) + C({col["type_etablissement_Collège"]}) + C({col["type_etablissement_Lycée"]}) + C({col["type_etablissement_Maternelle"]}) + C({col["approche_pedagogique_Expérimentale"]}) + C({col["approche_pedagogique_Mixte"]}) + C({col["approche_pedagogique_Progressive"]})'
+                                                                                                                                                                                                                    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'type_etablissement_Centre Professionnel'
+
+TA MISSION : Corrige uniquement l'erreur indiquée sans modifier la logique globale du code. Garde intégralement la structure et l'ensemble des fonctionnalités du code initial. Ne simplifie pas le script : toutes les parties (gestion des visualisations, sauvegarde des versions, correction manuelle, etc.) doivent être conservées. GARDE les noms de colonnes exacts. Colonnes valides : ['etablissement_id', 'type_etablissement', 'periode', 'date', 'annee', 'semestre', 'reforme', 'post', 'interaction_did', 'budget_education', 'nb_eleves', 'ratio_eleves_enseignant', 'taux_pauvrete', 'niveau_urbanisation', 'approche_pedagogique', 'score_tests', 'taux_emploi_jeunes', 'log_budget', 'log_nb_eleves', 'groupe', 'periode_relative', 'phase']
+
+RENVOIE UNIQUEMENT le code Python corrigé, encapsulé dans un bloc de code délimité par trois backticks (python ... ), sans explications supplémentaires. 
+
+Fais bien attention a la nature des variables, numériques, catégorielles, etc.
+
+IMPORTANT: Pour les styles dans matplotlib, utilise 'seaborn-v0_8-whitegrid' au lieu de 'seaborn-whitegrid' qui est obsolète.
+
+
+================================================================================
+
+================================================================================
+Timestamp: 2025-03-31 17:03:17
+Prompt Type: Code Correction Attempt 2 (LLM #2)
+================================================================================
+
+
+Le contexte suivant concerne l'analyse d'un fichier CSV :
+{
+  "chemin_fichier": "/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv",
+  "nb_lignes": 800,
+  "nb_colonnes": 22,
+  "noms_colonnes": [
+    "etablissement_id",
+    "type_etablissement",
+    "periode",
+    "date",
+    "annee",
+    "semestre",
+    "reforme",
+    "post",
+    "interaction_did",
+    "budget_education",
+    "nb_eleves",
+    "ratio_eleves_enseignant",
+    "taux_pauvrete",
+    "niveau_urbanisation",
+    "approche_pedagogique",
+    "score_tests",
+    "taux_emploi_jeunes",
+    "log_budget",
+    "log_nb_eleves",
+    "groupe",
+    "periode_relative",
+    "phase"
+  ],
+  "types_colonnes": {
+    "etablissement_id": "int64",
+    "type_etablissement": "object",
+    "periode": "int64",
+    "date": "object",
+    "annee": "int64",
+    "semestre": "int64",
+    "reforme": "int64",
+    "post": "int64",
+    "interaction_did": "int64",
+    "budget_education": "float64",
+    "nb_eleves": "float64",
+    "ratio_eleves_enseignant": "float64",
+    "taux_pauvrete": "float64",
+    "niveau_urbanisation": "float64",
+    "approche_pedagogique": "object",
+    "score_tests": "float64",
+    "taux_emploi_jeunes": "float64",
+    "log_budget": "float64",
+    "log_nb_eleves": "float64",
+    "groupe": "object",
+    "periode_relative": "int64",
+    "phase": "object"
+  },
+  "statistiques": {
+    "etablissement_id": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 200.0,
+      "moyenne": 100.5,
+      "mediane": 100.5,
+      "ecart_type": 57.770423031353396,
+      "nb_valeurs_uniques": 200
+    },
+    "type_etablissement": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 5,
+      "valeurs_frequentes": {
+        "Lycée": 160,
+        "Collège": 160,
+        "Primaire": 160,
+        "Maternelle": 160,
+        "Centre Professionnel": 160
+      }
+    },
+    "periode": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 4.0,
+      "moyenne": 2.5,
+      "mediane": 2.5,
+      "ecart_type": 1.1187334157740447,
+      "nb_valeurs_uniques": 4
+    },
+    "date": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 4,
+      "valeurs_frequentes": {
+        "2015-01-01": 200,
+        "2016-01-01": 200,
+        "2016-12-31": 200,
+        "2017-12-31": 200
+      }
+    },
+    "annee": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 2015.0,
+      "max": 2017.0,
+      "moyenne": 2016.0,
+      "mediane": 2016.0,
+      "ecart_type": 0.707549137677225,
+      "nb_valeurs_uniques": 3
+    },
+    "semestre": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 2.0,
+      "moyenne": 1.5,
+      "mediane": 1.5,
+      "ecart_type": 0.5003127932742599,
+      "nb_valeurs_uniques": 2
+    },
+    "reforme": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.365,
+      "mediane": 0.0,
+      "ecart_type": 0.48173133731540607,
+      "nb_valeurs_uniques": 2
+    },
+    "post": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.75,
+      "mediane": 1.0,
+      "ecart_type": 0.43328358881386136,
+      "nb_valeurs_uniques": 2
+    },
+    "interaction_did": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.27375,
+      "mediane": 0.0,
+      "ecart_type": 0.4461611392790204,
+      "nb_valeurs_uniques": 2
+    },
+    "budget_education": {
+      "valeurs_manquantes": 16,
+      "pourcentage_manquant": 2.0,
+      "min": 464.3869544690439,
+      "max": 1606.3747654779097,
+      "moyenne": 1029.258136936791,
+      "mediane": 1031.6700563569188,
+      "ecart_type": 190.77763664809413,
+      "nb_valeurs_uniques": 784
+    },
+    "nb_eleves": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": -31.254324334050352,
+      "max": 938.9041162662832,
+      "moyenne": 511.97406938785156,
+      "mediane": 508.664628878931,
+      "ecart_type": 149.0632286942652,
+      "nb_valeurs_uniques": 800
+    },
+    "ratio_eleves_enseignant": {
+      "valeurs_manquantes": 12,
+      "pourcentage_manquant": 1.5,
+      "min": 5.085229406570484,
+      "max": 37.36315312160198,
+      "moyenne": 21.967458662309276,
+      "mediane": 21.7068137809216,
+      "ecart_type": 5.071798666745173,
+      "nb_valeurs_uniques": 788
+    },
+    "taux_pauvrete": {
+      "valeurs_manquantes": 19,
+      "pourcentage_manquant": 2.38,
+      "min": 5.0,
+      "max": 40.0,
+      "moyenne": 20.24956526244431,
+      "mediane": 19.923682418549006,
+      "ecart_type": 7.853220021728765,
+      "nb_valeurs_uniques": 760
+    },
+    "niveau_urbanisation": {
+      "valeurs_manquantes": 24,
+      "pourcentage_manquant": 3.0,
+      "min": 0.0,
+      "max": 100.0,
+      "moyenne": 59.27100405758951,
+      "mediane": 59.62833374100276,
+      "ecart_type": 23.91302444155631,
+      "nb_valeurs_uniques": 727
+    },
+    "approche_pedagogique": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 4,
+      "valeurs_frequentes": {
+        "Expérimentale": 215,
+        "Traditionnelle": 205,
+        "Progressive": 204,
+        "Mixte": 176
+      }
+    },
+    "score_tests": {
+      "valeurs_manquantes": 13,
+      "pourcentage_manquant": 1.62,
+      "min": 66.44278232956674,
+      "max": 86.27497092340671,
+      "moyenne": 77.32811310905097,
+      "mediane": 77.49689282374091,
+      "ecart_type": 3.302510934616114,
+      "nb_valeurs_uniques": 787
+    },
+    "taux_emploi_jeunes": {
+      "valeurs_manquantes": 14,
+      "pourcentage_manquant": 1.75,
+      "min": 42.59660027106259,
+      "max": 67.69471345887538,
+      "moyenne": 53.79211235224418,
+      "mediane": 53.67143134709437,
+      "ecart_type": 4.500082533423796,
+      "nb_valeurs_uniques": 786
+    },
+    "log_budget": {
+      "valeurs_manquantes": 16,
+      "pourcentage_manquant": 2.0,
+      "min": 6.1407181582772425,
+      "max": 7.381735220632685,
+      "moyenne": 6.918629882256804,
+      "mediane": 6.938933889020916,
+      "ecart_type": 0.1927151056190802,
+      "nb_valeurs_uniques": 784
+    },
+    "log_nb_eleves": {
+      "valeurs_manquantes": 1,
+      "pourcentage_manquant": 0.12,
+      "min": 4.075709036506084,
+      "max": 6.844713361391949,
+      "moyenne": 6.191957653511821,
+      "mediane": 6.233523342320559,
+      "ecart_type": 0.32611335372963507,
+      "nb_valeurs_uniques": 799
+    },
+    "groupe": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 2,
+      "valeurs_frequentes": {
+        "Non réformé": 508,
+        "Réformé": 292
+      }
+    },
+    "periode_relative": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": -1.0,
+      "max": 2.0,
+      "moyenne": 0.5,
+      "mediane": 0.5,
+      "ecart_type": 1.1187334157740447,
+      "nb_valeurs_uniques": 4
+    },
+    "phase": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 3,
+      "valeurs_frequentes": {
+        "Post-réforme": 400,
+        "Pre-réforme": 200,
+        "Implémentation": 200
+      }
+    }
+  }
+}
+
+Le chemin absolu du fichier CSV est : /Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv
+Assure-toi d'utiliser ce chemin exact dans pd.read_csv('/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv').
+
+Le code Python ci-dessous, complet avec toutes ses fonctionnalités (gestion des visualisations, sauvegarde des versions, correction automatique et manuelle, etc.), a généré l'erreur suivante lors de son exécution :
+------------------------------------------------------------
+Code Fautif :
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.formula.api as smf
+import statsmodels.api as sm
+
+# Configuration du style des graphiques seaborn
+sns.set_theme(style="whitegrid")
+
+# Définition du dictionnaire des noms de colonnes
+col = {
+    "etablissement_id": "etablissement_id",
+    "type_etablissement": "type_etablissement",
+    "periode": "periode",
+    "date": "date",
+    "annee": "annee",
+    "semestre": "semestre",
+    "reforme": "reforme",
+    "post": "post",
+    "interaction_did": "interaction_did",
+    "budget_education": "budget_education",
+    "nb_eleves": "nb_eleves",
+    "ratio_eleves_enseignant": "ratio_eleves_enseignant",
+    "taux_pauvrete": "taux_pauvrete",
+    "niveau_urbanisation": "niveau_urbanisation",
+    "approche_pedagogique": "approche_pedagogique",
+    "score_tests": "score_tests",
+    "taux_emploi_jeunes": "taux_emploi_jeunes",
+    "log_budget": "log_budget",
+    "log_nb_eleves": "log_nb_eleves",
+    "groupe": "groupe",
+    "periode_relative": "periode_relative",
+    "phase": "phase"
+}
+
+# 1. CHARGEMENT ET PRÉTRAITEMENT DES DONNÉES
+# Charger les données depuis le fichier CSV
+file_path = '/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv'
+df = pd.read_csv('/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv')
+
+# Afficher les premières lignes du DataFrame pour vérification
+print("Aperçu du DataFrame:")
+print(df.head())
+
+# Statistiques descriptives initiales
+print("\nStatistiques descriptives initiales:")
+print(df.describe())
+
+# Gestion des valeurs manquantes
+print("\nNombre de valeurs manquantes par colonne avant imputation:")
+print(df.isnull().sum())
+
+# Imputation des valeurs manquantes (exemple avec la moyenne pour les colonnes numériques)
+for column in df.columns:
+    if df[column].dtype in ['int64', 'float64']:
+        df[column].fillna(df[column].mean(), inplace=True)
+
+print("\nNombre de valeurs manquantes par colonne après imputation:")
+print(df.isnull().sum())
+
+# Conversion des variables catégorielles en dummies (One-Hot Encoding)
+df = pd.get_dummies(df, columns=[col["type_etablissement"], col["approche_pedagogique"]])
+
+# Afficher les premières lignes du DataFrame après le prétraitement
+print("\nAperçu du DataFrame après le prétraitement:")
+print(df.head())
+
+# Statistiques descriptives après le prétraitement
+print("\nStatistiques descriptives après le prétraitement:")
+print(df.describe())
+
+# 2. VISUALISATIONS ATTRAYANTES ET INFORMATIVES
+
+# 2.1. Matrice de Corrélation
+# Calculer la matrice de corrélation
+corr_matrix = df[[col["score_tests"], col["taux_emploi_jeunes"], col["log_budget"], col["log_nb_eleves"], col["ratio_eleves_enseignant"], col["taux_pauvrete"], col["niveau_urbanisation"]]].corr()
+
+# Créer une figure et un axe
+fig, ax = plt.subplots(figsize=(12, 10))
+
+# Générer et afficher la heatmap
+sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", linewidths=.5, ax=ax)
+
+# Ajouter un titre clair
+ax.set_title("Matrice de Corrélation des Variables Clés")
+
+# Ajuster les étiquettes
+ax.set_xlabel("Variables")
+ax.set_ylabel("Variables")
+
+# Sauvegarder la figure
+plt.savefig("correlation_matrix.png")
+
+# Afficher la figure
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+correlation_data = corr_matrix
+
+# 2.2 Distributions des Variables Principales
+# Créer une figure avec deux sous-graphiques
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# Distribution de 'score_tests'
+sns.histplot(df[col["score_tests"]], kde=True, ax=axes[0], color="skyblue")
+axes[0].set_title("Distribution des Scores aux Tests")
+axes[0].set_xlabel("Score aux Tests")
+axes[0].set_ylabel("Fréquence")
+
+# Distribution de 'taux_emploi_jeunes'
+sns.histplot(df[col["taux_emploi_jeunes"]], kde=True, ax=axes[1], color="lightcoral")
+axes[1].set_title("Distribution du Taux d'Emploi des Jeunes")
+axes[1].set_xlabel("Taux d'Emploi des Jeunes")
+axes[1].set_ylabel("Fréquence")
+
+# Ajuster la mise en page
+plt.tight_layout()
+
+# Sauvegarder la figure
+plt.savefig("distributions_principales.png")
+
+# Afficher la figure
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+distribution_score_tests_data = df[col["score_tests"]]
+distribution_taux_emploi_jeunes_data = df[col["taux_emploi_jeunes"]]
+
+# 2.3 Relation entre 'score_tests' et 'taux_emploi_jeunes'
+# Créer un nuage de points
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.scatterplot(x=df[col["score_tests"]], y=df[col["taux_emploi_jeunes"]], ax=ax, color="mediumseagreen")
+ax.set_title("Relation entre Score aux Tests et Taux d'Emploi des Jeunes")
+ax.set_xlabel("Score aux Tests")
+ax.set_ylabel("Taux d'Emploi des Jeunes")
+
+# Sauvegarder la figure
+plt.savefig("relation_score_emploi.png")
+
+# Afficher la figure
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+relation_score_emploi_data = df[[col["score_tests"], col["taux_emploi_jeunes"]]]
+
+# 2.4. Graphique de Tendance Temporelle avec DiD
+# S'assurer que les données sont triées par 'etablissement_id' et 'periode'
+df = df.sort_values(by=[col["etablissement_id"], col["periode"]])
+
+# Créer un graphique de tendance temporelle pour les groupes traité et contrôle
+fig, ax = plt.subplots(figsize=(14, 7))
+
+# Calculer la moyenne des scores aux tests par période pour chaque groupe
+df_temp = df.groupby([col["periode"], col["reforme"]])[col["score_tests"]].mean().reset_index()
+
+# Tracer les tendances pour le groupe traité (reforme=1) et le groupe contrôle (reforme=0)
+sns.lineplot(data=df_temp, x=col["periode"], y=col["score_tests"], hue=col["reforme"], marker='o', ax=ax)
+
+# Ajouter une ligne verticale pour indiquer le moment de la réforme (période 2.5 car au milieu des périodes)
+ax.axvline(x=2.5, color='red', linestyle='--', label='Réforme')
+
+# Ajouter des étiquettes et un titre
+ax.set_title("Tendances Temporelles des Scores aux Tests pour les Groupes Traité et Contrôle")
+ax.set_xlabel("Période")
+ax.set_ylabel("Score Moyen aux Tests")
+ax.legend(title="Groupe", labels=["Contrôle (Non Réformé)", "Traité (Réformé)"])
+
+# Sauvegarder la figure
+plt.savefig("tendances_temporelles_did.png")
+
+# Afficher la figure
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+tendances_temporelles_data = df.groupby([col["periode"], col["reforme"]])[col["score_tests"]].mean().reset_index()
+
+# 3. MODÉLISATION SIMPLE ET CLAIRE
+# 3.1 Préparation des variables pour le modèle
+# Créer la variable d'interaction DiD
+df['did'] = df[col["reforme"]] * df[col["post"]]
+
+# Définition des noms des colonnes dummies
+type_etablissement_dummies = [colname for colname in df.columns if col["type_etablissement"] in colname]
+approche_pedagogique_dummies = [colname for colname in df.columns if col["approche_pedagogique"] in colname]
+
+# Construction de la formule pour le modèle
+formula_score = f'{col["score_tests"]} ~ did + {col["log_budget"]} + {col["log_nb_eleves"]} + {col["ratio_eleves_enseignant"]} + {col["taux_pauvrete"]} + {col["niveau_urbanisation"]} + C({col["annee"]})'
+for dummy in type_etablissement_dummies:
+    formula_score += f' + C({dummy})'
+for dummy in approche_pedagogique_dummies:
+    formula_score += f' + C({dummy})'
+
+# Estimation du modèle DiD pour les scores aux tests
+model_score = smf.ols(formula_score, data=df).fit()
+
+# Affichage des résultats
+print("\nRésultats du modèle DiD pour l'impact sur les scores aux tests:")
+print(model_score.summary())
+
+# 3.2 Formule du modèle DiD pour l'impact sur le taux d'emploi des jeunes
+formula_emploi = f'{col["taux_emploi_jeunes"]} ~ did + {col["log_budget"]} + {col["log_nb_eleves"]} + {col["ratio_eleves_enseignant"]} + {col["taux_pauvrete"]} + {col["niveau_urbanisation"]} + C({col["annee"]})'
+for dummy in type_etablissement_dummies:
+    formula_emploi += f' + C({dummy})'
+for dummy in approche_pedagogique_dummies:
+    formula_emploi += f' + C({dummy})'
+
+# Estimation du modèle DiD pour le taux d'emploi des jeunes
+model_emploi = smf.ols(formula_emploi, data=df).fit()
+
+# Affichage des résultats
+print("\nRésultats du modèle DiD pour l'impact sur le taux d'emploi des jeunes:")
+print(model_emploi.summary())
+
+# Stockage des résultats du modèle pour interprétation
+model_score_results = model_score.summary()
+model_emploi_results = model_emploi.summary()
+
+# 4. TESTS DE BASE
+# 4.1 Analyse des résidus (Scores aux tests)
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.histplot(model_score.resid, kde=True, ax=ax)
+ax.set_title("Distribution des Résidus (Scores aux Tests)")
+ax.set_xlabel("Résidus")
+ax.set_ylabel("Fréquence")
+plt.savefig("residus_scores.png")
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+residus_scores_data = model_score.resid
+
+# 4.2 Analyse des résidus (Taux d'emploi des jeunes)
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.histplot(model_emploi.resid, kde=True, ax=ax)
+ax.set_title("Distribution des Résidus (Taux d'Emploi des Jeunes)")
+ax.set_xlabel("Résidus")
+ax.set_ylabel("Fréquence")
+plt.savefig("residus_emploi.png")
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.savefig('temp_figure.png', dpi=100, bbox_inches='tight')
+plt.show()
+
+# Stockage des données utilisées pour la visualisation
+residus_emploi_data = model_emploi.resid
+
+# 4.3 Vérification de la multicolinéarité (Exemple avec VIF)
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+# Préparation des variables indépendantes pour le calcul du VIF
+X = df[[col["log_budget"], col["log_nb_eleves"], col["ratio_eleves_enseignant"], col["taux_pauvrete"], col["niveau_urbanisation"]]]
+
+# Calcul du VIF pour chaque variable
+vif_data = pd.DataFrame()
+vif_data["Variable"] = X.columns
+vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+
+print("\nFacteurs d'Inflation de la Variance (VIF):")
+print(vif_data)
+
+# Stockage des données VIF pour interprétation
+vif_results = vif_data
+
+# 5. TEST DES TENDANCES PARALLÈLES
+# Créer des termes d'interaction entre 'reforme' et 'periode_relative' pour les périodes pré-traitement
+df['reforme_periode_relative_1'] = df[col['reforme']] * (df[col['periode_relative']] == -1)
+df['reforme_periode_relative_0'] = df[col['reforme']] * (df[col['periode_relative']] == 0)
+df['reforme_periode_relative_1_post'] = df[col['reforme']] * (df[col['periode_relative']] == 1)
+df['reforme_periode_relative_2_post'] = df[col['reforme']] * (df[col['periode_relative']] == 2)
+
+# Inclure ces termes d'interaction dans le modèle de régression
+formula_tendances = f"{col['score_tests']} ~ {df.filter(like='reforme_periode_relative').columns.to_list()} + did + {col['log_budget']} + {col['log_nb_eleves']} + {col['ratio_eleves_enseignant']} + {col['taux_pauvrete']} + {col['niveau_urbanisation']} + C({col['annee']})"
+
+# Ajout des variables catégorielles au modèle
+for dummy in type_etablissement_dummies:
+    formula_tendances += f' + C({dummy})'
+for dummy in approche_pedagogique_dummies:
+    formula_tendances += f' + C({dummy})'
+
+# Estimer le modèle
+model_tendances = smf.ols(formula_tendances, data=df).fit()
+
+# Afficher les résultats du modèle
+print("\nRésultats du test des tendances parallèles:")
+print(model_tendances.summary())
+```
+Erreur Rencontrée : /var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_170221_vspvg4o0/analysis_script.py:513: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(df[column].mean(), inplace=True)
+Erreur dans _custom_show: 'list' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_170221_vspvg4o0/analysis_script.py", line 659, in <module>
+    model_score = smf.ols(formula_score, data=df).fit()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/statsmodels/base/model.py", line 203, in from_formula
+    tmp = handle_formula_data(data, None, formula, depth=eval_env,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/statsmodels/formula/formulatools.py", line 63, in handle_formula_data
+    result = dmatrices(formula, Y, depth, return_type='dataframe',
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/highlevel.py", line 319, in dmatrices
+    (lhs, rhs) = _do_highlevel_design(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/highlevel.py", line 164, in _do_highlevel_design
+    design_infos = _try_incr_builders(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/highlevel.py", line 56, in _try_incr_builders
+    return design_matrix_builders(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/build.py", line 743, in design_matrix_builders
+    factor_states = _factors_memorize(all_factors, data_iter_maker, eval_env)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/build.py", line 393, in _factors_memorize
+    which_pass = factor.memorize_passes_needed(state, eval_env)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/eval.py", line 504, in memorize_passes_needed
+    subset_names = [name for name in ast_names(self.code) if name in env_namespace]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/eval.py", line 504, in <listcomp>
+    subset_names = [name for name in ast_names(self.code) if name in env_namespace]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/eval.py", line 111, in ast_names
+    for node in ast.walk(ast.parse(code)):
+                         ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/ast.py", line 50, in parse
+    return compile(source, filename, mode, flags,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<unknown>", line 1
+    C(type_etablissement_Centre Professionnel)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+
+TA MISSION : Corrige uniquement l'erreur indiquée sans modifier la logique globale du code. Garde intégralement la structure et l'ensemble des fonctionnalités du code initial. Ne simplifie pas le script : toutes les parties (gestion des visualisations, sauvegarde des versions, correction manuelle, etc.) doivent être conservées. GARDE les noms de colonnes exacts. Colonnes valides : ['etablissement_id', 'type_etablissement', 'periode', 'date', 'annee', 'semestre', 'reforme', 'post', 'interaction_did', 'budget_education', 'nb_eleves', 'ratio_eleves_enseignant', 'taux_pauvrete', 'niveau_urbanisation', 'approche_pedagogique', 'score_tests', 'taux_emploi_jeunes', 'log_budget', 'log_nb_eleves', 'groupe', 'periode_relative', 'phase']
+
+RENVOIE UNIQUEMENT le code Python corrigé, encapsulé dans un bloc de code délimité par trois backticks (python ... ), sans explications supplémentaires. 
+
+Fais bien attention a la nature des variables, numériques, catégorielles, etc.
+
+IMPORTANT: Pour les styles dans matplotlib, utilise 'seaborn-v0_8-whitegrid' au lieu de 'seaborn-whitegrid' qui est obsolète.
+
+
+================================================================================
+

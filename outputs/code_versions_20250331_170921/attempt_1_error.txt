@@ -1,0 +1,6 @@
+ERREUR RENCONTRÉE LORS DE LA TENTATIVE 1:
+
+  File "/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_170921_14tqgxvv/analysis_script.py", line 486
+    df_numeric = df.select_dtypes(include='number')
+    ^^^^^^^^^^
+SyntaxError: expected 'except' or 'finally' block

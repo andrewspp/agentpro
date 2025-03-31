@@ -1,0 +1,15 @@
+ERREUR RENCONTRÉE LORS DE LA TENTATIVE 1:
+
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_170221_vspvg4o0/analysis_script.py:513: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(df[column].mean(), inplace=True)
+Erreur dans _custom_show: 'list' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_170221_vspvg4o0/analysis_script.py", line 644, in <module>
+    formula_score = f'{col["score_tests"]} ~ did + {col["log_budget"]} + {col["log_nb_eleves"]} + {col["ratio_eleves_enseignant"]} + {col["taux_pauvrete"]} + {col["niveau_urbanisation"]} + C({col["annee"]}) + C({col["type_etablissement_Centre Professionnel"]}) + C({col["type_etablissement_Collège"]}) + C({col["type_etablissement_Lycée"]}) + C({col["type_etablissement_Maternelle"]}) + C({col["approche_pedagogique_Expérimentale"]}) + C({col["approche_pedagogique_Mixte"]}) + C({col["approche_pedagogique_Progressive"]})'
+                                                                                                                                                                                                                    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'type_etablissement_Centre Professionnel'

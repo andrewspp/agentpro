@@ -1,0 +1,51 @@
+ERREUR RENCONTRÉE LORS DE LA TENTATIVE 2:
+
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_170221_vspvg4o0/analysis_script.py:513: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(df[column].mean(), inplace=True)
+Erreur dans _custom_show: 'list' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_170221_vspvg4o0/analysis_script.py", line 659, in <module>
+    model_score = smf.ols(formula_score, data=df).fit()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/statsmodels/base/model.py", line 203, in from_formula
+    tmp = handle_formula_data(data, None, formula, depth=eval_env,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/statsmodels/formula/formulatools.py", line 63, in handle_formula_data
+    result = dmatrices(formula, Y, depth, return_type='dataframe',
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/highlevel.py", line 319, in dmatrices
+    (lhs, rhs) = _do_highlevel_design(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/highlevel.py", line 164, in _do_highlevel_design
+    design_infos = _try_incr_builders(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/highlevel.py", line 56, in _try_incr_builders
+    return design_matrix_builders(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/build.py", line 743, in design_matrix_builders
+    factor_states = _factors_memorize(all_factors, data_iter_maker, eval_env)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/build.py", line 393, in _factors_memorize
+    which_pass = factor.memorize_passes_needed(state, eval_env)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/eval.py", line 504, in memorize_passes_needed
+    subset_names = [name for name in ast_names(self.code) if name in env_namespace]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/eval.py", line 504, in <listcomp>
+    subset_names = [name for name in ast_names(self.code) if name in env_namespace]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/patsy/eval.py", line 111, in ast_names
+    for node in ast.walk(ast.parse(code)):
+                         ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/ast.py", line 50, in parse
+    return compile(source, filename, mode, flags,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<unknown>", line 1
+    C(type_etablissement_Centre Professionnel)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?

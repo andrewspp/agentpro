@@ -1,0 +1,27 @@
+# Bibliothèques essentielles pour l'analyse de données
+pandas>=1.5.0
+numpy>=1.20.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+statsmodels>=0.13.0
+
+# Bibliothèques pour les appels API et HTTP
+requests>=2.28.0
+
+# Bibliothèques pour la génération de rapports
+jinja2>=3.0.0
+weasyprint>=54.0
+markdown>=3.3.0
+
+# Bibliothèques optionnelles pour la génération de documents Word
+python-docx>=0.8.11  # Optionnel, pour la génération de rapports Word
+html2text>=2020.1.16  # Utilisé avec python-docx
+
+# Bibliothèque pour l'API Gemini de Google
+google-generativeai>=0.3.0  # Optionnel, uniquement si vous utilisez le backend Gemini
+
+# Bibliothèque pour la génération de documentation (methode.py)
+reportlab>=3.6.0  # Optionnel, uniquement pour générer la documentation
+
+# Autres dépendances
+pillow>=9.0.0  # Requis par WeasyPrint et pour le traitement d'images

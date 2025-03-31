@@ -1,0 +1,75 @@
+ERREUR RENCONTRÉE LORS DE LA TENTATIVE 1:
+
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_171026_j9iza7w0/analysis_script.py:496: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  data[column].fillna(median_value, inplace=True)
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_171026_j9iza7w0/analysis_script.py:496: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  data[column].fillna(median_value, inplace=True)
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_171026_j9iza7w0/analysis_script.py:496: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  data[column].fillna(median_value, inplace=True)
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_171026_j9iza7w0/analysis_script.py:496: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  data[column].fillna(median_value, inplace=True)
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_171026_j9iza7w0/analysis_script.py:496: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  data[column].fillna(median_value, inplace=True)
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_171026_j9iza7w0/analysis_script.py:496: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  data[column].fillna(median_value, inplace=True)
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_171026_j9iza7w0/analysis_script.py:496: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  data[column].fillna(median_value, inplace=True)
+/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_171026_j9iza7w0/analysis_script.py:502: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  data[column].fillna(most_frequent_value, inplace=True)
+Traceback (most recent call last):
+  File "/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_171026_j9iza7w0/analysis_script.py", line 522, in <module>
+    corr_matrix = data.corr()
+                  ^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/pandas/core/frame.py", line 11049, in corr
+    mat = data.to_numpy(dtype=float, na_value=np.nan, copy=False)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/pandas/core/frame.py", line 1993, in to_numpy
+    result = self._mgr.as_array(dtype=dtype, copy=copy, na_value=na_value)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/pandas/core/internals/managers.py", line 1694, in as_array
+    arr = self._interleave(dtype=dtype, na_value=na_value)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/agentpro/venv/lib/python3.11/site-packages/pandas/core/internals/managers.py", line 1753, in _interleave
+    result[rl.indexer] = arr
+    ~~~~~~^^^^^^^^^^^^
+ValueError: could not convert string to float: 'Afrique'

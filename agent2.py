@@ -33,9 +33,42 @@ from io import StringIO
 import pandas as pd
 import threading # <--- AJOUTER CECI
 import time      # <--- AJOUTER CECI
+# Important : S'assurer que matplotlib et pandas sont importés quelque part avant
+try:
+    import matplotlib.pyplot as plt
+    import pandas as pd
+except ImportError:
+    print("ERREUR: Les modules matplotlib ou pandas sont manquants. Veuillez les installer.", file=sys.stderr)
+    sys.exit(1)
+from io import StringIO
 
 # Importation du module llm_utils
 from llm_utils import call_llm
+
+
+# --- Constantes pour la détection et le filtrage (AJUSTÉES) ---
+INTEREST_KEYWORDS = [
+    'intercept', 'reforme', 'post', 'interaction_did', 'treat', 'did',
+    'policy', 'intervention'
+    # Ajoutez d'autres variables clés attendues ici (ex: variables d'interaction spécifiques)
+]
+CONTROL_KEYWORDS = [
+    'log_budget', 'ratio_eleves_enseignant', 'taux_pauvrete',
+    'niveau_urbanisation', 'budget_education', 'nb_eleves' # Ajout des versions non-log aussi
+    # Ajoutez d'autres contrôles principaux attendus ici
+]
+# Patterns Regex PLUS SPÉCIFIQUES basés sur vos images
+FIXED_EFFECT_PATTERNS = [
+    re.compile(r'^C\(region_id\)\[T\.\d+\]$', re.IGNORECASE),
+    re.compile(r'^C\(trimestre\)\[T\.\d+\]$', re.IGNORECASE),
+    # Gardez les patterns génériques comme fallback si besoin, mais ceux ci-dessus sont prioritaires
+    re.compile(r'^C\(\w+\)\[T\..*?\]$', re.IGNORECASE),
+    re.compile(r'^\w+_FE$', re.IGNORECASE),
+    re.compile(r'^factor\(\w+\)\d+$', re.IGNORECASE),
+]
+MIN_COEFS_FOR_FILTERING = 5      # Abaissé légèrement pour être sûr
+MIN_FE_RATIO_FOR_FILTERING = 0  # Abaissé légèrement
+# --- Fin des constantes ---
 
 # ======================================================
 # Configuration du logging
@@ -49,6 +82,11 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger("agent2")
+
+# Exemple minimal si non déjà fait plus haut dans le script
+if not logging.getLogger().hasHandlers():
+     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger("agent2.capture") # Utiliser un logger spécifique
 
 def save_prompt_to_file(prompt_content: str, log_file_path: str, prompt_type: str):
     """
@@ -239,144 +277,299 @@ def sanitize_code(code: str, csv_path: str, valid_columns: list[str]) -> str:
     
     return code
 
+def _build_filtered_table_text(full_table_text: str, final_coefficients: list, r_squared: str) -> str:
+    """
+    Reconstruit une version textuelle simplifiée de la table de régression.
+    LOGGING AMÉLIORÉ POUR DÉBOGAGE.
+    """
+    logger.debug("[BUILD DEBUG] Appel de _build_filtered_table_text")
+    lines = full_table_text.splitlines()
+    header_lines = []
+    coef_header_line = ""
+    footer_lines = []
+    in_coef_section = False
+    coef_section_found = False
+    # Patterns ajustés pour être plus précis
+    coef_start_pattern = re.compile(r"^={2,}$") # Ligne de ===
+    # Cherche explicitement "coef" ou "std err" etc. pour l'en-tête
+    coef_header_pattern = re.compile(r"coef|std err|t|p>\|t\||\[0\.025", re.IGNORECASE)
+
+    # --- Parsing amélioré pour séparer header/coef/footer ---
+    current_section = "header" # header, coef, footer
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        is_separator_line = coef_start_pattern.match(stripped)
+
+        if current_section == "header":
+            # Si on trouve une ligne qui ressemble à un en-tête de coeffs *après* un séparateur potentiel
+            if coef_header_pattern.search(line) and (i > 0 and coef_start_pattern.match(lines[i-1].strip())):
+                logger.debug(f"[BUILD DEBUG] Détection potentielle header coeffs Ligne {i+1}: {line}")
+                # Vérification supplémentaire : la ligne suivante a-t-elle des chiffres ?
+                if i + 1 < len(lines) and re.search(r'\d', lines[i+1]):
+                     logger.debug(f"[BUILD DEBUG] Confirmation header coeffs Ligne {i+1}.")
+                     coef_header_line = line
+                     current_section = "coef"
+                     coef_section_found = True
+                     # La ligne de séparation juste avant fait partie du header
+                     if coef_start_pattern.match(lines[i-1].strip()):
+                         header_lines.append(lines[i-1])
+                     else: # Si pas de separateur avant, ajouter celui par defaut
+                         header_lines.append("=" * 80)
+
+                else: # Fausse alerte, on reste dans le header
+                     header_lines.append(line)
+            else:
+                 header_lines.append(line)
+        elif current_section == "coef":
+            # Si on rencontre une nouvelle ligne de séparation, c'est la fin des coeffs
+            if is_separator_line:
+                logger.debug(f"[BUILD DEBUG] Fin de section coeffs détectée Ligne {i+1}: {line}")
+                current_section = "footer"
+                footer_lines.append(line) # Garder ce séparateur
+            # Sinon, on ignore la ligne (ce sont les coeffs originaux)
+        elif current_section == "footer":
+            footer_lines.append(line)
+    # --- Fin Parsing ---
+
+    if not coef_section_found:
+        logger.error("[BUILD DEBUG] En-tête de la section Coefficients non trouvé! Impossible de reconstruire la table filtrée. Retour texte complet.")
+        return full_table_text # Fallback critique
+
+    logger.debug(f"[BUILD DEBUG] Header Lines ({len(header_lines)}): \n" + "\n".join(header_lines[-5:])) # 5 dernières lignes
+    logger.debug(f"[BUILD DEBUG] Coef Header Line: {coef_header_line}")
+    logger.debug(f"[BUILD DEBUG] Footer Lines ({len(footer_lines)}): \n" + "\n".join(footer_lines[:5])) # 5 premières lignes
+
+    # --- Reconstruction ---
+    output_lines = header_lines
+    output_lines.append(coef_header_line)
+
+    # Formater les coefficients filtrés
+    if final_coefficients:
+        max_var_len = max(len(c['variable']) for c in final_coefficients) if final_coefficients else 20
+        max_var_len = max(max_var_len, 15) + 2 # Assurer une largeur min + padding
+
+        # Largeurs fixes (simplifié) - ajuster si nécessaire
+        col_widths = {'coef': 12, 'std_err': 11, 'p_value': 9} # Laisser de la place
+
+        for coef_data in final_coefficients:
+            var_name = coef_data['variable']
+            coef_s = coef_data.get('coef', 'N/A')
+            std_s = coef_data.get('std_err', 'N/A')
+            pval_s = coef_data.get('p_value', 'N/A')
+
+            # Juste alignement basique
+            line = f"{var_name:<{max_var_len}}" \
+                   f"{coef_s:>{col_widths['coef']}}" \
+                   f"{std_s:>{col_widths['std_err']}}" \
+                   f"{pval_s:>{col_widths['p_value']}}"
+            # Ajouter d'autres colonnes si elles existent dans l'en-tête et les données
+            output_lines.append(line)
+        logger.debug(f"[BUILD DEBUG] {len(final_coefficients)} coefficients formatés pour la sortie.")
+    else:
+         logger.warning("[BUILD DEBUG] La liste final_coefficients est vide.")
+
+    # Ajouter note et footer
+    output_lines.append("=" * 80) # Séparateur
+    output_lines.append("[Note: Effets fixes et autres coefficients non essentiels omis pour la lisibilité.]")
+    output_lines.append(f"[R-squared original: {r_squared}]")
+    output_lines.extend(footer_lines)
+
+    filtered_text = "\n".join(output_lines)
+    logger.debug(f"[BUILD DEBUG] Texte filtré construit (longueur: {len(filtered_text)}). Premières lignes:\n{filtered_text[:300]}...")
+    return filtered_text
+
 def capture_regression_outputs(output_text, output_dir, executed_code=""):
     """
-    Capture les tables de régression OLS du texte de sortie et les enregistre
-    à la fois comme texte et comme images. Tente également d'identifier le code
-    qui a généré chaque régression.
-    
-    Args:
-        output_text: Texte de sortie contenant potentiellement des résultats de régression
-        output_dir: Répertoire où sauvegarder les résultats
-        executed_code: Code Python complet qui a été exécuté
-        
-    Returns:
-        Liste des chemins des fichiers générés et des métadonnées associées
+    Capture OLS tables. Saves full raw text.
+    Saves image (full OR filtered if many FEs).
+    Filters coeffs in structured data/CSV if many FEs. Enhanced logging.
     """
-    regression_outputs = []
-    regression_pattern = r"={10,}\s*\n\s*OLS Regression Results\s*\n={10,}(.*?)(?:\n={10,}|\Z)"
-    
-    # Créer le répertoire de sortie s'il n'existe pas
+
+        # --- Définitions des Patterns Regex ---
+    # !!! LIGNE MANQUANTE AJOUTÉE ICI !!!
+    regression_pattern = re.compile(r"={10,}\s*OLS Regression Results\s*={10,}(.*?)(?:\n={10,}|\Z)", re.DOTALL)
+    # --- Fin de l'ajout ---
+    coef_section_pattern = re.compile(r"={2,}\s*\n\s*(coef.*?)(?:\n\s*={2,}|\Z)", re.DOTALL | re.IGNORECASE)
+    r_squared_pattern = re.compile(r"R-squared:\s*([\d\.]+)", re.IGNORECASE)
+    interaction_pattern = re.compile(r'\*|:')
+    # --- Fin Définitions ---
+    # ... (début de la fonction, patterns, etc. comme avant) ...
     os.makedirs(output_dir, exist_ok=True)
-    
-    # Chercher toutes les tables de régression dans la sortie
-    regression_tables = re.findall(regression_pattern, output_text, re.DOTALL)
-    
-    for i, table_content in enumerate(regression_tables):
+    matches = regression_pattern.finditer(output_text)
+    match_found = False
+    regression_outputs = [] # Initialiser ici
+
+    for i, match in enumerate(matches):
+        match_found = True
+        full_table_text = match.group(0)
+        table_content = match.group(1).strip()
         table_id = f"regression_{i+1}"
-        
-        # Sauvegarder le contenu textuel
+        coefficients_filtered = False
+        logger.info(f"[CAPTURE] Traitement table régression: {table_id}")
+
+        # --- 1. Sauvegarde Texte Complet ---
         text_file_path = os.path.join(output_dir, f"{table_id}.txt")
-        with open(text_file_path, "w", encoding="utf-8") as f:
-            f.write("="*80 + "\n")
-            f.write("OLS Regression Results\n")
-            f.write("="*80 + "\n")
-            f.write(table_content)
-            f.write("\n" + "="*80 + "\n")
-        
-        # Créer une visualisation de la table et la sauvegarder comme image
-        img_file_path = os.path.join(output_dir, f"{table_id}.png")
-        
-        # Créer une visualisation de la table avec matplotlib
-        plt.figure(figsize=(12, 10))
-        plt.text(0.01, 0.99, "OLS Regression Results\n" + table_content, 
-                 family='monospace', fontsize=10, 
-                 verticalalignment='top')
-        plt.axis('off')
-        plt.tight_layout()
-        plt.savefig(img_file_path, dpi=100, bbox_inches='tight')
-        plt.close()
-        
-        # Encoder l'image en base64 pour l'inclure dans la sortie JSON
-        with open(img_file_path, 'rb') as img_file:
-            img_data = base64.b64encode(img_file.read()).decode('utf-8')
-        
-        # Extraire quelques métadonnées de base (R-squared, variables clés)
-        r_squared_match = re.search(r"R-squared:\s*([\d\.]+)", table_content)
+        # ... (try/except pour sauvegarder full_table_text) ...
+        try:
+            with open(text_file_path, "w", encoding="utf-8") as f: f.write(full_table_text)
+            logger.debug(f"[CAPTURE] Table brute sauvegardée: {text_file_path}")
+        except Exception as e:
+            logger.error(f"[CAPTURE] Erreur sauvegarde texte {table_id}: {e}"); continue
+
+        # --- 2. Parsing & Décision Filtrage ---
+        r_squared_match = r_squared_pattern.search(table_content)
         r_squared = r_squared_match.group(1) if r_squared_match else "N/A"
-        
-        key_variables = re.findall(r"([A-Za-z0-9_]+)\s+[\d\.-]+\s+[\d\.-]+\s+[\d\.-]+\s+[\d\.-]+", table_content)
-        
-        # Extraire quelques statistiques clés pour les données de régression
+        all_coefficients_raw = []
+        num_fixed_effects_found = 0
+        final_coefficients = [] # Doit être défini avant le bloc try/except image
+
+        coef_section_match = coef_section_pattern.search(table_content)
+        if not coef_section_match:
+            logger.warning(f"[CAPTURE] Section coeffs non trouvée {table_id}")
+        else:
+            # ... (logique de parsing des coefficients comme avant, remplissant all_coefficients_raw) ...
+            # --- Début Parsing Coeffs ---
+            coef_lines = coef_section_match.group(1).strip().split('\n')
+            if coef_lines and ("coef" in coef_lines[0].lower() or "std err" in coef_lines[0].lower()):
+                coef_lines = coef_lines[1:]
+            for line_num, line in enumerate(coef_lines):
+                stripped_line = line.strip();
+                if not stripped_line or stripped_line.startswith('---'): continue
+                parts = re.split(r'\s{2,}', stripped_line);
+                if len(parts) < 2: continue
+                variable_name = parts[0]; values = parts[1:]
+                def safe_get(arr, index, default="N/A"):
+                    try: return arr[index]
+                    except IndexError: return default
+                coef_val = safe_get(values, 0); std_err_val = safe_get(values, 1)
+                p_value_val = safe_get(values, 2) # Heuristique simple
+                try:
+                    if not (0 <= float(p_value_val) <= 1):
+                         p_value_candidate = safe_get(values, 3)
+                         if 0 <= float(p_value_candidate) <= 1: p_value_val = p_value_candidate
+                         else: p_value_val = "N/A"
+                except: p_value_val = "N/A"
+                all_coefficients_raw.append({"variable": variable_name, "coef": coef_val, "std_err": std_err_val, "p_value": p_value_val})
+                if any(pattern.match(variable_name) for pattern in FIXED_EFFECT_PATTERNS): num_fixed_effects_found += 1
+            # --- Fin Parsing Coeffs ---
+
+            total_coeffs = len(all_coefficients_raw)
+            logger.info(f"[CAPTURE] {table_id} - Coeffs parsés: {total_coeffs}, FE détectés: {num_fixed_effects_found}")
+
+            # Décision de filtrer
+            trigger_filtering = False
+            if total_coeffs >= MIN_COEFS_FOR_FILTERING:
+                fixed_effect_ratio = num_fixed_effects_found / total_coeffs if total_coeffs > 0 else 0
+                logger.info(f"[CAPTURE] {table_id} - Ratio FE: {fixed_effect_ratio:.2f}")
+                if fixed_effect_ratio >= MIN_FE_RATIO_FOR_FILTERING:
+                    trigger_filtering = True
+                    logger.info(f"[CAPTURE] {table_id} - FILTRAGE ACTIVÉ.")
+
+            # Application du filtrage
+            if trigger_filtering:
+                coefficients_filtered = True
+                # ... (logique de filtrage comme avant, remplissant final_coefficients) ...
+                # --- Début Filtrage ---
+                logger.debug(f"[CAPTURE] {table_id} - Application filtre:")
+                for coef_data in all_coefficients_raw:
+                    var_name = coef_data["variable"]; var_name_lower = var_name.lower()
+                    is_fe = any(pattern.match(var_name) for pattern in FIXED_EFFECT_PATTERNS)
+                    is_interest = any(keyword == var_name_lower for keyword in INTEREST_KEYWORDS) or interaction_pattern.search(var_name)
+                    is_control = any(keyword == var_name_lower for keyword in CONTROL_KEYWORDS)
+                    keep = is_interest or is_control or (not is_fe)
+                    if keep: final_coefficients.append(coef_data)
+                    #logger.debug(f"  -> {'CONSERVER' if keep else 'EXCLURE'} '{var_name}' (Int:{is_interest}, Ctrl:{is_control}, FE:{is_fe})") # Log très verbeux
+                # --- Fin Filtrage ---
+                logger.info(f"[CAPTURE] {table_id} - Coeffs après filtrage: {len(final_coefficients)}")
+                if len(final_coefficients) == 0 and len(all_coefficients_raw) > 0:
+                     logger.warning(f"[CAPTURE] {table_id} - Filtrage annulé (0 coeff conservé).")
+                     final_coefficients = all_coefficients_raw; coefficients_filtered = False
+            else:
+                 logger.info(f"[CAPTURE] {table_id} - Filtrage NON activé.")
+                 final_coefficients = all_coefficients_raw # Garder tout
+
+        # --- 3. Préparation Texte & Création Image ---
+        img_file_path = os.path.join(output_dir, f"{table_id}.png")
+        img_data = None
+        text_for_image = full_table_text # Défaut
+
+        if coefficients_filtered:
+             logger.info(f"[CAPTURE] {table_id} - Tentative construction texte filtré pour image...")
+             try:
+                 text_for_image = _build_filtered_table_text(full_table_text, final_coefficients, r_squared)
+                 logger.info(f"[CAPTURE] {table_id} - Texte filtré pour image OK.")
+             except Exception as e_build:
+                 logger.error(f"[CAPTURE] {table_id} - Erreur construction texte filtré: {e_build}. Utilisation texte complet.")
+                 text_for_image = full_table_text # Fallback
+
+        # LOG CRUCIAL : Quel texte est utilisé pour l'image ?
+        logger.info(f"[CAPTURE] Génération image {table_id} avec texte {'FILTRÉ' if coefficients_filtered and text_for_image != full_table_text else 'COMPLET'}.")
+        logger.debug(f"[CAPTURE] Texte pour image {table_id} (début):\n{text_for_image[:400]}...")
+        logger.debug(f"[CAPTURE] Texte pour image {table_id} (fin):\n...{text_for_image[-400:]}")
+
+        try:
+            # ... (logique de génération d'image plt.text(..., text_for_image, ...)) ...
+            num_lines_img = len(text_for_image.split('\n'))
+            fig_height = max(6, num_lines_img * 0.18); fig_width = 12
+            plt.figure(figsize=(fig_width, fig_height))
+            fontsize = 7 if num_lines_img > 60 else 8
+            plt.text(0.01, 0.99, text_for_image, family='monospace', fontsize=fontsize, verticalalignment='top')
+            plt.axis('off'); plt.tight_layout(pad=0.3)
+            plt.savefig(img_file_path, dpi=120, bbox_inches='tight'); plt.close()
+            logger.info(f"[CAPTURE] Image sauvegardée: {img_file_path}")
+            with open(img_file_path, 'rb') as img_file: img_data = base64.b64encode(img_file.read()).decode('utf-8')
+        except Exception as e:
+            logger.error(f"[CAPTURE] Erreur création/encodage image {table_id}: {e}")
+            img_file_path = None
+
+        # --- 4. Préparation Données Structurées & CSV ---
         regression_data = {
             "r_squared": r_squared,
-            "variables": key_variables[:5],  # Limiter aux 5 premières variables
-            "statistics": {}
+            "coefficients": final_coefficients, # Utilise la liste (filtrée ou non)
+            "coefficients_filtered": coefficients_filtered,
+            "csv_data": None, "regression_code": ""
         }
 
-        coef_section = re.search(r"==+\s*\n\s*(coef.*?)(?:\n\s*==+|\Z)", output_text, re.DOTALL)
-        if coef_section:
-            lines = coef_section.group(1).split('\n')
-            headers = None
-            coef_data = []
-            
-            for line in lines:
-                if "coef" in line.lower():
-                    # C'est la ligne d'en-tête
-                    headers = re.split(r'\s{2,}', line.strip())
-                elif line.strip() and headers:
-                    # C'est une ligne de données
-                    values = re.split(r'\s{2,}', line.strip())
-                    if len(values) >= len(headers):
-                        variable = values[0]
-                        coef_data.append({
-                            "variable": variable,
-                            "coef": values[1] if len(values) > 1 else "N/A",
-                            "std_err": values[2] if len(values) > 2 else "N/A",
-                            "p_value": values[4] if len(values) > 4 else "N/A"
-                        })
-            
-            regression_data["coefficients"] = coef_data
-            
-            # NOUVELLE SECTION: Convertir les données de régression en CSV amélioré pour faciliter l'interprétation
+        # ... (logique génération CSV comme avant, utilisant final_coefficients) ...
+        if regression_data["coefficients"]:
             try:
-                import pandas as pd
-                if coef_data:
-                    coef_df = pd.DataFrame(coef_data)
-                    
-                    # Ajouter une colonne de significativité pour faciliter l'interprétation
-                    try:
-                        coef_df['significatif'] = coef_df['p_value'].astype(float) < 0.05
-                    except:
-                        # Si conversion en float échoue, on continue sans cette colonne
-                        pass
-                    
-                    # Ajouter des métadonnées contextuelles en commentaire
-                    csv_header = f"# Résultats de régression - R²: {r_squared}\n"
-                    csv_header += f"# Interprétation: un coefficient positif indique une relation positive, une p-value < 0.05 indique une significativité statistique\n"
-                    csv_header += f"# Variables explicatives: {', '.join(key_variables[:5]) if key_variables else 'non disponibles'}\n"
-                    
-                    regression_data["csv_data"] = csv_header + coef_df.to_csv(index=False)
-                    
-                    # Sauvegarder en fichier CSV
-                    csv_path = os.path.join(output_dir, f"{table_id}_coefficients.csv")
-                    with open(csv_path, 'w', encoding='utf-8') as f:
-                        f.write(regression_data["csv_data"])
-                    logger.info(f"Données CSV améliorées de coefficients sauvegardées: {csv_path}")
-            except Exception as e:
-                logger.error(f"Erreur lors de la conversion des coefficients en CSV amélioré: {e}")
-        
-        # Extraire le code de régression si le code complet est fourni
-        regression_code = ""
+                coef_df = pd.DataFrame(regression_data["coefficients"])
+                # Add significance column
+                try:
+                    coef_df['p_value_float'] = pd.to_numeric(coef_df['p_value'], errors='coerce')
+                    coef_df['significatif'] = coef_df['p_value_float'] < 0.05
+                    coef_df = coef_df.drop(columns=['p_value_float'])
+                except Exception: coef_df['significatif'] = 'N/A'
+                csv_header = f"# Résultats Régression OLS - Table {i+1}\n# R²: {r_squared}\n"
+                if coefficients_filtered: csv_header += f"# NOTE: Effets fixes omis.\n"
+                csv_header += f"# Colonnes: variable, coef, std_err, p_value, significatif (<0.05)\n"
+                regression_data["csv_data"] = csv_header + coef_df.to_csv(index=False, line_terminator='\n')
+                csv_path = os.path.join(output_dir, f"{table_id}_coefficients.csv")
+                with open(csv_path, 'w', encoding='utf-8', newline='\n') as f: f.write(regression_data["csv_data"])
+                logger.info(f"[CAPTURE] CSV {'filtré' if coefficients_filtered else 'complet'} sauvegardé: {csv_path}")
+            except Exception as e: logger.error(f"[CAPTURE] Erreur CSV {table_id}: {e}"); regression_data["csv_data"] = "# Erreur CSV\n"
+        else: logger.warning(f"[CAPTURE] {table_id} - Pas de coeffs pour CSV.")
+
+
+        # --- 5. Extraction Code Source ---
         if executed_code:
-            regression_code = extract_regression_code(executed_code, table_content)
-            regression_data["regression_code"] = regression_code
-        
+             try: regression_data["regression_code"] = extract_regression_code(executed_code, full_table_text)
+             except Exception as e: logger.error(f"[CAPTURE] Erreur extraction code {table_id}: {e}")
+
+        # --- 6. Stockage Résultat Final ---
         regression_outputs.append({
-            'type': 'regression_table',
-            'id': table_id,
-            'text_path': text_file_path,
-            'image_path': img_file_path,
-            'base64': img_data,
-            'metadata': {
-                'r_squared': r_squared,
-                'variables': key_variables[:5]  # Limiter aux 5 premières variables
-            },
-            'data': regression_data,  # Ajout des données structurées
-            'csv_data': regression_data.get("csv_data", ""),  # Ajout des données CSV améliorées
-            'regression_code': regression_code  # Ajout du code de régression
+            'type': 'regression_table', 'id': table_id,
+            'text_path': text_file_path, 'image_path': img_file_path,
+            'base64': img_data, # Base64 de l'image (filtrée ou non)
+            'title': f"Résultats Régression: {table_id.replace('_', ' ').capitalize()}",
+            'metadata': {'r_squared': r_squared, 'variables': [c['variable'] for c in regression_data['coefficients']]},
+            'data': regression_data,
+            'csv_data': regression_data.get("csv_data", ""),
+            'regression_code': regression_data["regression_code"],
+            'coefficients_filtered': coefficients_filtered
         })
-    
+
+    if not match_found: logger.warning("[CAPTURE] Aucune table OLS trouvée.")
     return regression_outputs
 
 def interpret_visualization_with_gemini(vis, agent1_data, model, backend, prompts_log_path, timeout):
@@ -1079,7 +1272,7 @@ def save_figure(fig, name):
     execution_output = ""
     all_code_versions = []
     recent_errors = deque(maxlen=3)
-    max_attempts = 10
+    max_attempts = 5
     current_stderr = ""
 
     # Flag pour le modèle puissant
@@ -1367,7 +1560,7 @@ def save_figure(fig, name):
                  logger.error(f"Impossible de sauvegarder le fichier d'erreur {error_file}: {write_err}")
 
             # MODIFICATION: Utiliser le modèle puissant après 5 tentatives échouées
-            if attempt >= 10 and not tried_powerful_model and backend == "gemini":
+            if attempt >= 5 and not tried_powerful_model and backend == "gemini":
                 logger.warning(f"Après {attempt} tentatives échouées, basculement vers le modèle Gemini Pro puissant")
                 tried_powerful_model = True
                 powerful_model = "gemini-2.5-pro-exp-03-25"
@@ -1913,63 +2106,216 @@ Il est essentiel que cette interprétation soit suffisamment détaillée pour fo
         logger.error(f"Erreur lors de l'interprétation détaillée de la régression: {e}")
         return f"Erreur lors de l'interprétation détaillée de la régression: {e}"
 
-# Fonction pour extraire le code qui a généré une régression
-def extract_regression_code(full_code, table_content):
-    """Tente d'identifier le code qui a généré une régression spécifique."""
-    if not full_code:
-        return ""
-        
-    # Rechercher des patterns communs dans les codes de régression
-    import re
-    
-    # Extraire les noms de variables potentiels de la table de régression
-    var_names = re.findall(r"([A-Za-z0-9_]+)\s+[\d\.-]+\s+[\d\.-]+\s+[\d\.-]+\s+[\d\.-]+", table_content)
-    
-    # Chercher les modèles OLS qui utilisent ces variables
-    regression_patterns = [
-        r"(.*?sm\.OLS.*?\.fit\(\).*?)(?=\n\n|\Z)",  # Pattern pour statsmodels OLS
-        r"(.*?statsmodels\.api.*?OLS.*?\.fit\(\).*?)(?=\n\n|\Z)",  # Autre pattern pour statsmodels
-        r"(.*?LinearRegression\(\).*?\.fit\(.*?\).*?)(?=\n\n|\Z)"   # Pattern pour sklearn LinearRegression
+def extract_regression_code(full_code: str, table_content: str) -> str:
+    """
+    Tente d'identifier le bloc de code Python qui a généré une table de régression spécifique.
+    Recherche l'appel .summary() puis remonte vers le .fit() correspondant.
+
+    Args:
+        full_code: Le script Python complet qui a été exécuté.
+        table_content: Le contenu textuel de la table de régression OLS (la partie interne).
+
+    Returns:
+        str: Le bloc de code extrait pertinent, ou un message indiquant l'échec.
+    """
+    if not full_code or not table_content:
+        logger.warning("Code complet ou contenu de table manquant pour l'extraction.")
+        return "Code non fourni ou table vide."
+
+    logger.debug("Début de l'extraction du code de régression.")
+
+    # 1. Identifier les variables clés (Dép., et quelques Indép. non-FE)
+    key_vars = set()
+    dep_var_match = re.search(r"Dep\. Variable:\s*(\w+)", table_content, re.IGNORECASE)
+    if dep_var_match:
+        dep_var = dep_var_match.group(1)
+        key_vars.add(dep_var)
+        logger.debug(f"Variable dépendante identifiée: {dep_var}")
+
+    # Extraire les noms des variables indépendantes de la section coef
+    coef_section_match = re.search(r"={2,}\s*\n\s*(coef.*?)(?:\n\s*={2,}|\Z)", table_content, re.DOTALL | re.IGNORECASE)
+    if coef_section_match:
+        coef_lines = coef_section_match.group(1).strip().split('\n')
+        # Ignorer l'en-tête potentiel
+        if coef_lines and ("coef" in coef_lines[0].lower()):
+            coef_lines = coef_lines[1:]
+
+        non_fe_vars_count = 0
+        for line in coef_lines:
+            stripped_line = line.strip()
+            if not stripped_line or stripped_line.startswith('---'): continue
+            # Extraire le premier "mot" comme nom de variable potentiel
+            match_var = re.match(r'^(\S+)', stripped_line)
+            if match_var:
+                var_name = match_var.group(1)
+                # Ignorer l'intercept et les effets fixes évidents
+                if var_name.lower() != 'intercept' and not any(p.match(var_name) for p in FIXED_EFFECT_PATTERNS):
+                    key_vars.add(var_name)
+                    non_fe_vars_count += 1
+                    # Limiter le nombre de variables clés à rechercher pour l'efficacité
+                    if non_fe_vars_count >= 5:
+                        break
+        logger.debug(f"Variables clés (non-FE) identifiées pour la recherche: {key_vars}")
+
+    if not key_vars:
+        logger.warning("Aucune variable clé (dépendante ou indépendante non-FE) n'a pu être extraite de la table.")
+        # On peut quand même continuer sans validation par variable clé si on le souhaite
+
+    # 2. Localiser les appels .summary() dans le code
+    # Chercher `print(<quelque chose>.summary())` ou juste `<quelque chose>.summary()`
+    summary_pattern = re.compile(r"(?:print\s*\(.*?\b(\w+)\.summary\s*\(\s*\)\s*\)|(\w+)\.summary\s*\(\s*\))")
+    summary_matches = list(summary_pattern.finditer(full_code))
+    logger.debug(f"Nombre d'appels .summary() potentiels trouvés: {len(summary_matches)}")
+
+    if not summary_matches:
+        logger.warning("Aucun appel .summary() trouvé dans le code.")
+        # Passer aux fallbacks si aucun summary n'est trouvé
+    else:
+        # Itérer sur les summary trouvés (du dernier au premier)
+        for summary_match in reversed(summary_matches):
+            summary_line_end = summary_match.end()
+            # Trouver le nom de la variable contenant les résultats (ex: 'results' dans results.summary())
+            results_var_name = summary_match.group(1) or summary_match.group(2)
+            if not results_var_name: continue # Ne devrait pas arriver avec le pattern mais sécurité
+
+            logger.debug(f"Recherche en amont de .summary() à la position {summary_line_end} pour la variable '{results_var_name}'")
+
+            # 3. Remonter depuis .summary() pour trouver l'assignation et le .fit()
+            # Chercher une ligne comme `results_var_name = ... .fit()` avant le summary
+            fit_pattern_str = rf"^\s*({re.escape(results_var_name)}\s*=\s*.*?\.fit\s*\(.*?\))\s*$"
+            fit_pattern = re.compile(fit_pattern_str, re.MULTILINE | re.DOTALL)
+
+            # Chercher dans la partie du code *avant* le summary
+            code_before_summary = full_code[:summary_line_end]
+            fit_matches = list(fit_pattern.finditer(code_before_summary))
+
+            if not fit_matches:
+                 logger.debug(f"Aucun appel .fit() assigné à '{results_var_name}' trouvé avant le summary.")
+                 continue # Essayer le summary précédent
+
+            # Prendre le dernier appel .fit() trouvé avant ce summary
+            fit_match = fit_matches[-1]
+            fit_line_start = fit_match.start()
+            fit_line_end = fit_match.end()
+            logger.debug(f"Appel .fit() correspondant trouvé entre {fit_line_start} et {fit_line_end}")
+
+            # 4. Déterminer le bloc de code pertinent
+            # Remonter de N lignes avant le début de la ligne .fit()
+            lines_before_fit = 15 # Nombre de lignes à inclure avant le fit
+            code_lines = full_code.splitlines()
+            # Trouver l'indice de la ligne où commence le .fit()
+            current_pos = 0
+            fit_start_line_index = -1
+            for i, line in enumerate(code_lines):
+                if current_pos >= fit_line_start:
+                    fit_start_line_index = i
+                    break
+                current_pos += len(line) + 1 # +1 pour le \n
+
+            if fit_start_line_index == -1:
+                logger.warning("Impossible de déterminer l'indice de ligne pour le début du .fit()")
+                continue
+
+            # Trouver l'indice de la ligne où finit le .summary()
+            current_pos = 0
+            summary_end_line_index = -1
+            for i, line in enumerate(code_lines):
+                 current_pos += len(line) + 1
+                 if current_pos >= summary_line_end:
+                     summary_end_line_index = i
+                     break
+
+            if summary_end_line_index == -1: summary_end_line_index = len(code_lines) -1 # Prende la fin si non trouvé
+
+            # Définir les bornes du bloc
+            block_start_line = max(0, fit_start_line_index - lines_before_fit)
+            block_end_line = summary_end_line_index + 1 # Inclure la ligne du summary
+
+            extracted_block = "\n".join(code_lines[block_start_line:block_end_line])
+
+            # 5. Valider le bloc (optionnel mais recommandé)
+            # Vérifier si le bloc contient les variables clés extraites de la table
+            block_contains_key_vars = True # Commencer optimiste
+            if key_vars: # Ne valider que si on a des variables clés
+                found_count = 0
+                for var in key_vars:
+                    # Utiliser word boundary \b pour éviter les correspondances partielles
+                    if re.search(r'\b' + re.escape(var) + r'\b', extracted_block):
+                        found_count +=1
+                # Exiger au moins la variable dépendante ou une des indépendantes clés
+                if found_count == 0:
+                     block_contains_key_vars = False
+                     logger.debug(f"Bloc extrait ne semble pas contenir les variables clés {key_vars}. Essai du summary précédent.")
+
+            if block_contains_key_vars:
+                logger.info(f"Bloc de code pertinent trouvé et validé (lignes {block_start_line+1} à {block_end_line}).")
+                return extracted_block.strip()
+            else:
+                 continue # Passer au .summary() précédent
+
+    # --- Fallbacks si la méthode principale échoue ---
+    logger.warning("Méthode principale (summary -> fit) a échoué. Tentative des fallbacks.")
+
+    # Fallback 1: Chercher n'importe quel pattern de régression (moins précis)
+    regression_patterns_fb = [
+        re.compile(r"(\S+\s*=\s*.*?sm\.OLS\(.*?\)\.fit\(.*?\))", re.DOTALL),
+        re.compile(r"(\S+\s*=\s*.*?statsmodels\.api\.OLS\(.*?\)\.fit\(.*?\))", re.DOTALL),
+        re.compile(r"(\S+\s*=\s*.*?LinearRegression\(.*?\)\.fit\(.*?\))", re.DOTALL)
     ]
-    
-    # Si nous avons des noms de variables, chercher des lignes qui les utilisent
-    if var_names:
-        var_patterns = []
-        for var in var_names[:5]:  # Limiter aux 5 premières variables pour éviter de surcharger
-            var_patterns.append(r".*?" + re.escape(var) + r".*?\n")
-        
-        # Chercher des blocs de code qui contiennent à la fois un modèle de régression
-        # et les variables identifiées
-        for reg_pattern in regression_patterns:
-            reg_blocks = re.findall(reg_pattern, full_code, re.DOTALL)
-            for block in reg_blocks:
-                # Vérifier si ce bloc contient au moins une des variables
-                for var_pattern in var_patterns:
-                    if re.search(var_pattern, block, re.MULTILINE):
-                        # Bloc de code qui contient à la fois un modèle de régression et une variable pertinente
-                        return block.strip()
-    
-    # Si nous n'avons pas trouvé de code spécifique, chercher simplement un modèle OLS
-    for pattern in regression_patterns:
-        matches = re.findall(pattern, full_code, re.DOTALL)
+    for pattern in regression_patterns_fb:
+        matches = list(pattern.finditer(full_code))
         if matches:
-            # Prendre le premier bloc de code qui correspond à un modèle de régression
-            return matches[0].strip()
-    
-    # Si nous n'avons toujours rien trouvé, retourner une portion du code global
-    # qui contient des mots-clés de régression
-    regression_keywords = ["OLS", "regression", "statsmodels", "LinearRegression", "fit("]
-    lines = full_code.split('\n')
+            last_match_code = matches[-1].group(1) # Prendre le dernier trouvé
+            logger.info("Fallback 1: Trouvé un pattern de régression générique.")
+            # Essayer de prendre quelques lignes avant aussi
+            match_start_pos = matches[-1].start(1)
+            lines = full_code.splitlines()
+            start_line_idx = -1
+            current_pos = 0
+            for i, line in enumerate(lines):
+                 if current_pos >= match_start_pos:
+                     start_line_idx = i
+                     break
+                 current_pos += len(line) + 1
+
+            if start_line_idx != -1:
+                 block_start = max(0, start_line_idx - 5) # 5 lignes avant
+                 # Trouver la ligne de fin du match
+                 match_end_pos = matches[-1].end(1)
+                 end_line_idx = start_line_idx
+                 current_pos = match_start_pos
+                 for i in range(start_line_idx, len(lines)):
+                      current_pos += len(lines[i]) + 1
+                      if current_pos >= match_end_pos:
+                           end_line_idx = i
+                           break
+                 block_end = end_line_idx + 1
+                 return "\n".join(lines[block_start:block_end]).strip()
+            else:
+                 return last_match_code.strip() # Retourner juste la ligne si indices non trouvés
+
+    # Fallback 2: Chercher des mots-clés
+    logger.warning("Fallback 1 a échoué. Recherche de mots-clés.")
+    regression_keywords = ["OLS", "LinearRegression", ".fit("] # Mots clés plus spécifiques
+    lines = full_code.splitlines()
+    keyword_matches = []
     for i, line in enumerate(lines):
         for keyword in regression_keywords:
             if keyword in line:
-                # Retourner un bloc de 10 lignes autour de cette ligne si possible
-                start = max(0, i - 5)
-                end = min(len(lines), i + 6)
-                return '\n'.join(lines[start:end])
-    
-    # Si tout échoue, retourner une chaîne vide
-    return ""
+                keyword_matches.append(i)
+                break # Une seule correspondance par ligne suffit
+
+    if keyword_matches:
+        last_match_line_index = keyword_matches[-1] # Prendre la dernière ligne contenant un mot clé
+        start = max(0, last_match_line_index - 7) # 7 lignes avant
+        end = min(len(lines), last_match_line_index + 4) # 3 lignes après
+        logger.info(f"Fallback 2: Trouvé mot-clé '{keyword}' à la ligne {last_match_line_index+1}. Retourne lignes {start+1}-{end}.")
+        return "\n".join(lines[start:end]).strip()
+
+    logger.error("Échec de l'extraction du code de régression par toutes les méthodes.")
+    return "Code snippet not reliably extracted."
+
+# --- Fin de la fonction extract_regression_code ---
 
 def generate_analysis_code(csv_file, user_prompt, agent1_data, model, prompts_log_path, backend: str):
     """
@@ -2058,12 +2404,12 @@ DIRECTIVES:
      * Distributions des variables principales
      * Relations entre variables importantes
      * Graphiques adaptés au type de données
+     *Si DiD, graphique de tendance temporelle avec deux groupe avant et après traitement
    - Utilise des couleurs attrayantes et des styles modernes
    - Ajoute des titres clairs, des légendes informatives et des ÉTIQUETTES D'AXES EXPLICITES
    - IMPORTANT: Assure-toi d'utiliser ax.set_xlabel() et ax.set_ylabel() avec des descriptions claires
    - IMPORTANT: Assure-toi que les graphiques soient sauvegardés ET affichés
    - Utilise plt.savefig() AVANT plt.show() pour chaque graphique
-   - IMPORTANT: Pour les styles Seaborn, utilise 'seaborn-v0_8-whitegrid' au lieu de 'seaborn-whitegrid' qui est obsolète
 
 3. MODÉLISATION SIMPLE ET CLAIRE
    - Implémente les modèles de régression appropriés
@@ -2103,7 +2449,7 @@ IMPORTANT:
 - Assure-toi que chaque graphique a des étiquettes d'axe claires via ax.set_xlabel() et ax.set_ylabel()
 - Assure-toi que chaque graphique est à la fois SAUVEGARDÉ et AFFICHÉ
 - Utilise plt.savefig() AVANT plt.show() pour chaque graphique
-- IMPORTANT: Pour les styles Seaborn, utilise 'whitegrid' au lieu de 'seaborn-whitegrid' ou 'seaborn-v0_8-whitegrid' qui sont obsolètes
+- IMPORTANT: Pour les styles Seaborn, utilise 'whitegrid' au lieu de 'seaborn-whitegrid' ou 'seaborn-v0_8-whitegrid' qui sont obsolètes 
 """
 
     # Sauvegarder le prompt dans le fichier journal

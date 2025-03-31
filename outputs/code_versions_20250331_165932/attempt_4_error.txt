@@ -1,0 +1,5 @@
+ERREUR RENCONTRÉE LORS DE LA TENTATIVE 4:
+
+  File "/var/folders/j0/pk7694vx7jzfzk434q29xh040000gn/T/analysis_20250331_165932_d9bke8ab/analysis_script.py", line 589
+    score_distribution_data = df[col["score_tests"]]
+IndentationError: unexpected indent

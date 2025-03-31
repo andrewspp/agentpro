@@ -1,5 +1,5 @@
-2025-03-31 02:44:27,887 - agent1 - INFO - Logging redirigé vers agent1.log
-2025-03-31 02:44:27,887 - agent1 - INFO - Génération des métadonnées pour /Users/pierreandrews/Desktop/AgentPro/donnees2.csv
-2025-03-31 02:44:27,897 - agent1 - INFO - Détection des problèmes potentiels dans les données
-2025-03-31 02:44:27,898 - agent1 - INFO - Appel LLM via backend 'gemini' avec modèle 'gemini-2.0-flash'
-2025-03-31 02:44:46,641 - agent1 - INFO - Parsing de la sortie du LLM
+2025-03-31 17:09:52,747 - agent1 - INFO - Logging redirigé vers agent1.log
+2025-03-31 17:09:52,748 - agent1 - INFO - Génération des métadonnées pour /Users/pierreandrews/Desktop/agentpro/donnees2.csv
+2025-03-31 17:09:52,774 - agent1 - INFO - Détection des problèmes potentiels dans les données
+2025-03-31 17:09:52,775 - agent1 - INFO - Appel LLM via backend 'gemini' avec modèle 'gemini-2.0-flash'
+2025-03-31 17:10:15,689 - agent1 - INFO - Parsing de la sortie du LLM

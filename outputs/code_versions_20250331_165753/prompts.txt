@@ -1,0 +1,759 @@
+================================================================================
+Timestamp: 2025-03-31 16:57:53
+Prompt Type: Initial Code Generation
+================================================================================
+
+## GÉNÉRATION DE CODE D'ANALYSE DE DONNÉES
+
+### Fichier CSV et Métadonnées
+```json
+{
+  "chemin_fichier": "/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv",
+  "nb_lignes": 800,
+  "nb_colonnes": 22,
+  "noms_colonnes": [
+    "etablissement_id",
+    "type_etablissement",
+    "periode",
+    "date",
+    "annee",
+    "semestre",
+    "reforme",
+    "post",
+    "interaction_did",
+    "budget_education",
+    "nb_eleves",
+    "ratio_eleves_enseignant",
+    "taux_pauvrete",
+    "niveau_urbanisation",
+    "approche_pedagogique",
+    "score_tests",
+    "taux_emploi_jeunes",
+    "log_budget",
+    "log_nb_eleves",
+    "groupe",
+    "periode_relative",
+    "phase"
+  ],
+  "types_colonnes": {
+    "etablissement_id": "int64",
+    "type_etablissement": "object",
+    "periode": "int64",
+    "date": "object",
+    "annee": "int64",
+    "semestre": "int64",
+    "reforme": "int64",
+    "post": "int64",
+    "interaction_did": "int64",
+    "budget_education": "float64",
+    "nb_eleves": "float64",
+    "ratio_eleves_enseignant": "float64",
+    "taux_pauvrete": "float64",
+    "niveau_urbanisation": "float64",
+    "approche_pedagogique": "object",
+    "score_tests": "float64",
+    "taux_emploi_jeunes": "float64",
+    "log_budget": "float64",
+    "log_nb_eleves": "float64",
+    "groupe": "object",
+    "periode_relative": "int64",
+    "phase": "object"
+  },
+  "statistiques": {
+    "etablissement_id": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 200.0,
+      "moyenne": 100.5,
+      "mediane": 100.5,
+      "ecart_type": 57.770423031353396,
+      "nb_valeurs_uniques": 200
+    },
+    "type_etablissement": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 5,
+      "valeurs_frequentes": {
+        "Lycée": 160,
+        "Collège": 160,
+        "Primaire": 160,
+        "Maternelle": 160,
+        "Centre Professionnel": 160
+      }
+    },
+    "periode": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 4.0,
+      "moyenne": 2.5,
+      "mediane": 2.5,
+      "ecart_type": 1.1187334157740447,
+      "nb_valeurs_uniques": 4
+    },
+    "date": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 4,
+      "valeurs_frequentes": {
+        "2015-01-01": 200,
+        "2016-01-01": 200,
+        "2016-12-31": 200,
+        "2017-12-31": 200
+      }
+    },
+    "annee": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 2015.0,
+      "max": 2017.0,
+      "moyenne": 2016.0,
+      "mediane": 2016.0,
+      "ecart_type": 0.707549137677225,
+      "nb_valeurs_uniques": 3
+    },
+    "semestre": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 1.0,
+      "max": 2.0,
+      "moyenne": 1.5,
+      "mediane": 1.5,
+      "ecart_type": 0.5003127932742599,
+      "nb_valeurs_uniques": 2
+    },
+    "reforme": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.365,
+      "mediane": 0.0,
+      "ecart_type": 0.48173133731540607,
+      "nb_valeurs_uniques": 2
+    },
+    "post": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.75,
+      "mediane": 1.0,
+      "ecart_type": 0.43328358881386136,
+      "nb_valeurs_uniques": 2
+    },
+    "interaction_did": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "moyenne": 0.27375,
+      "mediane": 0.0,
+      "ecart_type": 0.4461611392790204,
+      "nb_valeurs_uniques": 2
+    },
+    "budget_education": {
+      "valeurs_manquantes": 16,
+      "pourcentage_manquant": 2.0,
+      "min": 464.3869544690439,
+      "max": 1606.3747654779097,
+      "moyenne": 1029.258136936791,
+      "mediane": 1031.6700563569188,
+      "ecart_type": 190.77763664809413,
+      "nb_valeurs_uniques": 784
+    },
+    "nb_eleves": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": -31.254324334050352,
+      "max": 938.9041162662832,
+      "moyenne": 511.97406938785156,
+      "mediane": 508.664628878931,
+      "ecart_type": 149.0632286942652,
+      "nb_valeurs_uniques": 800
+    },
+    "ratio_eleves_enseignant": {
+      "valeurs_manquantes": 12,
+      "pourcentage_manquant": 1.5,
+      "min": 5.085229406570484,
+      "max": 37.36315312160198,
+      "moyenne": 21.967458662309276,
+      "mediane": 21.7068137809216,
+      "ecart_type": 5.071798666745173,
+      "nb_valeurs_uniques": 788
+    },
+    "taux_pauvrete": {
+      "valeurs_manquantes": 19,
+      "pourcentage_manquant": 2.38,
+      "min": 5.0,
+      "max": 40.0,
+      "moyenne": 20.24956526244431,
+      "mediane": 19.923682418549006,
+      "ecart_type": 7.853220021728765,
+      "nb_valeurs_uniques": 760
+    },
+    "niveau_urbanisation": {
+      "valeurs_manquantes": 24,
+      "pourcentage_manquant": 3.0,
+      "min": 0.0,
+      "max": 100.0,
+      "moyenne": 59.27100405758951,
+      "mediane": 59.62833374100276,
+      "ecart_type": 23.91302444155631,
+      "nb_valeurs_uniques": 727
+    },
+    "approche_pedagogique": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 4,
+      "valeurs_frequentes": {
+        "Expérimentale": 215,
+        "Traditionnelle": 205,
+        "Progressive": 204,
+        "Mixte": 176
+      }
+    },
+    "score_tests": {
+      "valeurs_manquantes": 13,
+      "pourcentage_manquant": 1.62,
+      "min": 66.44278232956674,
+      "max": 86.27497092340671,
+      "moyenne": 77.32811310905097,
+      "mediane": 77.49689282374091,
+      "ecart_type": 3.302510934616114,
+      "nb_valeurs_uniques": 787
+    },
+    "taux_emploi_jeunes": {
+      "valeurs_manquantes": 14,
+      "pourcentage_manquant": 1.75,
+      "min": 42.59660027106259,
+      "max": 67.69471345887538,
+      "moyenne": 53.79211235224418,
+      "mediane": 53.67143134709437,
+      "ecart_type": 4.500082533423796,
+      "nb_valeurs_uniques": 786
+    },
+    "log_budget": {
+      "valeurs_manquantes": 16,
+      "pourcentage_manquant": 2.0,
+      "min": 6.1407181582772425,
+      "max": 7.381735220632685,
+      "moyenne": 6.918629882256804,
+      "mediane": 6.938933889020916,
+      "ecart_type": 0.1927151056190802,
+      "nb_valeurs_uniques": 784
+    },
+    "log_nb_eleves": {
+      "valeurs_manquantes": 1,
+      "pourcentage_manquant": 0.12,
+      "min": 4.075709036506084,
+      "max": 6.844713361391949,
+      "moyenne": 6.191957653511821,
+      "mediane": 6.233523342320559,
+      "ecart_type": 0.32611335372963507,
+      "nb_valeurs_uniques": 799
+    },
+    "groupe": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 2,
+      "valeurs_frequentes": {
+        "Non réformé": 508,
+        "Réformé": 292
+      }
+    },
+    "periode_relative": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "min": -1.0,
+      "max": 2.0,
+      "moyenne": 0.5,
+      "mediane": 0.5,
+      "ecart_type": 1.1187334157740447,
+      "nb_valeurs_uniques": 4
+    },
+    "phase": {
+      "valeurs_manquantes": 0,
+      "pourcentage_manquant": 0.0,
+      "nb_valeurs_uniques": 3,
+      "valeurs_frequentes": {
+        "Post-réforme": 400,
+        "Pre-réforme": 200,
+        "Implémentation": 200
+      }
+    }
+  }
+}
+```
+
+### Chemin absolu du fichier CSV
+/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv
+
+### Noms exacts des colonnes à utiliser
+['etablissement_id', 'type_etablissement', 'periode', 'date', 'annee', 'semestre', 'reforme', 'post', 'interaction_did', 'budget_education', 'nb_eleves', 'ratio_eleves_enseignant', 'taux_pauvrete', 'niveau_urbanisation', 'approche_pedagogique', 'score_tests', 'taux_emploi_jeunes', 'log_budget', 'log_nb_eleves', 'groupe', 'periode_relative', 'phase']
+
+### Introduction et problématique de recherche
+**
+
+L'évaluation des politiques publiques, et plus particulièrement des réformes éducatives, représente un champ de recherche majeur en économie publique et en économie de l'éducation. L'éducation est reconnue comme un déterminant crucial du capital humain, influençant la productivité, les revenus, et le bien-être social (Becker, 1964; Schultz, 1961). Investir dans l'éducation est donc considéré comme un levier essentiel pour la croissance économique et la réduction des inégalités. Cependant, l'efficacité des réformes éducatives demeure un sujet de débat constant. De nombreuses études se sont penchées sur les effets potentiels des réformes sur divers résultats, tels que les performances scolaires, les taux de diplomation, et l'insertion professionnelle des jeunes (Hanushek, 1986, 2010).
+
+La difficulté majeure dans l'évaluation de ces réformes réside dans l'établissement d'un lien de causalité clair entre la politique mise en œuvre et les résultats observés. Les systèmes éducatifs sont des environnements complexes où de nombreux facteurs interagissent, rendant difficile l'isolement de l'impact spécifique d'une réforme donnée. Par exemple, les changements dans les politiques de financement, les pratiques pédagogiques, la qualité des enseignants, et les caractéristiques socio-économiques des élèves peuvent tous influencer les résultats scolaires. De plus, les réformes éducatives sont souvent mises en œuvre en réponse à des problèmes préexistants, ce qui crée un biais d'endogénéité potentiellement important. Les régions qui adoptent une réforme peuvent différer systématiquement de celles qui ne l'adoptent pas, ce qui rend problématique la simple comparaison des résultats entre les deux groupes.
+
+La méthode des différences en différences (DiD) est une approche économétrique largement utilisée pour pallier ces difficultés. Elle permet d'estimer l'impact causal d'une intervention (une réforme, une politique) en comparant l'évolution des résultats entre un groupe "traité" (celui qui est affecté par l'intervention) et un groupe "contrôle" (celui qui ne l'est pas), avant et après l'intervention. L'hypothèse clé de cette méthode est que, en l'absence de l'intervention, les deux groupes auraient suivi des tendances parallèles. En d'autres termes, les différences observées après l'intervention entre les deux groupes sont attribuées à l'effet causal de celle-ci.
+
+Cette étude se propose d'utiliser la méthode DiD pour évaluer l'impact d'une réforme éducative spécifique mise en place au 8ème trimestre dans certaines régions. Nous nous concentrerons sur deux résultats principaux : les scores aux tests standardisés et le taux d'emploi des jeunes. L'analyse visera à déterminer si la réforme a eu un effet positif, négatif ou nul sur ces résultats, en tenant compte des facteurs confondants potentiels tels que le budget éducatif, le ratio élèves/enseignant, le taux de pauvreté, et le niveau d'urbanisation. De plus, nous inclurons des effets fixes par région et par période pour contrôler les hétérogénéités non observées qui pourraient biaiser nos estimations.
+
+L'importance de cette question de recherche réside dans sa capacité à fournir des informations précieuses aux décideurs politiques et aux acteurs du secteur éducatif. En quantifiant l'impact réel d'une réforme éducative, nous pouvons mieux comprendre les mécanismes qui sous-tendent son succès ou son échec. Ces informations peuvent ensuite être utilisées pour améliorer la conception et la mise en œuvre des futures politiques éducatives, en maximisant leur efficacité et en minimisant leurs effets indésirables.
+
+Les implications théoriques de cette étude sont liées à la théorie du capital humain et à l'économie de l'éducation. Si la réforme étudiée s'avère avoir un impact positif sur les résultats éducatifs et l'insertion professionnelle, cela renforcerait l'idée que les investissements dans l'éducation sont rentables à long terme. En revanche, si la réforme n'a pas d'effet significatif, cela pourrait remettre en question les hypothèses sous-jacentes sur l'efficacité de certaines politiques éducatives, et inciter à explorer d'autres approches.
+
+Les implications empiriques sont liées à la méthodologie de l'évaluation des politiques publiques. En utilisant la méthode DiD et en mettant en œuvre des tests de robustesse rigoureux, nous pouvons contribuer à améliorer la qualité des évaluations économétriques et à renforcer la crédibilité des résultats. De plus, en analysant l'hétérogénéité des effets de la réforme selon les pays et les politiques éducatives préexistantes, nous pouvons mieux comprendre les conditions dans lesquelles une réforme est susceptible de réussir, et identifier les facteurs qui peuvent modérer ou amplifier son impact.
+
+**2.
+
+### Hypothèses de recherche
+FORMELLES**
+
+*   **H1 :** La mise en œuvre de la réforme éducative aura un impact positif significatif sur les scores aux tests standardisés dans les établissements du groupe traité, comparativement aux établissements du groupe contrôle. (Théorie : La réforme vise à améliorer la qualité de l'enseignement, ce qui devrait se traduire par une amélioration des performances des élèves.)
+*   **H2 :** La mise en œuvre de la réforme éducative aura un impact positif significatif sur le taux d'emploi des jeunes dans les régions du groupe traité, comparativement aux régions du groupe contrôle. (Théorie : La réforme vise à améliorer les compétences des jeunes, ce qui devrait faciliter leur insertion professionnelle.)
+*   **H3 :** L'impact de la réforme éducative sur les scores aux tests standardisés sera plus important dans les établissements où le ratio élèves/enseignant est plus faible. (Théorie : Les établissements avec un ratio plus faible peuvent mieux mettre en œuvre la réforme et offrir un suivi plus personnalisé aux élèves.)
+*   **H4 :** L'impact de la réforme éducative sur les scores aux tests standardisés sera plus faible dans les régions où le taux de pauvreté est plus élevé. (Théorie : Les élèves issus de milieux défavorisés peuvent rencontrer des difficultés supplémentaires pour bénéficier pleinement des avantages de la réforme.)
+*   **H5 :** L'impact de la réforme éducative sur les scores aux tests standardisés sera plus important dans les établissements qui ont adopté une approche pédagogique expérimentale. (Théorie : Les établissements ayant une approche plus flexible sont potentiellement plus aptes à intégrer rapidement les nouveautés issues de la réforme.)
+*   **H6 :** L'impact de la réforme éducative sur le taux d'emploi des jeunes sera d'autant plus important que le budget alloué à l'éducation est élevé. (Théorie : Un budget plus important permettrait d'implémenter la réforme plus efficacement et d'offrir un meilleur accompagnement aux jeunes.)
+
+**4.
+
+### Méthodologie proposée
+**
+
+*   **Modèle de base DiD :**
+
+    `Score_Tests_{it} = β_0 + β_1 Traitement_i + β_2 Post_t + β_3 (Traitement_i * Post_t) + γ X_{it} + α_i + δ_t + ε_{it}`
+
+    Où :
+
+    *   `Score_Tests_{it}` est le score aux tests standardisés pour l'établissement *i* à la période *t*.
+    *   `Traitement_i` est une variable binaire indiquant si l'établissement *i* est dans le groupe traité (1) ou contrôle (0).
+    *   `Post_t` est une variable binaire indiquant si la période *t* est après la mise en œuvre de la réforme (1) ou avant (0).
+    *   `(Traitement_i * Post_t)` est le terme d'interaction, dont le coefficient `β_3` est l'estimateur DiD, représentant l'effet causal de la réforme.
+    *   `X_{it}` est un vecteur de covariables de contrôle (budget éducatif, ratio élèves/enseignant, taux de pauvreté, niveau d'urbanisation).
+    *   `α_i` sont des effets fixes par établissement.
+    *   `δ_t` sont des effets fixes par période.
+    *   `ε_{it}` est le terme d'erreur.
+
+Un modèle similaire sera spécifié pour la variable dépendante `Taux_Emploi_Jeunes_{it}`.
+
+*   **Méthodes d'estimation :** Estimation par moindres carrés ordinaires (OLS) avec erreurs standard robustes groupées au niveau de l'établissement pour tenir compte de la corrélation sérielle.
+*   **Tests de robustesse :**
+    *   **Test des tendances parallèles :** Tester si les groupes de traitement et de contrôle avaient des tendances similaires avant la réforme. Cela peut être fait en incluant des variables d'interaction pour chaque période précédant la réforme.
+    *   **Test de placebo :** Appliquer le modèle DiD à une période fictive antérieure à la réforme pour vérifier s'il existe un effet significatif.
+    *   **Sensibilité aux covariables :** Vérifier la stabilité des résultats en incluant différents ensembles de covariables.
+*   **Identification causale :** La validité de l'identification causale repose sur l'hypothèse de tendances parallèles. Si cette hypothèse est violée, l'estimateur DiD peut être biaisé.
+
+*   **Effets Hétérogènes :** Des termes d'interaction seront ajoutés pour évaluer si l'effet DiD diffère selon :
+    *   Le ratio élèves/enseignant : `β_4 (Traitement_i * Post_t * Ratio_Eleves_Enseignant_i)`
+    *   Le taux de pauvreté : `β_5 (Traitement_i * Post_t * Taux_Pauvrete_i)`
+    *   L'approche pédagogique : `β_6 (Traitement_i * Post_t * Approche_Pédagogique_i)` (en créant des variables muettes pour chaque approche)
+
+**5.
+
+### Limites identifiées
+**
+
+*   **Endogénéité :** La mise en œuvre de la réforme pourrait être corrélée avec des facteurs non observés qui influencent également les résultats éducatifs et l'emploi. Bien que les effets fixes par établissement et par période atténuent ce problème, ils ne l'éliminent pas complètement.
+*   **Biais de sélection :** Les établissements qui ont choisi d'adopter la réforme peuvent différer systématiquement de ceux qui ne l'ont pas fait. Cela peut entraîner un biais de sélection si ces différences sont corrélées avec les résultats. Il n'est malheureusement pas possible de corriger ce biais avec les données disponibles.
+*   **Problèmes de mesure :** Les scores aux tests standardisés et le taux d'emploi des jeunes peuvent ne pas être des mesures parfaites de la qualité de l'éducation et de l'insertion professionnelle. Des erreurs de mesure peuvent atténuer les effets estimés.
+*   **Hétérogénéité de l'effet du traitement:** L'effet de la réforme peut varier considérablement d'un établissement à l'autre, rendant difficile l'interprétation de l'effet moyen.
+
+*   **Atténuation des limites :**
+
+    *   Réaliser des tests de robustesse rigoureux pour évaluer la sensibilité des résultats aux différentes hypothèses et spécifications.
+    *   Interpréter les résultats avec prudence, en reconnaissant les limites de la méthode DiD et les biais potentiels.
+
+**6.
+
+### Informations sur les variables
+ET TRANSFORMATIONS**
+
+*   **Variables dépendantes :**
+    *   `Score_Tests` : Score aux tests standardisés (continue).
+    *   `Taux_Emploi_Jeunes` : Taux d'emploi des jeunes (continue).
+
+*   **Variables indépendantes principales :**
+    *   `Traitement` : Variable binaire indiquant si l'établissement est dans le groupe traité (1) ou contrôle (0) (catégorielle).
+    *   `Post` : Variable binaire indiquant si la période est après la réforme (1) ou avant (0) (catégorielle).
+    *   `Interaction_DiD` : `Traitement * Post` (catégorielle).
+
+*   **Covariables :**
+    *   `Budget_Education` : Budget alloué à l'éducation (continue). Peut être transformée en logarithme (`log_budget`) pour atténuer les problèmes de non-linéarité et d'hétéroscédasticité.
+    *   `Ratio_Eleves_Enseignant` : Ratio élèves/enseignant (continue).
+    *   `Taux_Pauvrete` : Taux de pauvreté (continue).
+    *   `Niveau_Urbanisation` : Niveau d'urbanisation (continue).
+    *   `Approche_Pedagogique` : Approche pédagogique (catégorielle). Créer des variables muettes pour chaque approche.
+
+*   **Transformations :**
+    *   Logarithme du budget éducatif et du nombre d'élèves (pour réduire l'influence des valeurs extrêmes et linéariser les relations).
+    *   Création de variables muettes pour les approches pédagogiques et les types d'établissement.
+
+*   **Variables instrumentales :** Malheureusement, avec les données disponibles, il n'est pas possible de mettre en œuvre une stratégie d'instrumentation pour traiter l'endogénéité potentielle de la réforme.
+
+*   **Multicolinéarité :** Vérifier la multicolinéarité entre les covariables en calculant les facteurs d'inflation de la variance (VIF). Si la multicolinéarité est élevée, envisager de supprimer certaines covariables ou de les combiner en indices.
+
+En résumé, cette analyse DiD fournira des informations précieuses sur l'impact de la réforme éducative sur les scores aux tests standardisés et le taux d'emploi des jeunes. Les résultats seront interprétés avec prudence, en tenant compte des limites de la méthode et des biais potentiels.
+
+### Demande initiale de l'utilisateur
+Réaliser une analyse en différence de différences (DiD) pour évaluer l'impact causal de la réforme éducative sur les scores aux tests standardisés et le taux d'emploi des jeunes. Analyser comment cette réforme, mise en place au 8ème trimestre dans certaines régions, a influencé les résultats éducatifs. Vérifier l'hypothèse de tendances parallèles avant l'intervention et contrôler pour les facteurs confondants comme le budget éducatif, le ratio élèves/enseignant, le taux de pauvreté et le niveau d'urbanisation. Inclure des effets fixes par région et par période pour isoler l'effet causal. Analyser également l'hétérogénéité des effets selon les pays et les politiques éducatives préexistantes.
+
+---
+
+Tu es un analyste de données expérimenté. Ta mission est de générer un script Python d'analyse de données clair et accessible. Le code doit être robuste et produire des visualisations attrayantes.
+
+DIRECTIVES:
+
+1. CHARGEMENT ET PRÉTRAITEMENT DES DONNÉES
+   - Utilise strictement le chemin absolu '/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv'
+   - Nettoie les données (valeurs manquantes, outliers)
+   - Crée des statistiques descriptives claires
+
+2. VISUALISATIONS ATTRAYANTES ET INFORMATIVES
+   - Crée au moins 4-5 visualisations avec matplotlib/seaborn:
+     * Matrice de corrélation colorée et lisible
+     * Distributions des variables principales
+     * Relations entre variables importantes
+     * Graphiques adaptés au type de données
+     *Si DiD, graphique de tendance temporelle avec deux groupe avant et après traitement
+   - Utilise des couleurs attrayantes et des styles modernes
+   - Ajoute des titres clairs, des légendes informatives et des ÉTIQUETTES D'AXES EXPLICITES
+   - IMPORTANT: Assure-toi d'utiliser ax.set_xlabel() et ax.set_ylabel() avec des descriptions claires
+   - IMPORTANT: Assure-toi que les graphiques soient sauvegardés ET affichés
+   - Utilise plt.savefig() AVANT plt.show() pour chaque graphique
+
+3. MODÉLISATION SIMPLE ET CLAIRE
+   - Implémente les modèles de régression appropriés
+   - Utilise statsmodels avec des résultats complets
+   - Présente les résultats de manière lisible
+   - Documente clairement chaque étape
+
+4. TESTS DE BASE
+   - Vérifie la qualité du modèle avec des tests simples
+   - Analyse les résidus
+   - Vérifie la multicolinéarité si pertinent
+
+5. CAPTURE ET STOCKAGE DES DONNÉES POUR INTERPRÉTATION
+   - IMPORTANT: Pour chaque visualisation, stocke le DataFrame utilisé dans une variable
+   - IMPORTANT: Après chaque création de figure, stocke les données utilisées pour permettre une interprétation précise
+   - Assure-toi que chaque figure peut être associée aux données qui ont servi à la générer
+
+EXIGENCES TECHNIQUES:
+- Utilise pandas, numpy, matplotlib, seaborn, et statsmodels
+- Organise ton code en sections clairement commentées
+- Utilise ce dictionnaire pour accéder aux colonnes:
+```python
+col = {
+    "etablissement_id": "etablissement_id",
+    "type_etablissement": "type_etablissement",
+    "periode": "periode",
+    "date": "date",
+    "annee": "annee",
+    "semestre": "semestre",
+    "reforme": "reforme",
+    "post": "post",
+    "interaction_did": "interaction_did",
+    "budget_education": "budget_education",
+    "nb_eleves": "nb_eleves",
+    "ratio_eleves_enseignant": "ratio_eleves_enseignant",
+    "taux_pauvrete": "taux_pauvrete",
+    "niveau_urbanisation": "niveau_urbanisation",
+    "approche_pedagogique": "approche_pedagogique",
+    "score_tests": "score_tests",
+    "taux_emploi_jeunes": "taux_emploi_jeunes",
+    "log_budget": "log_budget",
+    "log_nb_eleves": "log_nb_eleves",
+    "groupe": "groupe",
+    "periode_relative": "periode_relative",
+    "phase": "phase"
+}
+```
+- Document chaque étape de façon simple et accessible
+- Pour chaque visualisation:
+  * UTILISE des titres clairs pour les graphiques et les axes
+  * SAUVEGARDE avec plt.savefig() PUIS
+  * AFFICHE avec plt.show()
+- Pour les tableaux de régression, utilise print(results.summary())
+
+IMPORTANT:
+- Adapte l'analyse aux données disponibles
+- Mets l'accent sur les visualisations attrayantes et bien étiquetées
+- Assure-toi que chaque graphique a des étiquettes d'axe claires via ax.set_xlabel() et ax.set_ylabel()
+- Assure-toi que chaque graphique est à la fois SAUVEGARDÉ et AFFICHÉ
+- Utilise plt.savefig() AVANT plt.show() pour chaque graphique
+- IMPORTANT: Pour les styles Seaborn, utilise 'whitegrid' au lieu de 'seaborn-whitegrid' ou 'seaborn-v0_8-whitegrid' qui sont obsolètes 
+
+
+================================================================================
+
+================================================================================
+Timestamp: 2025-03-31 16:58:40
+Prompt Type: Gemini Image Interpretation - figure_1
+================================================================================
+
+## INTERPRÉTATION DE VISUALISATION ÉCONOMIQUE
+
+### Type de visualisation
+Unknown visualization
+
+### Titre
+Figure 1
+
+### Identifiant
+figure_1
+
+### Métadonnées spécifiques
+
+
+### Contexte des données
+Le dataset contient les variables suivantes: etablissement_id, type_etablissement, periode, date, annee, semestre, reforme, post, interaction_did, budget_education, nb_eleves, ratio_eleves_enseignant, taux_pauvrete, niveau_urbanisation, approche_pedagogique, score_tests, taux_emploi_jeunes, log_budget, log_nb_eleves, groupe, periode_relative, phase
+
+### Métadonnées de l'ensemble de données
+```json
+{
+  "chemin_fichier": "/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv",
+  "nb_lignes": 800,
+  "nb_colonnes": 22,
+  "noms_colonnes": [
+    "etablissement_id",
+    "type_etablissement",
+    "periode",
+    "date",
+    "annee",
+    "semestre",
+    "reforme",
+    "post",
+    "interaction_did",
+    "budget_education",
+    "nb_eleves",
+    "ratio_eleves_enseignant",
+    "taux_pauvrete",
+    "niveau_urbanisation",
+    "approche_pedagogique",
+    "score_tests",
+    "taux_emploi_jeunes",
+...
+```
+
+### Question de recherche initiale
+Réaliser une analyse en différence de différences (DiD) pour évaluer l'impact causal de la réforme éducative sur les scores aux tests standardisés et le taux d'emploi des jeunes. Analyser comment cette réforme, mise en place au 8ème trimestre dans certaines régions, a influencé les résultats éducatifs. Vérifier l'hypothèse de tendances parallèles avant l'intervention et contrôler pour les facteurs confondants comme le budget éducatif, le ratio élèves/enseignant, le taux de pauvreté et le niveau d'urbanisation. Inclure des effets fixes par région et par période pour isoler l'effet causal. Analyser également l'hétérogénéité des effets selon les pays et les politiques éducatives préexistantes.
+
+---
+
+Analyse cette visualisation économique. Tu reçois directement l'image, donc base ton analyse sur ce que tu observes visuellement. Ton interprétation doit:
+
+1. Décrire précisément ce que montre la visualisation (tendances, relations, valeurs aberrantes)
+2. Expliquer les relations entre les variables visibles
+3. Mentionner les valeurs numériques spécifiques (minimums, maximums, moyennes) que tu peux déduire visuellement
+4. Relier cette visualisation à la question de recherche
+
+Ton interprétation doit être factuelle, précise et basée uniquement sur ce que tu peux observer dans l'image. Reste économique dans ton analyse en te concentrant sur les informations les plus importantes.
+
+
+================================================================================
+
+================================================================================
+Timestamp: 2025-03-31 16:58:46
+Prompt Type: Gemini Image Interpretation - figure_2
+================================================================================
+
+## INTERPRÉTATION DE VISUALISATION ÉCONOMIQUE
+
+### Type de visualisation
+Unknown visualization
+
+### Titre
+Figure 2
+
+### Identifiant
+figure_2
+
+### Métadonnées spécifiques
+
+
+### Contexte des données
+Le dataset contient les variables suivantes: etablissement_id, type_etablissement, periode, date, annee, semestre, reforme, post, interaction_did, budget_education, nb_eleves, ratio_eleves_enseignant, taux_pauvrete, niveau_urbanisation, approche_pedagogique, score_tests, taux_emploi_jeunes, log_budget, log_nb_eleves, groupe, periode_relative, phase
+
+### Métadonnées de l'ensemble de données
+```json
+{
+  "chemin_fichier": "/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv",
+  "nb_lignes": 800,
+  "nb_colonnes": 22,
+  "noms_colonnes": [
+    "etablissement_id",
+    "type_etablissement",
+    "periode",
+    "date",
+    "annee",
+    "semestre",
+    "reforme",
+    "post",
+    "interaction_did",
+    "budget_education",
+    "nb_eleves",
+    "ratio_eleves_enseignant",
+    "taux_pauvrete",
+    "niveau_urbanisation",
+    "approche_pedagogique",
+    "score_tests",
+    "taux_emploi_jeunes",
+...
+```
+
+### Question de recherche initiale
+Réaliser une analyse en différence de différences (DiD) pour évaluer l'impact causal de la réforme éducative sur les scores aux tests standardisés et le taux d'emploi des jeunes. Analyser comment cette réforme, mise en place au 8ème trimestre dans certaines régions, a influencé les résultats éducatifs. Vérifier l'hypothèse de tendances parallèles avant l'intervention et contrôler pour les facteurs confondants comme le budget éducatif, le ratio élèves/enseignant, le taux de pauvreté et le niveau d'urbanisation. Inclure des effets fixes par région et par période pour isoler l'effet causal. Analyser également l'hétérogénéité des effets selon les pays et les politiques éducatives préexistantes.
+
+---
+
+Analyse cette visualisation économique. Tu reçois directement l'image, donc base ton analyse sur ce que tu observes visuellement. Ton interprétation doit:
+
+1. Décrire précisément ce que montre la visualisation (tendances, relations, valeurs aberrantes)
+2. Expliquer les relations entre les variables visibles
+3. Mentionner les valeurs numériques spécifiques (minimums, maximums, moyennes) que tu peux déduire visuellement
+4. Relier cette visualisation à la question de recherche
+
+Ton interprétation doit être factuelle, précise et basée uniquement sur ce que tu peux observer dans l'image. Reste économique dans ton analyse en te concentrant sur les informations les plus importantes.
+
+
+================================================================================
+
+================================================================================
+Timestamp: 2025-03-31 16:58:50
+Prompt Type: Gemini Image Interpretation - figure_3
+================================================================================
+
+## INTERPRÉTATION DE VISUALISATION ÉCONOMIQUE
+
+### Type de visualisation
+Unknown visualization
+
+### Titre
+Figure 3
+
+### Identifiant
+figure_3
+
+### Métadonnées spécifiques
+
+
+### Contexte des données
+Le dataset contient les variables suivantes: etablissement_id, type_etablissement, periode, date, annee, semestre, reforme, post, interaction_did, budget_education, nb_eleves, ratio_eleves_enseignant, taux_pauvrete, niveau_urbanisation, approche_pedagogique, score_tests, taux_emploi_jeunes, log_budget, log_nb_eleves, groupe, periode_relative, phase
+
+### Métadonnées de l'ensemble de données
+```json
+{
+  "chemin_fichier": "/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv",
+  "nb_lignes": 800,
+  "nb_colonnes": 22,
+  "noms_colonnes": [
+    "etablissement_id",
+    "type_etablissement",
+    "periode",
+    "date",
+    "annee",
+    "semestre",
+    "reforme",
+    "post",
+    "interaction_did",
+    "budget_education",
+    "nb_eleves",
+    "ratio_eleves_enseignant",
+    "taux_pauvrete",
+    "niveau_urbanisation",
+    "approche_pedagogique",
+    "score_tests",
+    "taux_emploi_jeunes",
+...
+```
+
+### Question de recherche initiale
+Réaliser une analyse en différence de différences (DiD) pour évaluer l'impact causal de la réforme éducative sur les scores aux tests standardisés et le taux d'emploi des jeunes. Analyser comment cette réforme, mise en place au 8ème trimestre dans certaines régions, a influencé les résultats éducatifs. Vérifier l'hypothèse de tendances parallèles avant l'intervention et contrôler pour les facteurs confondants comme le budget éducatif, le ratio élèves/enseignant, le taux de pauvreté et le niveau d'urbanisation. Inclure des effets fixes par région et par période pour isoler l'effet causal. Analyser également l'hétérogénéité des effets selon les pays et les politiques éducatives préexistantes.
+
+---
+
+Analyse cette visualisation économique. Tu reçois directement l'image, donc base ton analyse sur ce que tu observes visuellement. Ton interprétation doit:
+
+1. Décrire précisément ce que montre la visualisation (tendances, relations, valeurs aberrantes)
+2. Expliquer les relations entre les variables visibles
+3. Mentionner les valeurs numériques spécifiques (minimums, maximums, moyennes) que tu peux déduire visuellement
+4. Relier cette visualisation à la question de recherche
+
+Ton interprétation doit être factuelle, précise et basée uniquement sur ce que tu peux observer dans l'image. Reste économique dans ton analyse en te concentrant sur les informations les plus importantes.
+
+
+================================================================================
+
+================================================================================
+Timestamp: 2025-03-31 16:58:55
+Prompt Type: Gemini Image Interpretation - figure_5
+================================================================================
+
+## INTERPRÉTATION DE VISUALISATION ÉCONOMIQUE
+
+### Type de visualisation
+Unknown visualization
+
+### Titre
+Figure 5
+
+### Identifiant
+figure_5
+
+### Métadonnées spécifiques
+
+
+### Contexte des données
+Le dataset contient les variables suivantes: etablissement_id, type_etablissement, periode, date, annee, semestre, reforme, post, interaction_did, budget_education, nb_eleves, ratio_eleves_enseignant, taux_pauvrete, niveau_urbanisation, approche_pedagogique, score_tests, taux_emploi_jeunes, log_budget, log_nb_eleves, groupe, periode_relative, phase
+
+### Métadonnées de l'ensemble de données
+```json
+{
+  "chemin_fichier": "/Users/pierreandrews/Desktop/agentpro/reforme_education_did.csv",
+  "nb_lignes": 800,
+  "nb_colonnes": 22,
+  "noms_colonnes": [
+    "etablissement_id",
+    "type_etablissement",
+    "periode",
+    "date",
+    "annee",
+    "semestre",
+    "reforme",
+    "post",
+    "interaction_did",
+    "budget_education",
+    "nb_eleves",
+    "ratio_eleves_enseignant",
+    "taux_pauvrete",
+    "niveau_urbanisation",
+    "approche_pedagogique",
+    "score_tests",
+    "taux_emploi_jeunes",
+...
+```
+
+### Question de recherche initiale
+Réaliser une analyse en différence de différences (DiD) pour évaluer l'impact causal de la réforme éducative sur les scores aux tests standardisés et le taux d'emploi des jeunes. Analyser comment cette réforme, mise en place au 8ème trimestre dans certaines régions, a influencé les résultats éducatifs. Vérifier l'hypothèse de tendances parallèles avant l'intervention et contrôler pour les facteurs confondants comme le budget éducatif, le ratio élèves/enseignant, le taux de pauvreté et le niveau d'urbanisation. Inclure des effets fixes par région et par période pour isoler l'effet causal. Analyser également l'hétérogénéité des effets selon les pays et les politiques éducatives préexistantes.
+
+---
+
+Analyse cette visualisation économique. Tu reçois directement l'image, donc base ton analyse sur ce que tu observes visuellement. Ton interprétation doit:
+
+1. Décrire précisément ce que montre la visualisation (tendances, relations, valeurs aberrantes)
+2. Expliquer les relations entre les variables visibles
+3. Mentionner les valeurs numériques spécifiques (minimums, maximums, moyennes) que tu peux déduire visuellement
+4. Relier cette visualisation à la question de recherche
+
+Ton interprétation doit être factuelle, précise et basée uniquement sur ce que tu peux observer dans l'image. Reste économique dans ton analyse en te concentrant sur les informations les plus importantes.
+
+
+================================================================================
+
