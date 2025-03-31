@@ -1,0 +1,131 @@
+ERREUR RENCONTRÉE LORS DE LA TENTATIVE 1:
+
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:512: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(mode_val, inplace=True)
+2025-03-31 02:44:59.876 Python[79474:11342278] +[IMKClient subclass]: chose IMKClient_Modern
+2025-03-31 02:44:59.876 Python[79474:11342278] +[IMKInputSession subclass]: chose IMKInputSession_Modern
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:621: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X['Age_squared'] = X[col["Age"]]**2  # Ajout de l'âge au carré
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+Traceback (most recent call last):
+  File "/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py", line 630, in <module>
+    model = sm.OLS(y, X)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 921, in __init__
+    super().__init__(endog, exog, missing=missing,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              hasconst=hasconst, **kwargs)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 746, in __init__
+    super().__init__(endog, exog, missing=missing,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              weights=weights, hasconst=hasconst, **kwargs)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 200, in __init__
+    super().__init__(endog, exog, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 270, in __init__
+    super().__init__(endog, exog, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 95, in __init__
+    self.data = self._handle_data(endog, exog, missing, hasconst,
+                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  **kwargs)
+                                  ^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 135, in _handle_data
+    data = handle_data(endog, exog, missing, hasconst, **kwargs)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 675, in handle_data
+    return klass(endog, exog=exog, missing=missing, hasconst=hasconst,
+                 **kwargs)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 84, in __init__
+    self.endog, self.exog = self._convert_endog_exog(endog, exog)
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 509, in _convert_endog_exog
+    raise ValueError("Pandas data cast to numpy dtype of object. "
+                     "Check input data with np.asarray(data).")
+ValueError: Pandas data cast to numpy dtype of object. Check input data with np.asarray(data).

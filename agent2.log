@@ -1,0 +1,408 @@
+2025-03-31 02:44:47,007 - agent2 - INFO - Logging redirigé vers agent2.log
+2025-03-31 02:44:47,008 - agent2 - INFO - Génération du code d'analyse économétrique
+2025-03-31 02:44:47,008 - agent2 - INFO - Prompt 'Initial Code Generation' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:44:47,008 - agent2 - INFO - Appel LLM pour génération du code d'analyse
+2025-03-31 02:44:57,922 - agent2 - INFO - Exécution du code d'analyse
+2025-03-31 02:44:57,924 - agent2 - INFO - Les versions de code seront sauvegardées dans outputs/code_versions_20250331_024457
+2025-03-31 02:44:57,926 - agent2 - INFO - --- Tentative d'exécution 1/10 ---
+2025-03-31 02:44:57,927 - agent2 - INFO - Code assaini (chemin CSV, colonnes, df_numeric).
+2025-03-31 02:44:57,927 - agent2 - INFO - Version 1 du code sauvegardée: outputs/code_versions_20250331_024457/attempt_1.py
+2025-03-31 02:44:57,929 - agent2 - INFO - --- DEBUG: Vérification du contenu écrit dans /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py ---
+2025-03-31 02:44:57,930 - agent2 - INFO - Premières 5 lignes (espaces représentés par '·', tabulations par '\t'):
+2025-03-31 02:44:57,930 - agent2 - INFO -   Ligne 1: []
+2025-03-31 02:44:57,930 - agent2 - INFO -   Ligne 2: [#·Ajout·pour·capturer·les·visualisations]
+2025-03-31 02:44:57,930 - agent2 - INFO -   Ligne 3: [import·os]
+2025-03-31 02:44:57,930 - agent2 - INFO -   Ligne 4: [import·logging]
+2025-03-31 02:44:57,930 - agent2 - INFO -   Ligne 5: [import·io]
+2025-03-31 02:44:57,930 - agent2 - INFO - --- FIN DEBUG ---
+2025-03-31 02:44:57,930 - agent2 - INFO - Exécution de: python3 /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py
+2025-03-31 02:46:26,532 - agent2 - ERROR - Erreur lors de l'exécution (stderr):
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:505: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(median_val, inplace=True)
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:512: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df[column].fillna(mode_val, inplace=True)
+2025-03-31 02:44:59.876 Python[79474:11342278] +[IMKClient subclass]: chose IMKClient_Modern
+2025-03-31 02:44:59.876 Python[79474:11342278] +[IMKInputSession subclass]: chose IMKInputSession_Modern
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:621: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X['Age_squared'] = X[col["Age"]]**2  # Ajout de l'âge au carré
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py:624: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  X[continent] = df[continent]
+Traceback (most recent call last):
+  File "/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py", line 630, in <module>
+    model = sm.OLS(y, X)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 921, in __init__
+    super().__init__(endog, exog, missing=missing,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              hasconst=hasconst, **kwargs)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 746, in __init__
+    super().__init__(endog, exog, missing=missing,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              weights=weights, hasconst=hasconst, **kwargs)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 200, in __init__
+    super().__init__(endog, exog, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 270, in __init__
+    super().__init__(endog, exog, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 95, in __init__
+    self.data = self._handle_data(endog, exog, missing, hasconst,
+                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  **kwargs)
+                                  ^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 135, in _handle_data
+    data = handle_data(endog, exog, missing, hasconst, **kwargs)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 675, in handle_data
+    return klass(endog, exog=exog, missing=missing, hasconst=hasconst,
+                 **kwargs)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 84, in __init__
+    self.endog, self.exog = self._convert_endog_exog(endog, exog)
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 509, in _convert_endog_exog
+    raise ValueError("Pandas data cast to numpy dtype of object. "
+                     "Check input data with np.asarray(data).")
+ValueError: Pandas data cast to numpy dtype of object. Check input data with np.asarray(data).
+2025-03-31 02:46:26,533 - agent2 - INFO - Erreur sauvegardée dans: outputs/code_versions_20250331_024457/attempt_1_error.txt
+2025-03-31 02:46:26,533 - agent2 - INFO - Tentative de correction LLM #1
+2025-03-31 02:46:26,533 - agent2 - INFO - Prompt 'Code Correction Attempt 1 (LLM #1)' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:46:26,533 - agent2 - INFO - Envoi du prompt de correction au LLM via backend 'gemini' avec modèle 'gemini-2.0-flash'...
+2025-03-31 02:46:37,940 - agent2 - INFO - Code corrigé par le LLM reçu et nettoyé.
+2025-03-31 02:46:38,941 - agent2 - INFO - --- Tentative d'exécution 2/10 ---
+2025-03-31 02:46:38,943 - agent2 - INFO - Code assaini (chemin CSV, colonnes, df_numeric).
+2025-03-31 02:46:38,943 - agent2 - INFO - Version 2 du code sauvegardée: outputs/code_versions_20250331_024457/attempt_2.py
+2025-03-31 02:46:38,945 - agent2 - INFO - --- DEBUG: Vérification du contenu écrit dans /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py ---
+2025-03-31 02:46:38,945 - agent2 - INFO - Premières 5 lignes (espaces représentés par '·', tabulations par '\t'):
+2025-03-31 02:46:38,945 - agent2 - INFO -   Ligne 1: []
+2025-03-31 02:46:38,945 - agent2 - INFO -   Ligne 2: [#·Ajout·pour·capturer·les·visualisations]
+2025-03-31 02:46:38,945 - agent2 - INFO -   Ligne 3: [import·os]
+2025-03-31 02:46:38,945 - agent2 - INFO -   Ligne 4: [import·logging]
+2025-03-31 02:46:38,945 - agent2 - INFO -   Ligne 5: [import·io]
+2025-03-31 02:46:38,945 - agent2 - INFO - --- FIN DEBUG ---
+2025-03-31 02:46:38,945 - agent2 - INFO - Exécution de: python3 /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py
+2025-03-31 02:46:48,215 - agent2 - ERROR - Erreur lors de l'exécution (stderr):
+2025-03-31 02:46:41.157 Python[79501:11344280] +[IMKClient subclass]: chose IMKClient_Modern
+2025-03-31 02:46:41.157 Python[79501:11344280] +[IMKInputSession subclass]: chose IMKInputSession_Modern
+Traceback (most recent call last):
+  File "/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py", line 670, in <module>
+    vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/stats/outliers_influence.py", line 196, in variance_inflation_factor
+    r_squared_i = OLS(x_i, x_noti).fit().rsquared
+                  ~~~^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 921, in __init__
+    super().__init__(endog, exog, missing=missing,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              hasconst=hasconst, **kwargs)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 746, in __init__
+    super().__init__(endog, exog, missing=missing,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              weights=weights, hasconst=hasconst, **kwargs)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 200, in __init__
+    super().__init__(endog, exog, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 270, in __init__
+    super().__init__(endog, exog, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 95, in __init__
+    self.data = self._handle_data(endog, exog, missing, hasconst,
+                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  **kwargs)
+                                  ^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 135, in _handle_data
+    data = handle_data(endog, exog, missing, hasconst, **kwargs)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 675, in handle_data
+    return klass(endog, exog=exog, missing=missing, hasconst=hasconst,
+                 **kwargs)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 88, in __init__
+    self._handle_constant(hasconst)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 133, in _handle_constant
+    if not np.isfinite(exog_max).all():
+           ~~~~~~~~~~~^^^^^^^^^^
+TypeError: ufunc 'isfinite' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-03-31 02:46:48,215 - agent2 - INFO - Erreur sauvegardée dans: outputs/code_versions_20250331_024457/attempt_2_error.txt
+2025-03-31 02:46:48,215 - agent2 - INFO - Tentative de correction LLM #2
+2025-03-31 02:46:48,215 - agent2 - INFO - Prompt 'Code Correction Attempt 2 (LLM #2)' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:46:48,216 - agent2 - INFO - Envoi du prompt de correction au LLM via backend 'gemini' avec modèle 'gemini-2.0-flash'...
+2025-03-31 02:47:00,368 - agent2 - INFO - Code corrigé par le LLM reçu et nettoyé.
+2025-03-31 02:47:01,373 - agent2 - INFO - --- Tentative d'exécution 3/10 ---
+2025-03-31 02:47:01,373 - agent2 - INFO - Code assaini (chemin CSV, colonnes, df_numeric).
+2025-03-31 02:47:01,374 - agent2 - INFO - Version 3 du code sauvegardée: outputs/code_versions_20250331_024457/attempt_3.py
+2025-03-31 02:47:01,375 - agent2 - INFO - --- DEBUG: Vérification du contenu écrit dans /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py ---
+2025-03-31 02:47:01,375 - agent2 - INFO - Premières 5 lignes (espaces représentés par '·', tabulations par '\t'):
+2025-03-31 02:47:01,375 - agent2 - INFO -   Ligne 1: []
+2025-03-31 02:47:01,375 - agent2 - INFO -   Ligne 2: [#·Ajout·pour·capturer·les·visualisations]
+2025-03-31 02:47:01,375 - agent2 - INFO -   Ligne 3: [import·os]
+2025-03-31 02:47:01,375 - agent2 - INFO -   Ligne 4: [import·logging]
+2025-03-31 02:47:01,375 - agent2 - INFO -   Ligne 5: [import·io]
+2025-03-31 02:47:01,375 - agent2 - INFO - --- FIN DEBUG ---
+2025-03-31 02:47:01,375 - agent2 - INFO - Exécution de: python3 /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py
+2025-03-31 02:47:10,152 - agent2 - ERROR - Erreur lors de l'exécution (stderr):
+2025-03-31 02:47:03.846 Python[79544:11345252] +[IMKClient subclass]: chose IMKClient_Modern
+2025-03-31 02:47:03.846 Python[79544:11345252] +[IMKInputSession subclass]: chose IMKInputSession_Modern
+Traceback (most recent call last):
+  File "/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py", line 679, in <module>
+    vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/stats/outliers_influence.py", line 196, in variance_inflation_factor
+    r_squared_i = OLS(x_i, x_noti).fit().rsquared
+                  ~~~^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 921, in __init__
+    super().__init__(endog, exog, missing=missing,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              hasconst=hasconst, **kwargs)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 746, in __init__
+    super().__init__(endog, exog, missing=missing,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              weights=weights, hasconst=hasconst, **kwargs)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/regression/linear_model.py", line 200, in __init__
+    super().__init__(endog, exog, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 270, in __init__
+    super().__init__(endog, exog, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 95, in __init__
+    self.data = self._handle_data(endog, exog, missing, hasconst,
+                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  **kwargs)
+                                  ^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/model.py", line 135, in _handle_data
+    data = handle_data(endog, exog, missing, hasconst, **kwargs)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 675, in handle_data
+    return klass(endog, exog=exog, missing=missing, hasconst=hasconst,
+                 **kwargs)
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 88, in __init__
+    self._handle_constant(hasconst)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/pierreandrews/Desktop/AgentPro/venv/lib/python3.13/site-packages/statsmodels/base/data.py", line 133, in _handle_constant
+    if not np.isfinite(exog_max).all():
+           ~~~~~~~~~~~^^^^^^^^^^
+TypeError: ufunc 'isfinite' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-03-31 02:47:10,153 - agent2 - INFO - Erreur sauvegardée dans: outputs/code_versions_20250331_024457/attempt_3_error.txt
+2025-03-31 02:47:10,153 - agent2 - INFO - Tentative de correction LLM #3
+2025-03-31 02:47:10,153 - agent2 - INFO - Prompt 'Code Correction Attempt 3 (LLM #3)' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:47:10,153 - agent2 - INFO - Envoi du prompt de correction au LLM via backend 'gemini' avec modèle 'gemini-2.0-flash'...
+2025-03-31 02:47:23,111 - agent2 - INFO - Code corrigé par le LLM reçu et nettoyé.
+2025-03-31 02:47:24,113 - agent2 - INFO - --- Tentative d'exécution 4/10 ---
+2025-03-31 02:47:24,114 - agent2 - INFO - Code assaini (chemin CSV, colonnes, df_numeric).
+2025-03-31 02:47:24,114 - agent2 - INFO - Version 4 du code sauvegardée: outputs/code_versions_20250331_024457/attempt_4.py
+2025-03-31 02:47:24,116 - agent2 - INFO - --- DEBUG: Vérification du contenu écrit dans /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py ---
+2025-03-31 02:47:24,117 - agent2 - INFO - Premières 5 lignes (espaces représentés par '·', tabulations par '\t'):
+2025-03-31 02:47:24,117 - agent2 - INFO -   Ligne 1: []
+2025-03-31 02:47:24,117 - agent2 - INFO -   Ligne 2: [#·Ajout·pour·capturer·les·visualisations]
+2025-03-31 02:47:24,117 - agent2 - INFO -   Ligne 3: [import·os]
+2025-03-31 02:47:24,117 - agent2 - INFO -   Ligne 4: [import·logging]
+2025-03-31 02:47:24,117 - agent2 - INFO -   Ligne 5: [import·io]
+2025-03-31 02:47:24,117 - agent2 - INFO - --- FIN DEBUG ---
+2025-03-31 02:47:24,117 - agent2 - INFO - Exécution de: python3 /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/analysis_script.py
+2025-03-31 02:47:33,531 - agent2 - INFO - Exécution réussie
+2025-03-31 02:47:33,531 - agent2 - INFO - Recherche de visualisations dans /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/visualisations
+2025-03-31 02:47:33,531 - agent2 - INFO -   -> Visualisation trouvée: figure_1.png, taille: 81463 octets
+2025-03-31 02:47:33,532 - agent2 - INFO -   -> Données associées trouvées pour: figure_1.png
+2025-03-31 02:47:33,532 - agent2 - INFO -   -> Données CSV trouvées pour: figure_1.png
+2025-03-31 02:47:33,532 - agent2 - INFO -   -> Visualisation trouvée: figure_2.png, taille: 32303 octets
+2025-03-31 02:47:33,532 - agent2 - INFO -   -> Données associées trouvées pour: figure_2.png
+2025-03-31 02:47:33,532 - agent2 - INFO -   -> Données CSV trouvées pour: figure_2.png
+2025-03-31 02:47:33,532 - agent2 - INFO -   -> Visualisation trouvée: figure_3.png, taille: 25898 octets
+2025-03-31 02:47:33,532 - agent2 - INFO -   -> Données associées trouvées pour: figure_3.png
+2025-03-31 02:47:33,532 - agent2 - INFO -   -> Données CSV trouvées pour: figure_3.png
+2025-03-31 02:47:33,532 - agent2 - INFO -   -> Visualisation trouvée: figure_4.png, taille: 35943 octets
+2025-03-31 02:47:33,533 - agent2 - INFO -   -> Données associées trouvées pour: figure_4.png
+2025-03-31 02:47:33,533 - agent2 - INFO -   -> Données CSV trouvées pour: figure_4.png
+2025-03-31 02:47:33,533 - agent2 - INFO -   -> Visualisation trouvée: figure_5.png, taille: 58859 octets
+2025-03-31 02:47:33,535 - agent2 - INFO -   -> Données associées trouvées pour: figure_5.png
+2025-03-31 02:47:33,535 - agent2 - INFO -   -> Données CSV trouvées pour: figure_5.png
+2025-03-31 02:47:33,535 - agent2 - INFO -   -> Visualisation trouvée: figure_6.png, taille: 32553 octets
+2025-03-31 02:47:33,535 - agent2 - INFO -   -> Données associées trouvées pour: figure_6.png
+2025-03-31 02:47:33,535 - agent2 - INFO -   -> Données CSV trouvées pour: figure_6.png
+2025-03-31 02:47:33,535 - agent2 - INFO -   -> Visualisation trouvée: figure_7.png, taille: 20253 octets
+2025-03-31 02:47:33,535 - agent2 - INFO -   -> Données associées trouvées pour: figure_7.png
+2025-03-31 02:47:33,535 - agent2 - INFO -   -> Données CSV trouvées pour: figure_7.png
+2025-03-31 02:47:33,535 - agent2 - INFO -   -> Visualisation trouvée: figure_8.png, taille: 30409 octets
+2025-03-31 02:47:33,536 - agent2 - INFO -   -> Données associées trouvées pour: figure_8.png
+2025-03-31 02:47:33,536 - agent2 - INFO -   -> Données CSV trouvées pour: figure_8.png
+2025-03-31 02:47:33,536 - agent2 - INFO - Recherche de tables de régression dans /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/tables
+2025-03-31 02:47:33,536 - agent2 - INFO -   -> Données de régression trouvées pour: regression_1.txt
+2025-03-31 02:47:33,537 - agent2 - INFO -   -> Données CSV des coefficients trouvées pour: regression_1.txt
+2025-03-31 02:47:33,537 - agent2 - INFO -   -> Table de régression trouvée: regression_1.txt, taille: 142949 octets
+2025-03-31 02:47:33,537 - agent2 - INFO - 8 visualisation(s) et 1 table(s) de régression traitée(s).
+2025-03-31 02:47:33,537 - agent2 - INFO -   Visualisation #1: figure_1.png, taille: 81463 octets
+2025-03-31 02:47:33,537 - agent2 - INFO -     Longueur base64: 108620 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données présentes: Oui
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données CSV présentes: 220 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -   Visualisation #2: figure_2.png, taille: 32303 octets
+2025-03-31 02:47:33,537 - agent2 - INFO -     Longueur base64: 43072 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données présentes: Oui
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données CSV présentes: 7570 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -   Visualisation #3: figure_3.png, taille: 25898 octets
+2025-03-31 02:47:33,537 - agent2 - INFO -     Longueur base64: 34532 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données présentes: Oui
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données CSV présentes: 7531 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -   Visualisation #4: figure_4.png, taille: 35943 octets
+2025-03-31 02:47:33,537 - agent2 - INFO -     Longueur base64: 47924 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données présentes: Oui
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données CSV présentes: 7588 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -   Visualisation #5: figure_5.png, taille: 58859 octets
+2025-03-31 02:47:33,537 - agent2 - INFO -     Longueur base64: 78480 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données présentes: Oui
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données CSV présentes: 113915 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -   Visualisation #6: figure_6.png, taille: 32553 octets
+2025-03-31 02:47:33,537 - agent2 - INFO -     Longueur base64: 43404 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données présentes: Oui
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données CSV présentes: 283 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -   Visualisation #7: figure_7.png, taille: 20253 octets
+2025-03-31 02:47:33,537 - agent2 - INFO -     Longueur base64: 27004 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données présentes: Oui
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données CSV présentes: 370 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -   Visualisation #8: figure_8.png, taille: 30409 octets
+2025-03-31 02:47:33,537 - agent2 - INFO -     Longueur base64: 40548 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données présentes: Oui
+2025-03-31 02:47:33,537 - agent2 - INFO -     Données CSV présentes: 7750 caractères
+2025-03-31 02:47:33,537 - agent2 - INFO -   Régression #1: regression_1, taille: 142949 octets
+2025-03-31 02:47:33,538 - agent2 - INFO -     Longueur base64: 190600 caractères
+2025-03-31 02:47:33,538 - agent2 - INFO -     Données structurées: Oui
+2025-03-31 02:47:33,538 - agent2 - INFO -     Données CSV présentes: 852 caractères
+2025-03-31 02:47:33,538 - agent2 - INFO - Génération d'interprétations pour les visualisations et tables avec Gemini
+2025-03-31 02:47:33,538 - agent2 - INFO - Lancement des interprétations SÉQUENTIELLES pour 9 éléments (timeout/item: 120s)
+2025-03-31 02:47:33,538 - agent2 - INFO - (1/9) Interprétation de : figure_1_0_1743382053538
+2025-03-31 02:47:33,538 - agent2 - INFO - Prompt 'Gemini Image Interpretation - figure_1' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:47:33,538 - agent2 - INFO - Appel à Gemini avec image pour visualisation figure_1
+2025-03-31 02:47:38,796 - agent2 - INFO - Interprétation générée par Gemini pour: figure_1
+2025-03-31 02:47:38,796 - agent2 - INFO - (1/9) Interprétation reçue pour figure_1_0_1743382053538.
+2025-03-31 02:47:38,796 - agent2 - INFO - (2/9) Interprétation de : figure_2_1_1743382058796
+2025-03-31 02:47:38,796 - agent2 - INFO - Prompt 'Gemini Image Interpretation - figure_2' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:47:38,796 - agent2 - INFO - Appel à Gemini avec image pour visualisation figure_2
+2025-03-31 02:47:42,654 - agent2 - INFO - Interprétation générée par Gemini pour: figure_2
+2025-03-31 02:47:42,654 - agent2 - INFO - (2/9) Interprétation reçue pour figure_2_1_1743382058796.
+2025-03-31 02:47:42,654 - agent2 - INFO - (3/9) Interprétation de : figure_3_2_1743382062654
+2025-03-31 02:47:42,655 - agent2 - INFO - Prompt 'Gemini Image Interpretation - figure_3' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:47:42,655 - agent2 - INFO - Appel à Gemini avec image pour visualisation figure_3
+2025-03-31 02:47:46,130 - agent2 - INFO - Interprétation générée par Gemini pour: figure_3
+2025-03-31 02:47:46,130 - agent2 - INFO - (3/9) Interprétation reçue pour figure_3_2_1743382062654.
+2025-03-31 02:47:46,130 - agent2 - INFO - (4/9) Interprétation de : figure_4_3_1743382066130
+2025-03-31 02:47:46,130 - agent2 - INFO - Prompt 'Gemini Image Interpretation - figure_4' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:47:46,130 - agent2 - INFO - Appel à Gemini avec image pour visualisation figure_4
+2025-03-31 02:47:49,461 - agent2 - INFO - Interprétation générée par Gemini pour: figure_4
+2025-03-31 02:47:49,461 - agent2 - INFO - (4/9) Interprétation reçue pour figure_4_3_1743382066130.
+2025-03-31 02:47:49,462 - agent2 - INFO - (5/9) Interprétation de : figure_5_4_1743382069462
+2025-03-31 02:47:49,462 - agent2 - INFO - Prompt 'Gemini Image Interpretation - figure_5' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:47:49,462 - agent2 - INFO - Appel à Gemini avec image pour visualisation figure_5
+2025-03-31 02:47:53,189 - agent2 - INFO - Interprétation générée par Gemini pour: figure_5
+2025-03-31 02:47:53,189 - agent2 - INFO - (5/9) Interprétation reçue pour figure_5_4_1743382069462.
+2025-03-31 02:47:53,189 - agent2 - INFO - (6/9) Interprétation de : figure_6_5_1743382073189
+2025-03-31 02:47:53,190 - agent2 - INFO - Prompt 'Gemini Image Interpretation - figure_6' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:47:53,190 - agent2 - INFO - Appel à Gemini avec image pour visualisation figure_6
+2025-03-31 02:47:58,259 - agent2 - INFO - Interprétation générée par Gemini pour: figure_6
+2025-03-31 02:47:58,259 - agent2 - INFO - (6/9) Interprétation reçue pour figure_6_5_1743382073189.
+2025-03-31 02:47:58,259 - agent2 - INFO - (7/9) Interprétation de : figure_7_6_1743382078259
+2025-03-31 02:47:58,260 - agent2 - INFO - Prompt 'Gemini Image Interpretation - figure_7' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:47:58,260 - agent2 - INFO - Appel à Gemini avec image pour visualisation figure_7
+2025-03-31 02:48:01,899 - agent2 - INFO - Interprétation générée par Gemini pour: figure_7
+2025-03-31 02:48:01,899 - agent2 - INFO - (7/9) Interprétation reçue pour figure_7_6_1743382078259.
+2025-03-31 02:48:01,900 - agent2 - INFO - (8/9) Interprétation de : figure_8_7_1743382081900
+2025-03-31 02:48:01,900 - agent2 - INFO - Prompt 'Gemini Image Interpretation - figure_8' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:48:01,900 - agent2 - INFO - Appel à Gemini avec image pour visualisation figure_8
+2025-03-31 02:48:05,640 - agent2 - INFO - Interprétation générée par Gemini pour: figure_8
+2025-03-31 02:48:05,640 - agent2 - INFO - (8/9) Interprétation reçue pour figure_8_7_1743382081900.
+2025-03-31 02:48:05,640 - agent2 - INFO - (9/9) Interprétation de : regression_1
+2025-03-31 02:48:05,641 - agent2 - INFO - Prompt 'Gemini Image Interpretation - regression_1' ajouté à outputs/code_versions_20250331_024447/prompts.txt
+2025-03-31 02:48:05,641 - agent2 - INFO - Appel à Gemini avec image pour visualisation regression_1
+2025-03-31 02:48:11,635 - agent2 - INFO - Interprétation générée par Gemini pour: regression_1
+2025-03-31 02:48:11,635 - agent2 - INFO - (9/9) Interprétation reçue pour regression_1.
+2025-03-31 02:48:11,636 - agent2 - INFO - Toutes les 9 interprétations séquentielles sont terminées.
+2025-03-31 02:48:11,636 - agent2 - INFO - Fin de la boucle d'exécution. Statut final: success. Total tentatives: 4
+2025-03-31 02:48:11,636 - agent2 - INFO - Version finale du code (success) copiée vers: outputs/analysis_script_20250331_024457_success.py
+2025-03-31 02:48:11,637 - agent2 - INFO - Fichier d'index créé: outputs/code_versions_20250331_024457/index.txt
+2025-03-31 02:48:11,637 - agent2 - INFO - Génération d'interprétations détaillées pour 1 tables de régression
+2025-03-31 02:48:11,638 - agent2 - INFO - Appel au LLM pour l'interprétation détaillée de la régression (R²=0.661)
+2025-03-31 02:48:17,967 - agent2 - INFO - Interprétation détaillée de la régression générée avec succès
+2025-03-31 02:48:17,968 - agent2 - INFO - Interprétation détaillée générée pour la régression regression_1
+2025-03-31 02:48:17,968 - agent2 - INFO - Génération de la narration explicative des résultats

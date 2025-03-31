@@ -1,0 +1,14 @@
+         IndividuID          Pays  ...  LogDepensesMensuelles      AgeCarré
+count   10000.00000         10000  ...           10000.000000  10000.000000
+unique          NaN           100  ...                    NaN           NaN
+top             NaN  Burkina Faso  ...                    NaN           NaN
+freq            NaN           121  ...                    NaN           NaN
+mean     5000.50000           NaN  ...               7.007192   1271.539200
+std      2886.89568           NaN  ...               0.415755    462.601964
+min         1.00000           NaN  ...               5.991964    529.000000
+25%      2500.75000           NaN  ...               6.730302    900.000000
+50%      5000.50000           NaN  ...               7.083723   1225.000000
+75%      7500.25000           NaN  ...               7.345688   1600.000000
+max     10000.00000           NaN  ...               7.600852   2209.000000
+
+[11 rows x 13 columns]

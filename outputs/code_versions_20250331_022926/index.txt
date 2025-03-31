@@ -1,0 +1,25 @@
+SESSION D'ANALYSE DU 20250331_022926
+Fichier CSV: /Users/pierreandrews/Desktop/AgentPro/donnees2.csv
+Modèle LLM: gemini-2.0-flash
+Modèle LLM courant à la fin: gemini-2.0-flash
+Nombre de versions de code générées/sauvegardées: 2
+Nombre total de tentatives d'exécution effectuées: 2
+Nombre de tentatives de correction LLM: 1
+Modèle puissant utilisé: Non
+Résultat final: Succès
+
+LISTE DES VERSIONS DE CODE GÉNÉRÉES/UTILISÉES:
+- Version 1 (Tentative 1): attempt_1.py
+  - Erreur associée: attempt_1_error.txt
+- Version 2 (Tentative 2): attempt_2.py
+
+Script final utilisé (success): analysis_script_20250331_022926_success.py
+Chemin complet: outputs/analysis_script_20250331_022926_success.py
+
+Journal des prompts envoyés au LLM: prompts.txt
+Chemin complet: outputs/code_versions_20250331_022915/prompts.txt
+
+Répertoire des versions de code: outputs/code_versions_20250331_022926
+Répertoire des visualisations: /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_022926_0knnusou/visualisations
+Répertoire des tables de régression: /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_022926_0knnusou/tables
+Répertoire temporaire d'exécution: /var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_022926_0knnusou

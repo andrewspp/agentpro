@@ -1,0 +1,184 @@
+INFO:agent1:Génération des métadonnées pour /Users/pierreandrews/Desktop/AgentPro/donnees2.csv
+INFO:agent1:Détection des problèmes potentiels dans les données
+INFO:agent1:Appel LLM via backend 'gemini' avec modèle 'gemini-2.0-flash'
+INFO:agent1:Parsing de la sortie du LLM
+{
+  "metadata": {
+    "chemin_fichier": "/Users/pierreandrews/Desktop/AgentPro/donnees2.csv",
+    "nb_lignes": 10000,
+    "nb_colonnes": 10,
+    "noms_colonnes": [
+      "IndividuID",
+      "Pays",
+      "Age",
+      "Sexe",
+      "RevenuMensuel",
+      "EducationAnnees",
+      "Travaille",
+      "AccesInternet",
+      "TailleMenage",
+      "DepensesMensuelles"
+    ],
+    "types_colonnes": {
+      "IndividuID": "int64",
+      "Pays": "object",
+      "Age": "float64",
+      "Sexe": "object",
+      "RevenuMensuel": "float64",
+      "EducationAnnees": "float64",
+      "Travaille": "object",
+      "AccesInternet": "float64",
+      "TailleMenage": "float64",
+      "DepensesMensuelles": "float64"
+    },
+    "statistiques": {
+      "IndividuID": {
+        "valeurs_manquantes": 0,
+        "pourcentage_manquant": 0.0,
+        "min": 1.0,
+        "max": 10000.0,
+        "moyenne": 5000.5,
+        "mediane": 5000.5,
+        "ecart_type": 2886.8956799071675,
+        "nb_valeurs_uniques": 10000
+      },
+      "Pays": {
+        "valeurs_manquantes": 0,
+        "pourcentage_manquant": 0.0,
+        "nb_valeurs_uniques": 100,
+        "valeurs_frequentes": null
+      },
+      "Age": {
+        "valeurs_manquantes": 1038,
+        "pourcentage_manquant": 10.38,
+        "min": 23.0,
+        "max": 47.0,
+        "moyenne": 35.05177415755412,
+        "mediane": 35.0,
+        "ecart_type": 6.950395582204181,
+        "nb_valeurs_uniques": 25
+      },
+      "Sexe": {
+        "valeurs_manquantes": 0,
+        "pourcentage_manquant": 0.0,
+        "nb_valeurs_uniques": 2,
+        "valeurs_frequentes": {
+          "Femme": 5067,
+          "Homme": 4933
+        }
+      },
+      "RevenuMensuel": {
+        "valeurs_manquantes": 1000,
+        "pourcentage_manquant": 10.0,
+        "min": 600.2,
+        "max": 2999.6,
+        "moyenne": 1815.0977555555558,
+        "mediane": 1821.75,
+        "ecart_type": 696.1902943161894,
+        "nb_valeurs_uniques": 7506
+      },
+      "EducationAnnees": {
+        "valeurs_manquantes": 1029,
+        "pourcentage_manquant": 10.29,
+        "min": 6.0,
+        "max": 14.0,
+        "moyenne": 9.963995095307101,
+        "mediane": 10.0,
+        "ecart_type": 2.3310078493503426,
+        "nb_valeurs_uniques": 9
+      },
+      "Travaille": {
+        "valeurs_manquantes": 3603,
+        "pourcentage_manquant": 36.03,
+        "nb_valeurs_uniques": 2,
+        "valeurs_frequentes": {
+          "Non": 3254,
+          "Oui": 3143
+        }
+      },
+      "AccesInternet": {
+        "valeurs_manquantes": 3981,
+        "pourcentage_manquant": 39.81,
+        "min": 0.0,
+        "max": 1.0,
+        "moyenne": 0.49293902641634824,
+        "mediane": 0.0,
+        "ecart_type": 0.49999167633860875,
+        "nb_valeurs_uniques": 2
+      },
+      "TailleMenage": {
+        "valeurs_manquantes": 986,
+        "pourcentage_manquant": 9.86,
+        "min": 2.0,
+        "max": 6.0,
+        "moyenne": 3.9883514532948747,
+        "mediane": 4.0,
+        "ecart_type": 1.22003763642994,
+        "nb_valeurs_uniques": 5
+      },
+      "DepensesMensuelles": {
+        "valeurs_manquantes": 1033,
+        "pourcentage_manquant": 10.33,
+        "min": 400.2,
+        "max": 1999.9,
+        "moyenne": 1195.1021523363443,
+        "mediane": 1192.4,
+        "ecart_type": 462.7902226271852,
+        "nb_valeurs_uniques": 6884
+      }
+    }
+  },
+  "data_issues": [
+    {
+      "type": "valeurs_manquantes",
+      "colonne": "Age",
+      "pourcentage": 10.38,
+      "description": "La colonne 'Age' contient 10.38% de valeurs manquantes."
+    },
+    {
+      "type": "valeurs_manquantes",
+      "colonne": "RevenuMensuel",
+      "pourcentage": 10.0,
+      "description": "La colonne 'RevenuMensuel' contient 10.0% de valeurs manquantes."
+    },
+    {
+      "type": "valeurs_manquantes",
+      "colonne": "EducationAnnees",
+      "pourcentage": 10.29,
+      "description": "La colonne 'EducationAnnees' contient 10.29% de valeurs manquantes."
+    },
+    {
+      "type": "valeurs_manquantes",
+      "colonne": "Travaille",
+      "pourcentage": 36.03,
+      "description": "La colonne 'Travaille' contient 36.03% de valeurs manquantes."
+    },
+    {
+      "type": "valeurs_manquantes",
+      "colonne": "AccesInternet",
+      "pourcentage": 39.81,
+      "description": "La colonne 'AccesInternet' contient 39.81% de valeurs manquantes."
+    },
+    {
+      "type": "valeurs_manquantes",
+      "colonne": "TailleMenage",
+      "pourcentage": 9.86,
+      "description": "La colonne 'TailleMenage' contient 9.86% de valeurs manquantes."
+    },
+    {
+      "type": "valeurs_manquantes",
+      "colonne": "DepensesMensuelles",
+      "pourcentage": 10.33,
+      "description": "La colonne 'DepensesMensuelles' contient 10.33% de valeurs manquantes."
+    }
+  ],
+  "llm_output": {
+    "introduction": "(280 mots)\n\nL'étude des déterminants du revenu individuel est au cœur de la science économique, influençant la compréhension de la distribution des richesses, de la mobilité sociale et de la croissance économique. Comprendre les facteurs qui contribuent au revenu est crucial pour la conception de politiques publiques visant à réduire les inégalités et à améliorer le niveau de vie. La littérature économique aborde ce sujet depuis des décennies, en s'appuyant sur des théories du capital humain, de la discrimination, et des modèles de recherche d'emploi. Ces théories cherchent à expliquer comment les caractéristiques individuelles, les investissements en éducation et les conditions du marché du travail interagissent pour déterminer le revenu.\n\nLa problématique générale de cette recherche est d'identifier et de quantifier les principaux facteurs qui influencent le revenu mensuel des individus, en tenant compte de leur capital humain, de leurs caractéristiques démographiques et de leur environnement socio-économique.  Ce problème est d'autant plus pertinent dans un contexte de mondialisation et de changements technologiques rapides, où les compétences et les opportunités peuvent varier considérablement d'un individu à l'autre. L'analyse proposée vise à apporter des éclaircissements sur l'importance relative de ces facteurs, en particulier dans le contexte des données disponibles.\n\nL'importance de cette question de recherche réside dans sa capacité à éclairer les politiques publiques. En identifiant les déterminants du revenu, on peut mieux cibler les interventions visant à améliorer l'accès à l'éducation, à réduire la discrimination sur le marché du travail, et à soutenir les individus les plus vulnérables.  Une meilleure compréhension de ces mécanismes peut également aider les individus à prendre des décisions éclairées concernant leur propre formation et leur carrière. De plus, cette analyse contribue à la littérature existante en fournissant des preuves empiriques actualisées sur les déterminants du revenu dans un contexte spécifique, permettant ainsi de raffiner les modèles théoriques et d'orienter les recherches futures.",
+    "literature_review": "SOMMAIRE (290 mots)\n\nLa littérature économique propose plusieurs théories pour expliquer les disparités de revenus. La théorie du capital humain (Becker, 1964) postule que les individus investissent dans l'éducation et la formation pour augmenter leur productivité et, par conséquent, leur revenu. Cette théorie met l'accent sur l'importance de l'éducation et de l'expérience pour la réussite économique. Mincer (1974) a formalisé cette idée avec l'équation de Mincer, qui relie le revenu au nombre d'années d'éducation et à l'expérience professionnelle.\n\nLa théorie de la discrimination (Arrow, 1973; Phelps, 1972) souligne que les disparités de revenus peuvent être attribuées à la discrimination basée sur le sexe, l'origine ethnique ou d'autres caractéristiques. Ces discriminations peuvent se manifester par des inégalités d'accès à l'éducation, à l'emploi et aux promotions.\n\nLes modèles de recherche d'emploi (Mortensen, 1986; Pissarides, 2000) mettent l'accent sur les frictions du marché du travail et les coûts de recherche d'emploi. Ces modèles expliquent comment les individus trouvent des emplois et comment les salaires sont déterminés par les négociations entre employeurs et employés. Ils soulignent également l'importance des politiques publiques visant à réduire le chômage et à améliorer l'appariement entre offres et demandes d'emploi.\n\nEnfin, l'approche de l'économie géographique (Krugman, 1991) souligne l'importance de la localisation géographique et de la concentration des activités économiques pour la détermination des revenus. Les individus vivant dans des régions plus développées et plus dynamiques ont tendance à avoir des revenus plus élevés en raison des opportunités d'emploi et des externalités positives associées à la concentration des activités économiques.\n\nCette recherche se situe dans la continuité de ces travaux en examinant l'influence de ces facteurs sur le revenu mensuel des individus à partir des données disponibles. En particulier, elle vise à évaluer l'importance relative de l'éducation, du sexe, de la situation géographique, de l'accès à Internet et de la taille du ménage dans la détermination du revenu.",
+    "hypotheses": "FORMELLES\n\nH1: **L'éducation a un effet positif et significatif sur le revenu mensuel.**  *Justification: Conformément à la théorie du capital humain, plus les individus investissent dans l'éducation, plus leur productivité et leur revenu augmentent.*\n\nH2: **Les hommes ont un revenu mensuel significativement plus élevé que les femmes, ceteris paribus.** *Justification: Cette hypothèse reflète la persistance des inégalités de genre sur le marché du travail, potentiellement dues à la discrimination ou à des choix de carrière différents.*\n\nH3: **L'accès à Internet a un effet positif et significatif sur le revenu mensuel.** *Justification: L'accès à Internet facilite l'accès à l'information, à la formation en ligne et aux opportunités d'emploi, ce qui peut augmenter le revenu.*\n\nH4: **La taille du ménage a un effet négatif sur le revenu mensuel par tête.** *Justification: Une taille de ménage plus importante peut impliquer des coûts plus élevés et des ressources par personne plus faibles, affectant négativement le revenu par tête.*\n\nH5: **Les individus travaillant ont un revenu mensuel significativement plus élevé que les individus ne travaillant pas.** *Justification: Evidemment, le fait d'avoir un emploi est directement lié à la perception d'un salaire, d'un revenu.*",
+    "methodology": "Nous allons spécifier un modèle de régression multiple pour analyser les déterminants du revenu mensuel. L'équation de base est :\n\n```\nRevenuMensuel_i = β0 + β1 * EducationAnnees_i + β2 * Sexe_i + β3 * AccesInternet_i + β4 * TailleMenage_i + β5 * Travaille_i + ∑(βk * Pays_k) + ε_i\n```\n\noù :\n\n*   `RevenuMensuel_i` est le revenu mensuel de l'individu *i*.\n*   `EducationAnnees_i` est le nombre d'années d'éducation de l'individu *i*.\n*   `Sexe_i` est une variable binaire (0 = Femme, 1 = Homme).\n*   `AccesInternet_i` est une variable binaire (0 = Pas d'accès, 1 = Accès).\n*   `TailleMenage_i` est la taille du ménage de l'individu *i*.\n*   `Travaille_i` est une variable binaire (0 = Ne travaille pas, 1 = Travaille).\n*   `Pays_k` sont des variables binaires (dummy variables) représentant chaque pays (une variable est omise pour éviter la colinéarité parfaite).\n*   `β0` est la constante.\n*   `β1` à `β5` et `βk` sont les coefficients à estimer.\n*   `ε_i` est le terme d'erreur.\n\n**Méthode d'estimation:** Nous utiliserons l'estimation par les Moindres Carrés Ordinaires (OLS).\n\n**Tests de robustesse:**\n\n*   **Hétéroscédasticité:** Nous réaliserons le test de Breusch-Pagan ou de White pour détecter l'hétéroscédasticité et, si nécessaire, utiliserons des erreurs-types robustes (White's robust standard errors).\n*   **Multicolinéarité:** Nous calculerons les facteurs d'inflation de variance (VIF) pour détecter la multicolinéarité entre les variables indépendantes. Si elle est présente, nous envisagerons de supprimer certaines variables ou d'utiliser une régression Ridge.\n\n**Stratégie d'identification causale:** Dans ce contexte avec les données disponibles, il est difficile d'établir une causalité forte. Cependant, on pourrait envisager d'utiliser l'âge comme une variable de contrôle pour capturer une partie de l'expérience. Une analyse plus poussée nécessiterait des instruments valides, ce qui n'est pas évident avec les données actuelles.",
+    "limitations": "*   **Endogénéité:** L'éducation peut être endogène car elle est corrélée avec des facteurs non observés (par exemple, la capacité innée) qui affectent également le revenu. Sans instruments valides, il est difficile de résoudre complètement ce problème.\n*   **Biais de sélection:** La variable \"Travaille\" est susceptible de biais de sélection car les individus choisissent de travailler ou non en fonction de facteurs non observés qui affectent également leur revenu potentiel.\n*   **Biais de variable omise:** Il est possible que d'autres facteurs importants affectant le revenu ne soient pas inclus dans le modèle (par exemple, la qualité de l'éducation, le réseau social).\n*   **Problèmes de mesure:** La mesure du revenu mensuel peut être sujette à des erreurs de déclaration. De même, la variable \"AccesInternet\" peut être simpliste et ne pas capturer la qualité de l'accès.\n\n**Propositions pour atténuer ces limites:**\n\n*   **Contrôles additionnels:** Ajouter des variables de contrôle supplémentaires, telles que l'âge et le pays, peut aider à réduire le biais de variable omise.\n*   **Analyses de sensibilité:** Réaliser des analyses de sensibilité en utilisant différentes spécifications de modèles et différentes méthodes de traitement des valeurs manquantes.",
+    "variables": "ET TRANSFORMATIONS\n\n*   **Variable dépendante:** `RevenuMensuel` (continue).  Une transformation logarithmique pourrait être appliquée pour réduire l'asymétrie et faciliter l'interprétation (elasticité).\n*   **Variables indépendantes principales:**\n    *   `EducationAnnees` (continue).\n    *   `Sexe` (catégorielle, transformée en binaire).\n    *   `AccesInternet` (catégorielle, transformée en binaire).\n    *   `TailleMenage` (continue).\n    *   `Travaille` (catégorielle, transformée en binaire).\n    *   `Pays` (catégorielle, transformée en variables binaires).\n\n*   **Transformations potentielles:**\n    *   Logarithme du revenu mensuel : `log(RevenuMensuel)`.\n    *   Variables d'interaction : Par exemple, `EducationAnnees * Sexe` pour tester si l'effet de l'éducation sur le revenu diffère selon le sexe.\n\n*   **Variables instrumentales:** Compte tenu des données disponibles, il est difficile d'identifier des instruments valides.  Une analyse plus approfondie pourrait nécessiter la collecte de données supplémentaires. Cependant, dans le contexte actuel, il est difficile d'envisager des variables instrumentales pertinentes."
+  },
+  "raw_llm_output": "## Analyse Économétrique des Déterminants du Revenu Mensuel\n\n### 1. INTRODUCTION ACADÉMIQUE (280 mots)\n\nL'étude des déterminants du revenu individuel est au cœur de la science économique, influençant la compréhension de la distribution des richesses, de la mobilité sociale et de la croissance économique. Comprendre les facteurs qui contribuent au revenu est crucial pour la conception de politiques publiques visant à réduire les inégalités et à améliorer le niveau de vie. La littérature économique aborde ce sujet depuis des décennies, en s'appuyant sur des théories du capital humain, de la discrimination, et des modèles de recherche d'emploi. Ces théories cherchent à expliquer comment les caractéristiques individuelles, les investissements en éducation et les conditions du marché du travail interagissent pour déterminer le revenu.\n\nLa problématique générale de cette recherche est d'identifier et de quantifier les principaux facteurs qui influencent le revenu mensuel des individus, en tenant compte de leur capital humain, de leurs caractéristiques démographiques et de leur environnement socio-économique.  Ce problème est d'autant plus pertinent dans un contexte de mondialisation et de changements technologiques rapides, où les compétences et les opportunités peuvent varier considérablement d'un individu à l'autre. L'analyse proposée vise à apporter des éclaircissements sur l'importance relative de ces facteurs, en particulier dans le contexte des données disponibles.\n\nL'importance de cette question de recherche réside dans sa capacité à éclairer les politiques publiques. En identifiant les déterminants du revenu, on peut mieux cibler les interventions visant à améliorer l'accès à l'éducation, à réduire la discrimination sur le marché du travail, et à soutenir les individus les plus vulnérables.  Une meilleure compréhension de ces mécanismes peut également aider les individus à prendre des décisions éclairées concernant leur propre formation et leur carrière. De plus, cette analyse contribue à la littérature existante en fournissant des preuves empiriques actualisées sur les déterminants du revenu dans un contexte spécifique, permettant ainsi de raffiner les modèles théoriques et d'orienter les recherches futures.\n\n### 2. REVUE DE LITTÉRATURE SOMMAIRE (290 mots)\n\nLa littérature économique propose plusieurs théories pour expliquer les disparités de revenus. La théorie du capital humain (Becker, 1964) postule que les individus investissent dans l'éducation et la formation pour augmenter leur productivité et, par conséquent, leur revenu. Cette théorie met l'accent sur l'importance de l'éducation et de l'expérience pour la réussite économique. Mincer (1974) a formalisé cette idée avec l'équation de Mincer, qui relie le revenu au nombre d'années d'éducation et à l'expérience professionnelle.\n\nLa théorie de la discrimination (Arrow, 1973; Phelps, 1972) souligne que les disparités de revenus peuvent être attribuées à la discrimination basée sur le sexe, l'origine ethnique ou d'autres caractéristiques. Ces discriminations peuvent se manifester par des inégalités d'accès à l'éducation, à l'emploi et aux promotions.\n\nLes modèles de recherche d'emploi (Mortensen, 1986; Pissarides, 2000) mettent l'accent sur les frictions du marché du travail et les coûts de recherche d'emploi. Ces modèles expliquent comment les individus trouvent des emplois et comment les salaires sont déterminés par les négociations entre employeurs et employés. Ils soulignent également l'importance des politiques publiques visant à réduire le chômage et à améliorer l'appariement entre offres et demandes d'emploi.\n\nEnfin, l'approche de l'économie géographique (Krugman, 1991) souligne l'importance de la localisation géographique et de la concentration des activités économiques pour la détermination des revenus. Les individus vivant dans des régions plus développées et plus dynamiques ont tendance à avoir des revenus plus élevés en raison des opportunités d'emploi et des externalités positives associées à la concentration des activités économiques.\n\nCette recherche se situe dans la continuité de ces travaux en examinant l'influence de ces facteurs sur le revenu mensuel des individus à partir des données disponibles. En particulier, elle vise à évaluer l'importance relative de l'éducation, du sexe, de la situation géographique, de l'accès à Internet et de la taille du ménage dans la détermination du revenu.\n\n### 3. HYPOTHÈSES DE RECHERCHE FORMELLES\n\nH1: **L'éducation a un effet positif et significatif sur le revenu mensuel.**  *Justification: Conformément à la théorie du capital humain, plus les individus investissent dans l'éducation, plus leur productivité et leur revenu augmentent.*\n\nH2: **Les hommes ont un revenu mensuel significativement plus élevé que les femmes, ceteris paribus.** *Justification: Cette hypothèse reflète la persistance des inégalités de genre sur le marché du travail, potentiellement dues à la discrimination ou à des choix de carrière différents.*\n\nH3: **L'accès à Internet a un effet positif et significatif sur le revenu mensuel.** *Justification: L'accès à Internet facilite l'accès à l'information, à la formation en ligne et aux opportunités d'emploi, ce qui peut augmenter le revenu.*\n\nH4: **La taille du ménage a un effet négatif sur le revenu mensuel par tête.** *Justification: Une taille de ménage plus importante peut impliquer des coûts plus élevés et des ressources par personne plus faibles, affectant négativement le revenu par tête.*\n\nH5: **Les individus travaillant ont un revenu mensuel significativement plus élevé que les individus ne travaillant pas.** *Justification: Evidemment, le fait d'avoir un emploi est directement lié à la perception d'un salaire, d'un revenu.*\n\n### 4. MÉTHODOLOGIE PROPOSÉE\n\nNous allons spécifier un modèle de régression multiple pour analyser les déterminants du revenu mensuel. L'équation de base est :\n\n```\nRevenuMensuel_i = β0 + β1 * EducationAnnees_i + β2 * Sexe_i + β3 * AccesInternet_i + β4 * TailleMenage_i + β5 * Travaille_i + ∑(βk * Pays_k) + ε_i\n```\n\noù :\n\n*   `RevenuMensuel_i` est le revenu mensuel de l'individu *i*.\n*   `EducationAnnees_i` est le nombre d'années d'éducation de l'individu *i*.\n*   `Sexe_i` est une variable binaire (0 = Femme, 1 = Homme).\n*   `AccesInternet_i` est une variable binaire (0 = Pas d'accès, 1 = Accès).\n*   `TailleMenage_i` est la taille du ménage de l'individu *i*.\n*   `Travaille_i` est une variable binaire (0 = Ne travaille pas, 1 = Travaille).\n*   `Pays_k` sont des variables binaires (dummy variables) représentant chaque pays (une variable est omise pour éviter la colinéarité parfaite).\n*   `β0` est la constante.\n*   `β1` à `β5` et `βk` sont les coefficients à estimer.\n*   `ε_i` est le terme d'erreur.\n\n**Méthode d'estimation:** Nous utiliserons l'estimation par les Moindres Carrés Ordinaires (OLS).\n\n**Tests de robustesse:**\n\n*   **Hétéroscédasticité:** Nous réaliserons le test de Breusch-Pagan ou de White pour détecter l'hétéroscédasticité et, si nécessaire, utiliserons des erreurs-types robustes (White's robust standard errors).\n*   **Multicolinéarité:** Nous calculerons les facteurs d'inflation de variance (VIF) pour détecter la multicolinéarité entre les variables indépendantes. Si elle est présente, nous envisagerons de supprimer certaines variables ou d'utiliser une régression Ridge.\n\n**Stratégie d'identification causale:** Dans ce contexte avec les données disponibles, il est difficile d'établir une causalité forte. Cependant, on pourrait envisager d'utiliser l'âge comme une variable de contrôle pour capturer une partie de l'expérience. Une analyse plus poussée nécessiterait des instruments valides, ce qui n'est pas évident avec les données actuelles.\n\n### 5. LIMITES MÉTHODOLOGIQUES\n\n*   **Endogénéité:** L'éducation peut être endogène car elle est corrélée avec des facteurs non observés (par exemple, la capacité innée) qui affectent également le revenu. Sans instruments valides, il est difficile de résoudre complètement ce problème.\n*   **Biais de sélection:** La variable \"Travaille\" est susceptible de biais de sélection car les individus choisissent de travailler ou non en fonction de facteurs non observés qui affectent également leur revenu potentiel.\n*   **Biais de variable omise:** Il est possible que d'autres facteurs importants affectant le revenu ne soient pas inclus dans le modèle (par exemple, la qualité de l'éducation, le réseau social).\n*   **Problèmes de mesure:** La mesure du revenu mensuel peut être sujette à des erreurs de déclaration. De même, la variable \"AccesInternet\" peut être simpliste et ne pas capturer la qualité de l'accès.\n\n**Propositions pour atténuer ces limites:**\n\n*   **Contrôles additionnels:** Ajouter des variables de contrôle supplémentaires, telles que l'âge et le pays, peut aider à réduire le biais de variable omise.\n*   **Analyses de sensibilité:** Réaliser des analyses de sensibilité en utilisant différentes spécifications de modèles et différentes méthodes de traitement des valeurs manquantes.\n\n### 6. VARIABLES CLÉS ET TRANSFORMATIONS\n\n*   **Variable dépendante:** `RevenuMensuel` (continue).  Une transformation logarithmique pourrait être appliquée pour réduire l'asymétrie et faciliter l'interprétation (elasticité).\n*   **Variables indépendantes principales:**\n    *   `EducationAnnees` (continue).\n    *   `Sexe` (catégorielle, transformée en binaire).\n    *   `AccesInternet` (catégorielle, transformée en binaire).\n    *   `TailleMenage` (continue).\n    *   `Travaille` (catégorielle, transformée en binaire).\n    *   `Pays` (catégorielle, transformée en variables binaires).\n\n*   **Transformations potentielles:**\n    *   Logarithme du revenu mensuel : `log(RevenuMensuel)`.\n    *   Variables d'interaction : Par exemple, `EducationAnnees * Sexe` pour tester si l'effet de l'éducation sur le revenu diffère selon le sexe.\n\n*   **Variables instrumentales:** Compte tenu des données disponibles, il est difficile d'identifier des instruments valides.  Une analyse plus approfondie pourrait nécessiter la collecte de données supplémentaires. Cependant, dans le contexte actuel, il est difficile d'envisager des variables instrumentales pertinentes.\n"
+}

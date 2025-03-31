@@ -1,0 +1,192 @@
+2025-03-31 02:48:18,454 - agent3 - INFO - Logging redirigé vers agent3.log
+2025-03-31 02:48:18,466 - agent3 - INFO - Génération du résumé avec modèle: gemini-2.0-flash
+2025-03-31 02:48:18,466 - agent3 - INFO - Appel LLM via backend 'gemini' avec modèle 'gemini-2.0-flash' pour génération du résumé
+2025-03-31 02:48:19,567 - agent3 - INFO - Génération de la section discussion avec modèle: gemini-2.0-flash
+2025-03-31 02:48:19,568 - agent3 - INFO - Appel LLM via backend 'gemini' avec modèle 'gemini-2.0-flash' pour génération de la section discussion
+2025-03-31 02:48:21,906 - agent3 - INFO - Génération de la conclusion avec modèle: gemini-2.0-flash
+2025-03-31 02:48:21,907 - agent3 - INFO - Appel LLM via backend 'gemini' avec modèle 'gemini-2.0-flash' pour génération de la conclusion
+2025-03-31 02:48:23,305 - agent3 - INFO - Génération des références avec modèle: gemini-2.0-flash
+2025-03-31 02:48:23,305 - agent3 - INFO - Appel LLM via backend 'gemini' pour génération des références bibliographiques
+2025-03-31 02:48:25,185 - agent3 - INFO - Génération du raisonnement économique complet avec modèle: gemini-2.0-flash
+2025-03-31 02:48:25,185 - agent3 - INFO - Génération du raisonnement économique complet avec le modèle gemini-2.0-flash
+2025-03-31 02:48:41,703 - agent3 - INFO - Répertoire du rapport: outputs/rapport_20250331_024841
+2025-03-31 02:48:41,703 - agent3 - INFO - Mise à jour des interprétations de visualisations pour plus de concision
+2025-03-31 02:48:41,703 - agent3 - INFO - Appel à Gemini pour interprétation concise de visualisation figure_1
+2025-03-31 02:48:43,203 - agent3 - INFO - Interprétation générée pour: figure_1
+2025-03-31 02:48:43,204 - agent3 - INFO - Interprétation mise à jour pour figure_1_0_1743382053538
+2025-03-31 02:48:43,204 - agent3 - INFO - Appel à Gemini pour interprétation concise de visualisation figure_2
+2025-03-31 02:48:44,554 - agent3 - INFO - Interprétation générée pour: figure_2
+2025-03-31 02:48:44,554 - agent3 - INFO - Interprétation mise à jour pour figure_2_1_1743382058796
+2025-03-31 02:48:44,555 - agent3 - INFO - Appel à Gemini pour interprétation concise de visualisation figure_3
+2025-03-31 02:48:45,990 - agent3 - INFO - Interprétation générée pour: figure_3
+2025-03-31 02:48:45,990 - agent3 - INFO - Interprétation mise à jour pour figure_3_2_1743382062654
+2025-03-31 02:48:45,990 - agent3 - INFO - Appel à Gemini pour interprétation concise de visualisation figure_4
+2025-03-31 02:48:46,988 - agent3 - INFO - Interprétation générée pour: figure_4
+2025-03-31 02:48:46,989 - agent3 - INFO - Interprétation mise à jour pour figure_4_3_1743382066130
+2025-03-31 02:48:46,989 - agent3 - INFO - Appel à Gemini pour interprétation concise de visualisation figure_5
+2025-03-31 02:48:48,117 - agent3 - INFO - Interprétation générée pour: figure_5
+2025-03-31 02:48:48,117 - agent3 - INFO - Interprétation mise à jour pour figure_5_4_1743382069462
+2025-03-31 02:48:48,117 - agent3 - INFO - Appel à Gemini pour interprétation concise de visualisation figure_6
+2025-03-31 02:48:49,821 - agent3 - INFO - Interprétation générée pour: figure_6
+2025-03-31 02:48:49,821 - agent3 - INFO - Interprétation mise à jour pour figure_6_5_1743382073189
+2025-03-31 02:48:49,821 - agent3 - INFO - Appel à Gemini pour interprétation concise de visualisation figure_7
+2025-03-31 02:48:51,203 - agent3 - INFO - Interprétation générée pour: figure_7
+2025-03-31 02:48:51,204 - agent3 - INFO - Interprétation mise à jour pour figure_7_6_1743382078259
+2025-03-31 02:48:51,204 - agent3 - INFO - Appel à Gemini pour interprétation concise de visualisation figure_8
+2025-03-31 02:48:52,634 - agent3 - INFO - Interprétation générée pour: figure_8
+2025-03-31 02:48:52,634 - agent3 - INFO - Interprétation mise à jour pour figure_8_7_1743382081900
+2025-03-31 02:48:52,634 - agent3 - INFO - Appel à Gemini pour interprétation concise de visualisation regression_1
+2025-03-31 02:48:54,957 - agent3 - INFO - Interprétation générée pour: regression_1
+2025-03-31 02:48:54,958 - agent3 - INFO - Interprétation mise à jour pour regression_1
+2025-03-31 02:48:54,958 - agent3 - INFO - Génération du rapport PDF
+2025-03-31 02:48:54,958 - agent3 - INFO - Répertoire du rapport: outputs/rapport_20250331_024841
+2025-03-31 02:48:54,958 - agent3 - INFO - Nombre de visualisations dans agent2_data: 9
+2025-03-31 02:48:54,958 - agent3 - INFO - Visualisation 1: type=non spécifié, base64=présent, path=/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/visualisations/figure_1.png
+2025-03-31 02:48:54,958 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,959 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,959 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,959 - agent3 - INFO - Visualisation 2: type=non spécifié, base64=présent, path=/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/visualisations/figure_2.png
+2025-03-31 02:48:54,959 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,959 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,959 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,959 - agent3 - INFO - Visualisation 3: type=non spécifié, base64=présent, path=/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/visualisations/figure_3.png
+2025-03-31 02:48:54,960 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,960 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,960 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,960 - agent3 - INFO - Visualisation 4: type=non spécifié, base64=présent, path=/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/visualisations/figure_4.png
+2025-03-31 02:48:54,960 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,960 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,960 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,960 - agent3 - INFO - Visualisation 5: type=non spécifié, base64=présent, path=/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/visualisations/figure_5.png
+2025-03-31 02:48:54,960 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,960 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,960 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,960 - agent3 - INFO - Visualisation 6: type=non spécifié, base64=présent, path=/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/visualisations/figure_6.png
+2025-03-31 02:48:54,960 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,960 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,961 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,961 - agent3 - INFO - Visualisation 7: type=non spécifié, base64=présent, path=/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/visualisations/figure_7.png
+2025-03-31 02:48:54,961 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,961 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,961 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,961 - agent3 - INFO - Visualisation 8: type=non spécifié, base64=présent, path=/var/folders/cd/tvhvrzsn1tl2my4ys69gv6wm0000gn/T/analysis_20250331_024457_vyuggmr3/visualisations/figure_8.png
+2025-03-31 02:48:54,961 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,961 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,961 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,962 - agent3 - INFO - Visualisation 9: type=regression_table, base64=présent, path=non spécifié
+2025-03-31 02:48:54,962 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,962 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,962 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,964 - agent3 - INFO - Sauvegarde de l'image outputs/rapport_20250331_024841/images/figure_1.png avec taille: 81463 octets
+2025-03-31 02:48:54,966 - agent3 - ERROR - Erreur lors de l'analyse CSV pour résumé: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,966 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,966 - agent3 - INFO - Image sauvegardée: outputs/rapport_20250331_024841/images/figure_1.png avec titre: Figure 1
+2025-03-31 02:48:54,966 - agent3 - INFO -   -> Données CSV trouvées pour: figure_1.png (220 caractères)
+2025-03-31 02:48:54,967 - agent3 - INFO - Sauvegarde de l'image outputs/rapport_20250331_024841/images/figure_2.png avec taille: 32303 octets
+2025-03-31 02:48:54,967 - agent3 - ERROR - Erreur lors de l'analyse CSV pour résumé: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,967 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,967 - agent3 - INFO - Image sauvegardée: outputs/rapport_20250331_024841/images/figure_2.png avec titre: Figure 2
+2025-03-31 02:48:54,968 - agent3 - INFO -   -> Données CSV trouvées pour: figure_2.png (7570 caractères)
+2025-03-31 02:48:54,968 - agent3 - INFO - Sauvegarde de l'image outputs/rapport_20250331_024841/images/figure_3.png avec taille: 25898 octets
+2025-03-31 02:48:54,968 - agent3 - ERROR - Erreur lors de l'analyse CSV pour résumé: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,968 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,968 - agent3 - INFO - Image sauvegardée: outputs/rapport_20250331_024841/images/figure_3.png avec titre: Figure 3
+2025-03-31 02:48:54,968 - agent3 - INFO -   -> Données CSV trouvées pour: figure_3.png (7531 caractères)
+2025-03-31 02:48:54,969 - agent3 - INFO - Sauvegarde de l'image outputs/rapport_20250331_024841/images/figure_4.png avec taille: 35943 octets
+2025-03-31 02:48:54,969 - agent3 - ERROR - Erreur lors de l'analyse CSV pour résumé: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,969 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,969 - agent3 - INFO - Image sauvegardée: outputs/rapport_20250331_024841/images/figure_4.png avec titre: Figure 4
+2025-03-31 02:48:54,969 - agent3 - INFO -   -> Données CSV trouvées pour: figure_4.png (7588 caractères)
+2025-03-31 02:48:54,969 - agent3 - INFO - Sauvegarde de l'image outputs/rapport_20250331_024841/images/figure_5.png avec taille: 58859 octets
+2025-03-31 02:48:54,970 - agent3 - ERROR - Erreur lors de l'analyse CSV pour résumé: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,970 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,970 - agent3 - INFO - Image sauvegardée: outputs/rapport_20250331_024841/images/figure_5.png avec titre: Figure 5
+2025-03-31 02:48:54,970 - agent3 - INFO -   -> Données CSV trouvées pour: figure_5.png (113915 caractères)
+2025-03-31 02:48:54,970 - agent3 - INFO - Sauvegarde de l'image outputs/rapport_20250331_024841/images/figure_6.png avec taille: 32553 octets
+2025-03-31 02:48:54,970 - agent3 - ERROR - Erreur lors de l'analyse CSV pour résumé: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,971 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,971 - agent3 - INFO - Image sauvegardée: outputs/rapport_20250331_024841/images/figure_6.png avec titre: Figure 6
+2025-03-31 02:48:54,971 - agent3 - INFO -   -> Données CSV trouvées pour: figure_6.png (283 caractères)
+2025-03-31 02:48:54,971 - agent3 - INFO - Sauvegarde de l'image outputs/rapport_20250331_024841/images/figure_7.png avec taille: 20253 octets
+2025-03-31 02:48:54,971 - agent3 - ERROR - Erreur lors de l'analyse CSV pour résumé: Error tokenizing data. C error: Expected 2 fields in line 3, saw 4
+
+2025-03-31 02:48:54,971 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 2 fields in line 3, saw 4
+
+2025-03-31 02:48:54,971 - agent3 - INFO - Image sauvegardée: outputs/rapport_20250331_024841/images/figure_7.png avec titre: Figure 7
+2025-03-31 02:48:54,971 - agent3 - INFO -   -> Données CSV trouvées pour: figure_7.png (370 caractères)
+2025-03-31 02:48:54,971 - agent3 - INFO - Sauvegarde de l'image outputs/rapport_20250331_024841/images/figure_8.png avec taille: 30409 octets
+2025-03-31 02:48:54,972 - agent3 - ERROR - Erreur lors de l'analyse CSV pour résumé: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,972 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-03-31 02:48:54,972 - agent3 - INFO - Image sauvegardée: outputs/rapport_20250331_024841/images/figure_8.png avec titre: Figure 8
+2025-03-31 02:48:54,972 - agent3 - INFO -   -> Données CSV trouvées pour: figure_8.png (7750 caractères)
+2025-03-31 02:48:54,972 - agent3 - INFO - Sauvegarde de l'image outputs/rapport_20250331_024841/images/regression_1.png avec taille: 142949 octets
+2025-03-31 02:48:54,972 - agent3 - ERROR - Erreur lors de l'analyse CSV pour résumé: Error tokenizing data. C error: Expected 1 fields in line 5, saw 5
+
+2025-03-31 02:48:54,973 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 1 fields in line 5, saw 5
+
+2025-03-31 02:48:54,973 - agent3 - INFO - Image sauvegardée: outputs/rapport_20250331_024841/images/regression_1.png avec titre: Résultats de Régression: Regression 1
+2025-03-31 02:48:54,973 - agent3 - INFO -   -> Données CSV trouvées pour: regression_1.png (852 caractères)
+2025-03-31 02:48:54,973 - agent3 - INFO -   -> Interprétation détaillée de 4799 caractères transférée
+2025-03-31 02:48:54,973 - agent3 - INFO - Nombre d'images sauvegardées: 9
+2025-03-31 02:48:54,973 - agent3 - INFO - Image sauvegardée 1: filename=figure_1.png, type=visualisation, size=81463
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,973 - agent3 - INFO - Image sauvegardée 2: filename=figure_2.png, type=visualisation, size=32303
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,973 - agent3 - INFO - Image sauvegardée 3: filename=figure_3.png, type=visualisation, size=25898
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,973 - agent3 - INFO - Image sauvegardée 4: filename=figure_4.png, type=visualisation, size=35943
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,973 - agent3 - INFO - Image sauvegardée 5: filename=figure_5.png, type=visualisation, size=58859
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,973 - agent3 - INFO - Image sauvegardée 6: filename=figure_6.png, type=visualisation, size=32553
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,973 - agent3 - INFO - Image sauvegardée 7: filename=figure_7.png, type=visualisation, size=20253
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,973 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,973 - agent3 - INFO - Image sauvegardée 8: filename=figure_8.png, type=visualisation, size=30409
+2025-03-31 02:48:54,973 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,974 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,974 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,974 - agent3 - INFO - Image sauvegardée 9: filename=regression_1.png, type=regression_table, size=142949
+2025-03-31 02:48:54,974 - agent3 - INFO -   Données structurées: présentes
+2025-03-31 02:48:54,974 - agent3 - INFO -   Données CSV: présentes
+2025-03-31 02:48:54,974 - agent3 - INFO -   Interprétation: présente
+2025-03-31 02:48:54,974 - agent3 - INFO - Utilisation de 1 tables de régression capturées
+2025-03-31 02:48:54,974 - agent3 - INFO - Image de régression ajoutée: images/regression_1.png
+2025-03-31 02:48:54,987 - agent3 - INFO - Interprétation détaillée de la régression ajoutée pour Résultats de Régression: Regression 1
+2025-03-31 02:48:54,987 - agent3 - ERROR - Erreur lors de la conversion des données CSV en HTML: Error tokenizing data. C error: Expected 1 fields in line 5, saw 5
+
+2025-03-31 02:48:54,987 - agent3 - INFO - Génération d'une analyse visuelle globale
+2025-03-31 02:48:54,987 - agent3 - INFO - Génération de l'analyse visuelle globale avec le modèle gemini-2.0-flash
+2025-03-31 02:48:57,449 - agent3 - INFO - HTML généré: outputs/rapport_20250331_024841/rapport.html
+2025-03-31 02:48:57,823 - agent3 - INFO - Rapport PDF généré avec succès: outputs/rapport_20250331_024841/rapport.pdf
+2025-03-31 02:48:57,823 - agent3 - INFO - Génération du rapport Word
+2025-03-31 02:48:57,847 - agent3 - INFO - Génération de l'analyse visuelle globale avec le modèle gemini-2.0-flash
+2025-03-31 02:49:00,549 - agent3 - INFO - Rapport Word généré avec succès: outputs/rapport_20250331_024857/rapport.docx

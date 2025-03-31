@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ report_title }}</title>
+  <style>
+    /* Style académique général */
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12pt;
+      line-height: 1.5;
+      margin: 2.5cm 2.5cm;
+      text-align: justify;
+      counter-reset: section figure table equation;
+    }
+    
+    /* Page de titre */
+    .title-page {
+      text-align: center;
+      margin-bottom: 4cm;
+      page-break-after: always;
+    }
+    
+    .title-page h1 {
+      font-size: 18pt;
+      margin-top: 5cm;
+      margin-bottom: 2cm;
+      text-transform: uppercase;
+    }
+    
+    .title-page .authors {
+      font-size: 14pt;
+      margin-bottom: 2cm;
+    }
+    
+    .title-page .date {
+      font-size: 12pt;
+      margin-bottom: 2cm;
+    }
+    
+    .title-page .affiliation {
+      font-style: italic;
+      margin-bottom: 4cm;
+    }
+    
+    /* Abstract */
+    .abstract {
+      margin: 1cm 2cm 2cm 2cm;
+      page-break-after: always;
+    }
+    
+    .abstract h2 {
+      font-size: 14pt;
+      text-align: center;
+    }
+    
+    .abstract-content {
+      font-size: 11pt;
+      line-height: 1.4;
+    }
+    
+    .keywords {
+      margin-top: 1cm;
+      font-style: italic;
+    }
+    
+    /* Titres de section */
+    h1, h2, h3, h4 {
+      font-weight: bold;
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+    }
+    
+    h1 {
+      font-size: 14pt;
+    }
+    
+    h2 {
+      font-size: 13pt;
+    }
+    
+    h3 {
+      font-size: 12pt;
+      font-style: italic;
+    }
+    
+    /* Numérotation automatique des sections */
+    h2.numbered:before {
+      counter-increment: section;
+      content: counter(section) ". ";
+    }
+    
+    h3.numbered:before {
+      counter-increment: subsection;
+      content: counter(section) "." counter(subsection) " ";
+    }
+    
+    /* Figures et tableaux */
+    .figure, .table-container, .regression-container {
+      text-align: center;
+      margin: 1.5em 0;
+      page-break-inside: avoid;
+    }
+    
+    .figure img, .regression-image {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .figure-caption, .table-caption {
+      font-size: 10pt;
+      margin-top: 0.5em;
+      text-align: left;
+      font-style: italic;
+    }
+    
+    .figure-caption:before {
+      counter-increment: figure;
+      content: "Figure " counter(figure) ": ";
+      font-weight: bold;
+    }
+    
+    .table-caption:before {
+      counter-increment: table;
+      content: "Tableau " counter(table) ": ";
+      font-weight: bold;
+    }
+    
+    /* Tableaux académiques */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+      font-size: 10pt;
+    }
+    
+    table th, table td {
+      padding: 6px;
+      border: 1px solid #ddd;
+    }
+    
+    table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    /* Tableaux de régression */
+    .regression-table {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 9pt;
+    }
+    
+    .regression-table caption {
+      text-align: center;
+      margin-bottom: 0.5em;
+      font-weight: bold;
+    }
+    
+    /* Notes de bas de tableaux */
+    .table-notes {
+      font-size: 9pt;
+      text-align: left;
+      font-style: italic;
+      margin-top: 0.3em;
+      margin-bottom: A1.5em;
+    }
+    
+    /* Équations */
+    .equation {
+      margin: 1em 0;
+      text-align: center;
+    }
+    
+    .equation-number:before {
+      counter-increment: equation;
+      content: "(" counter(equation) ")";
+    }
+    
+    /* Citations et références */
+    .citation {
+      vertical-align: super;
+      font-size: smaller;
+    }
+    
+    .references {
+      margin-top: 2em;
+      page-break-before: always;
+    }
+    
+    .references h2 {
+      text-align: center;
+    }
+    
+    .reference-item {
+      text-indent: -2em;
+      padding-left: 2em;
+      margin-bottom: 0.7em;
+      font-size: 10pt;
+    }
+    
+    /* Code */
+    .code-block {
+      background: #f7f7f7;
+      border-left: 3px solid #ccc;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 10pt;
+      margin: 1em 0;
+      overflow-x: auto;
+      padding: 1em;
+      white-space: pre-wrap;
+    }
+    
+    /* Pagination */
+    @page {
+      @bottom-center {
+        content: counter(page);
+        font-size: 10pt;
+      }
+    }
+    
+    /* Annexes */
+    .appendix {
+      page-break-before: always;
+    }
+    
+    .appendix h2:before {
+      content: "Annexe ";
+    }
+    
+    /* Notes de bas de page */
+    .footnote {
+      font-size: 9pt;
+      color: #444;
+    }
+    
+    /* Interprétations des visualisations */
+    .figure-interpretation {
+      font-size: 11pt;
+      margin-top: 0.8em;
+      text-align: justify;
+      margin-bottom: 1.5em;
+      padding: 0.5em 1em;
+      background-color: #f9f9f9;
+      border-left: 3px solid #eee;
+    }
+
+    .comprehensive-analysis {
+      margin: 1.5em 0;
+      padding: 1em;
+      background-color: #f8f8f8;
+      border: 1px solid #eee;
+      border-radius: 4px;
+    }
+
+    .comprehensive-analysis h3 {
+      font-size: 13pt;
+      margin-top: 0;
+      margin-bottom: 1em;
+      color: #333;
+    }
+    
+    /* Tables de régression */
+    .regression-container {
+      margin: 2em 0;
+      padding: 1em;
+      background-color: #f9f9f9;
+      border: 1px solid #eee;
+    }
+    
+    .regression-container h4 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+    
+    .regression-image {
+      max-width: 100%;
+      margin: 1em 0;
+    }
+    
+    .regression-interpretation {
+      font-size: 11pt;
+      margin-top: 1em;
+      text-align: justify;
+      border-left: 3px solid #ccc;
+      padding-left: 1em;
+    }
+  </style>
+</head>
+<body>
+  <!-- PAGE DE TITRE -->
+  <div class="title-page">
+    <h1>{{ report_title }}</h1>
+    <div class="authors">Auteur: Analyse Économétrique Automatisée</div>
+    <div class="date">{{ generation_date }}</div>
+    <div class="affiliation">Rapport généré par Intelligence Artificielle</div>
+  </div>
+
+  <!-- ABSTRACT -->
+  <div class="abstract">
+    <h2>Résumé</h2>
+    <div class="abstract-content">
+      {{ synthesis | safe }}
+    </div>
+    <div class="keywords">
+      <strong>Mots-clés:</strong> {{ keywords | default('analyse économétrique, régression, économie') }}
+    </div>
+  </div>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main>
+    <!-- 1. INTRODUCTION -->
+    <h2 class="numbered">Introduction</h2>
+    <p>Cette étude vise à analyser {{ user_prompt | lower }}. Notre analyse s'appuie sur un ensemble de données comprenant {{ metadata.nb_lignes | default('plusieurs') }} observations et {{ metadata.nb_colonnes | default('plusieurs') }} variables, permettant d'explorer les relations économiques sous-jacentes.</p>
+    
+    {{ introduction_text | safe }}
+    
+    <p><strong>Question de recherche:</strong> {{ user_prompt }}</p>
+
+    <!-- 2. REVUE DE LITTÉRATURE -->
+    <h2 class="numbered">Revue de littérature</h2>
+    {{ literature_review | safe }}
+
+    <!-- 3. DONNÉES ET MÉTHODOLOGIE -->
+    <h2 class="numbered">Données et Méthodologie</h2>
+    
+    <h3 class="numbered">Description des données</h3>
+    <p>Cette étude utilise un ensemble de données comprenant {{ metadata.nb_lignes | default('N/A') }} observations et {{ metadata.nb_colonnes | default('N/A') }} variables. Les principales variables d'intérêt incluent: {{ metadata.noms_colonnes | join(', ') }}.</p>
+    
+    {% if data_issues %}
+    <h3 class="numbered">Qualité des données et limitations</h3>
+    <p>Plusieurs problèmes potentiels ont été identifiés lors de l'analyse préliminaire des données:</p>
+    <ul>
+      {% for issue in data_issues %}
+        <li>{{ issue.description }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    
+    {% if limitations %}
+    <p>D'autres points de vigilance méthodologiques doivent être considérés:</p>
+    <div class="vigilance-points">
+      {{ limitations | safe }}
+    </div>
+    {% endif %}
+    
+    <h3 class="numbered">Statistiques descriptives</h3>
+    <!-- Insérer ici un tableau de statistiques descriptives -->
+    {% if descriptive_stats_table %}
+      {{ descriptive_stats_table | safe }}
+    {% else %}
+      <p>Les statistiques descriptives détaillées sont disponibles sur demande.</p>
+    {% endif %}
+    
+    <h3 class="numbered">Modèle économétrique</h3>
+    {{ econometric_model | safe }}
+
+    <!-- 4. RÉSULTATS -->
+    <h2 class="numbered">Résultats empiriques</h2>
+    
+    <h3 class="numbered">Analyse des corrélations</h3>
+    {% if visualizations|length > 0 %}
+    <div class="figure">
+      <img src="images/{{ visualizations[0].filename }}" alt="Matrice de corrélation">
+      <div class="figure-caption">Matrice de corrélation entre les principales variables d'intérêt</div>
+      {% if visualizations[0].interpretation %}
+      <div class="figure-interpretation">
+        {{ visualizations[0].interpretation | safe }}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    <p>L'analyse des corrélations entre les variables révèle plusieurs relations importantes qui guideront notre analyse économétrique approfondie.</p>
+
+    <h3 class="numbered">Résultats de l'estimation du modèle</h3>
+    {% if regression_tables|length > 0 %}
+        {% for table in regression_tables %}
+        <div class="regression-container">
+            <h4>{{ table.title }}</h4>
+            <img src="images/{{ table.filename }}" alt="{{ table.title }}" class="regression-image">
+            {% if table.interpretation %}
+            <div class="regression-interpretation">
+                {{ table.interpretation | safe }}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% elif regression_table_html %}
+    <div class="table-container">
+      {{ regression_table_html | safe }}
+      <div class="table-caption">Résultats de la régression</div>
+      <div class="table-notes">Notes: *, **, *** indiquent la significativité aux niveaux de 10%, 5%, et 1% respectivement. Erreurs standard entre parenthèses.</div>
+    </div>
+    {% endif %}
+
+    <h3 class="numbered">Visualisations complémentaires</h3>
+    {% for vis in visualizations[1:] %}
+    <div class="figure">
+      <img src="images/{{ vis.filename }}" alt="{{ vis.title }}">
+      <div class="figure-caption">{{ vis.title }}</div>
+      {% if vis.interpretation %}
+      <div class="figure-interpretation">
+        {{ vis.interpretation | safe }}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    {% if comprehensive_visual_analysis %}
+    <div class="comprehensive-analysis">
+      <h3>Analyse visuelle approfondie</h3>
+      {{ comprehensive_visual_analysis | safe }}
+    </div>
+    {% endif %}
+
+    <!-- 5. DISCUSSION -->
+    <h2 class="numbered">Discussion</h2>
+    {{ discussion_text | safe }}
+
+    <!-- 6. CONCLUSION -->
+    <h2 class="numbered">Conclusion</h2>
+    {{ conclusion_text | safe }}
+
+    <!-- 7. RÉFÉRENCES -->
+    <div class="references">
+      <h2>Références</h2>
+      {{ references | safe }}
+    </div>
+
+    <!-- 8. ANNEXES -->
+    <div class="appendix">
+      <h2>Détails techniques</h2>
+      <h3>Code d'analyse</h3>
+      <div class="code-block">
+        {{ code_snippet | e }}
+      </div>
+      
+      <h3>Informations sur l'analyse</h3>
+      <p><strong>Modèle LLM utilisé:</strong> {{ model_name }}</p>
+      <p><strong>Date de génération:</strong> {{ generation_date }}</p>
+    </div>
+  </main>
+</body>
+</html>

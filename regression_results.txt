@@ -1,0 +1,56 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:          RevenuMensuel   R-squared:                       0.001
+Model:                            OLS   Adj. R-squared:                 -0.000
+Method:                 Least Squares   F-statistic:                    0.8873
+Date:                Mon, 31 Mar 2025   Prob (F-statistic):              0.566
+Time:                        01:05:57   Log-Likelihood:                -79029.
+No. Observations:               10000   AIC:                         1.581e+05
+Df Residuals:                    9986   BIC:                         1.582e+05
+Df Model:                          13                                         
+Covariance Type:            nonrobust                                         
+============================================================================================
+                               coef    std err          t      P>|t|      [0.025      0.975]
+--------------------------------------------------------------------------------------------
+const                     1805.5677    184.793      9.771      0.000    1443.336    2167.800
+Age                          0.0959     10.512      0.009      0.993     -20.509      20.701
+Age_squared                 -0.0151      0.150     -0.101      0.920      -0.308       0.278
+EducationAnnees             -2.5071      2.941     -0.853      0.394      -8.272       3.258
+TailleMenage                -0.2079      5.609     -0.037      0.970     -11.202      10.786
+AccesInternet               10.8277     13.799      0.785      0.433     -16.222      37.877
+Continent_AmeriqueDuNord     9.9470     24.990      0.398      0.691     -39.038      58.932
+Continent_AmeriqueDuSud    -21.8682     24.676     -0.886      0.376     -70.237      26.501
+Continent_Antarctique       21.6522     24.712      0.876      0.381     -26.788      70.093
+Continent_Asie              38.0353     24.935      1.525      0.127     -10.843      86.913
+Continent_Europe            14.8089     24.761      0.598      0.550     -33.727      63.345
+Continent_Oceanie           -1.7022     24.889     -0.068      0.945     -50.490      47.085
+Sexe                         9.9670     13.106      0.761      0.447     -15.723      35.657
+Travaille                   14.2942     13.125      1.089      0.276     -11.434      40.022
+==============================================================================
+Omnibus:                     2198.530   Durbin-Watson:                   1.997
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              411.701
+Skew:                           0.023   Prob(JB):                     3.98e-90
+Kurtosis:                       2.007   Cond. No.                     3.81e+04
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 3.81e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+Facteurs d'inflation de la variance (VIF) :
+                     feature         VIF
+0                      const  795.857492
+1                        Age  112.180052
+2                Age_squared  112.179040
+3            EducationAnnees    1.001184
+4               TailleMenage    1.000852
+5              AccesInternet    1.000982
+6   Continent_AmeriqueDuNord    1.756496
+7    Continent_AmeriqueDuSud    1.787361
+8      Continent_Antarctique    1.784611
+9             Continent_Asie    1.760284
+10          Continent_Europe    1.778517
+11         Continent_Oceanie    1.767204
+12                      Sexe    1.000661
+13                 Travaille    1.001126
